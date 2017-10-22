@@ -9,9 +9,6 @@
   import { HeaderComponent, FooterComponent } from '~/components/common'
 
   export default {
-    data () {
-      return {}
-    },
     components: {
       FooterComponent,
       HeaderComponent
