@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-component></header-component>
-    Main
+    Pomodoro
     <footer-component></footer-component>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello Nuxt!
+    Hello PROFIT'ORO!
     <pomodoro></pomodoro>
   </div>
 </template>
