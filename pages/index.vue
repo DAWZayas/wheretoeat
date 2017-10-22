@@ -1,16 +1,19 @@
 <template>
   <div>
-    Hello PROFIT'ORO!
-    <pomodoro></pomodoro>
+    <pomodoro v-if="isAuthenticated"></pomodoro>
+    <login v-if="!isAuthenticated"></login>
   </div>
 </template>
 <script>
+  import login from '~/pages/login'
   import pomodoro from '~/pages/pomodoro'
-
+  
   export default {
     data () {
-      return {}
+      return {
+        isAuthenticated: false
+      }
     },
-    components: {pomodoro}
+    components: {login, pomodoro}
   }
 </script>
