@@ -11,6 +11,7 @@
   import login from '~/pages/login'
   import pomodoro from '~/pages/pomodoro'
   import Tomato from '~/components/common/Tomato'
+  import { mapActions } from 'vuex'
 
   export default {
     data () {
@@ -20,10 +21,16 @@
       }
     },
     components: {login, pomodoro, Tomato},
+    methods: {
+      ...mapActions(['bindFirebaseReferences'])
+    },
     beforeCreate () {
       setTimeout(() => {
         this.isLoading = false
       }, 2000)
+    },
+    created () {
+      this.bindFirebaseReferences()
     }
   }
 </script>

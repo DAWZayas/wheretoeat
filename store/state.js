@@ -5,6 +5,9 @@ const config = {
   pomodorosTillLongBreak: 3
 }
 
+const configRef = null
+
 export default {
-  config
+  config,
+  configRef
 }

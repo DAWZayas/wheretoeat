@@ -7,5 +7,8 @@ export default {
   },
   setLongBreak (state, longBreak) {
     state.config.longBreak = longBreak
+  },
+  setConfigRef (state, value) {
+    state.configRef = value
   }
 }
