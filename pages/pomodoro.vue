@@ -4,7 +4,7 @@
     <div class="container min-full-height">
       <div class="main-content row">
         <div class="countdown-holder col-sm-12" v-bind:class="[state !== 0 ? 'col-md-6 col-lg-7' : 'col-md-12']">
-          <count-down-timer ref="countdowntimer" :time="time"></count-down-timer>
+          <count-down-timer ref="countdowntimer" @finished="togglePomodoro" :time="time"></count-down-timer>
         </div>
       </div>
     </div>
@@ -14,6 +14,7 @@
 <script>
   import CountDownTimer from '~/components/timer/CountDownTimer'
   import { HeaderComponent, FooterComponent } from '~/components/common'
+  import { beep } from '~/utils/utils'
 
   const STATE = {
     WORKING: 0,
@@ -23,7 +24,14 @@
   export default {
     data () {
       return {
-        state: STATE.WORKING
+        state: STATE.WORKING,
+        pomodoros: 0,
+        config: {
+          workingPomodoro: 0.2,
+          shortBreak: 0.1,
+          longBreak: 0.3,
+          pomodorosTillLongBreak: 3
+        }
       }
     },
     computed: {
@@ -32,16 +40,16 @@
 
         switch (this.state) {
           case STATE.WORKING:
-            minutes = 0.4
+            minutes = this.config.workingPomodoro
             break
           case STATE.SHORT_BREAK:
-            minutes = 0.1
+            minutes = this.config.shortBreak
             break
           case STATE.LONG_BREAK:
-            minutes = 0.2
+            minutes = this.config.longBreak
             break
           default:
-            minutes = 0.4
+            minutes = this.config.workingPomodoro
             break
         }
 
@@ -54,6 +62,27 @@
       CountDownTimer
     },
     methods: {
+      togglePomodoro () {
+        beep()
+        switch (this.state) {
+          case STATE.WORKING:
+            // we have switched to the break state, increase the number of pomodoros and choose between long and short break
+            this.pomodoros ++
+            this.state = this.pomodoros % this.config.pomodorosTillLongBreak === 0
+              ? STATE.LONG_BREAK : STATE.SHORT_BREAK
+            alert('Time for exercise!')
+            break
+          default:
+            // time to work!
+            this.state = STATE.WORKING
+            alert('Time to work!')
+            break
+        }
+        this.$refs.countdowntimer.start()
+      },
+      toggleKittens () {
+        this.showKittens = !this.showKittens
+      }
     }
   }
 </script>
