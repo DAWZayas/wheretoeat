@@ -1,13 +1,14 @@
 const config = {
-  workingPomodoro: 0.2,
-  shortBreak: 0.1,
-  longBreak: 0.3,
+  workingPomodoro: 25,
+  shortBreak: 5,
+  longBreak: 10,
   pomodorosTillLongBreak: 3
 }
 
 const user = null
 const configRef = null
 const statisticsRef = null
+const workoutsRef = null
 const displayName = ''
 
 const statistics = {
@@ -26,7 +27,9 @@ export default {
   user,
   configRef,
   statisticsRef,
+  workoutsRef,
   statistics,
   displayName,
+  workouts: [],
   authError: ''
 }

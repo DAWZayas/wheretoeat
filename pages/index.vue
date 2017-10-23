@@ -21,7 +21,7 @@
     },
     components: {login, pomodoro, Tomato},
     methods: {
-      ...mapActions(['bindAuth'])
+      ...mapActions(['bindAuth', 'bindWorkouts'])
     },
     computed: {
       ...mapState(['user']),
@@ -35,6 +35,7 @@
       }, 2000)
     },
     created () {
+      this.bindWorkouts()
       this.bindAuth()
     }
   }

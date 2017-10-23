@@ -26,7 +26,32 @@ export default {
   uploadImages ({state}, files) {
     return Promise.all(files.map(_uploadImage))
   },
-    /**
+  /**
+   * Creates new workout
+   * @param commit
+   * @param state
+   * @param workout
+   */
+  createNewWorkout ({commit, state}, workout) {
+    if (!workout) {
+      return
+    }
+
+    workout.username = state.user.displayName
+    workout.uid = state.user.uid
+    workout.date = Date.now()
+    workout.rate = 0
+    // Get a key for a new Workout.
+    let newWorkoutKey = state.workoutsRef.push().key
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    let updates = {}
+    updates['/workouts/' + newWorkoutKey] = workout
+    updates['/user-workouts/' + state.user.uid + '/' + newWorkoutKey] = workout
+
+    return firebaseApp.database().ref().update(updates)
+  },
+  /**
    * Sets the working pomodoro timer
    * @param {object} store
    * @param {number} workingPomodoro
@@ -182,9 +207,20 @@ export default {
       }
       if (!user) {
         dispatch('unbindFirebaseReferences')
+        dispatch('bindWorkouts')
       }
     })
   },
+  /**
+   * Binds Workouts reference
+   */
+  bindWorkouts: firebaseAction(({commit, dispatch}) => {
+    let db = firebaseApp.database()
+    let workoutsRef = db.ref('/workouts')
+    dispatch('bindFirebaseReference', {reference: workoutsRef, toBind: 'workouts'}).then(() => {
+      commit('setWorkoutsRef', workoutsRef)
+    })
+  }),
   /**
    * Binds firebase configuration and statistics database references to the store's corresponding objects
    * @param {object} store

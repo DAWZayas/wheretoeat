@@ -8,14 +8,17 @@ export default {
   setLongBreak (state, longBreak) {
     state.config.longBreak = longBreak
   },
-  setConfigRef (state, value) {
-    state.configRef = value
-  },
   setUser (state, value) {
     state.user = value
   },
+  setConfigRef (state, value) {
+    state.configRef = value
+  },
   setStatisticsRef (state, value) {
     state.statisticsRef = value
+  },
+  setWorkoutsRef (state, value) {
+    state.workoutsRef = value
   },
   setDisplayName (state, value) {
     state.displayName = value
