@@ -31,6 +31,7 @@
   import CountDownTimer from '~/components/timer/CountDownTimer'
   import KittensComponent from '~/components/timer/KittensComponent'
   import { HeaderComponent, FooterComponent } from '~/components/common'
+  import { mapGetters } from 'vuex'
   import { beep } from '~/utils/utils'
 
   const STATE = {
@@ -48,18 +49,15 @@
           description: 'lorem ipsum',
           picture: require('~/assets/images/pushups.png')
         },
-        config: {
-          workingPomodoro: 0.2,
-          shortBreak: 0.1,
-          longBreak: 0.3,
-          pomodorosTillLongBreak: 3
-        },
         showKittens: false,
         showKittensButtonText: 'Show me some kittens!',
         showWorkoutsButtonText: 'I wanna exercise!'
       }
     },
     computed: {
+      ...mapGetters({
+        config: 'getConfig'
+      }),
       time () {
         let minutes
 
