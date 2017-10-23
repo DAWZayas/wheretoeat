@@ -7,10 +7,12 @@ const config = {
 
 const user = null
 const configRef = null
+const displayName = ''
 
 export default {
   config,
   user,
   configRef,
+  displayName,
   authError: ''
 }

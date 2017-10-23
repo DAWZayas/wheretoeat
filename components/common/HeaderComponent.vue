@@ -27,7 +27,12 @@
             </li>
           </ul>
           <form class="buttons-holder">
-            <span v-if="isAuthenticated" class="nav-link profitoro-link" @click="onLogout">Logout</span>
+            <span v-if="isAuthenticated" class="nav-link profitoro-link" @click="onLogout">
+              Logout
+              <template v-if="isAuthenticated">
+                ({{ name }})
+              </template>
+            </span>
             <span v-if="!isAuthenticated" class="nav-link profitoro-link" @click="onLogout">Go to the start page</span>
           </form>
         </div>

@@ -98,6 +98,7 @@ export default {
     state.user.updateProfile({
       displayName
     })
+    commit('setDisplayName', displayName)
   },
   /**
    * Updates user's profile pic
@@ -164,6 +165,11 @@ export default {
     firebaseApp.auth().onAuthStateChanged(user => {
       commit('setUser', user)
       if (user && !user.isAnonymous) {
+        let displayName = user.displayName || user.email.split('@')[0]
+        if (!user.displayName) {
+          dispatch('updateUserName', displayName)
+        }
+        commit('setDisplayName', displayName)
         dispatch('bindFirebaseReferences', user)
       }
       if (!user) {
