@@ -75,6 +75,14 @@ export default {
     }
   },
   /**
+   * Updates the total pomodoro number
+   * @param {object} store
+   * @param {number} totalPomodoros
+   */
+  updateTotalPomodoros ({state}, totalPomodoros) {
+    state.statisticsRef.update({totalPomodoros: totalPomodoros})
+  },
+  /**
    * Creates a new user with given email and password and stores it in the firebase database
    * @param {object} store
    * @param {object} email and password
@@ -178,15 +186,19 @@ export default {
     })
   },
   /**
-   * Binds firebase configuration database reference to the store's corresponding object
+   * Binds firebase configuration and statistics database references to the store's corresponding objects
    * @param {object} store
    */
   bindFirebaseReferences: firebaseAction(({state, commit, dispatch}, user) => {
     let db = firebaseApp.database()
     let configRef = db.ref(`/configuration/${user.uid}`)
+    let statisticsRef = db.ref(`/statistics/${user.uid}`)
 
     dispatch('bindFirebaseReference', {reference: configRef, toBind: 'config'}).then(() => {
       commit('setConfigRef', configRef)
+    })
+    dispatch('bindFirebaseReference', {reference: statisticsRef, toBind: 'statistics'}).then(() => {
+      commit('setStatisticsRef', statisticsRef)
     })
   }),
   /**
@@ -204,13 +216,17 @@ export default {
       bindFirebaseRef(toBind, reference)
     })
   }),
-    /**
+  /**
    * Undbinds firebase references
    */
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
     commit('setConfigRef', null)
+    commit('setStatisticsRef', null)
+    commit('setWorkoutsRef', null)
     try {
       unbindFirebaseRef('config')
+      unbindFirebaseRef('statistics')
+      unbindFirebaseRef('workouts')
     } catch (error) {
       return
     }

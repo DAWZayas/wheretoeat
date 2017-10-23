@@ -14,11 +14,13 @@
 </template>
 <script>
   import { HeaderComponent, FooterComponent } from '~/components/common'
+  import {mapGetters} from 'vuex'
   export default {
-    data () {
-      return {
-        totalPomodoros: 5
-      }
+    middleware: 'authenticated',
+    computed: {
+      ...mapGetters({
+        totalPomodoros: 'getTotalPomodoros'
+      })
     },
     components: {
       HeaderComponent,

@@ -31,7 +31,7 @@
   import CountDownTimer from '~/components/timer/CountDownTimer'
   import KittensComponent from '~/components/timer/KittensComponent'
   import { HeaderComponent, FooterComponent } from '~/components/common'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import { beep } from '~/utils/utils'
 
   const STATE = {
@@ -57,6 +57,7 @@
     computed: {
       ...mapGetters({
         config: 'getConfig',
+        totalPomodoros: 'getTotalPomodoros',
         authenticated: 'isAuthenticated'
       }),
       time () {
@@ -87,10 +88,16 @@
       KittensComponent
     },
     methods: {
+      ...mapActions(['updateTotalPomodoros']),
       togglePomodoro () {
         beep()
         switch (this.state) {
           case STATE.WORKING:
+            // we have switched to the break state, increase the number of pomodoros and choose between long and short break
+            this.pomodoros ++
+            if (this.authenticated) {
+              this.updateTotalPomodoros(this.totalPomodoros + 1)
+            }
             this.state = this.pomodoros % this.config.pomodorosTillLongBreak === 0
               ? STATE.LONG_BREAK : STATE.SHORT_BREAK
             alert('Time for exercise!')

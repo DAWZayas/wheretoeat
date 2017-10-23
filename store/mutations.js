@@ -14,6 +14,9 @@ export default {
   setUser (state, value) {
     state.user = value
   },
+  setStatisticsRef (state, value) {
+    state.statisticsRef = value
+  },
   setDisplayName (state, value) {
     state.displayName = value
   },
