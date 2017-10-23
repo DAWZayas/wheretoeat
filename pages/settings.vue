@@ -14,12 +14,19 @@
 <script>
   import { HeaderComponent, FooterComponent } from '~/components/common'
   import PomodoroTimerSettings from '~/components/settings/PomodoroTimerSettings'
+  import { mapActions } from 'vuex'
 
   export default {
     components: {
       HeaderComponent,
       FooterComponent,
       PomodoroTimerSettings
+    },
+    methods: {
+      ...mapActions(['bindFirebaseReferences'])
+    },
+    created () {
+      this.bindFirebaseReferences()
     }
   }
 </script>
