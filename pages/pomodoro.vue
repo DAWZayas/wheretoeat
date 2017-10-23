@@ -3,6 +3,15 @@
     <header-component></header-component>
     <div class="container min-full-height">
       <div class="main-content row">
+        <div v-show="state !== 0" class="col-sm-12 col-md-6 col-lg-5">
+          <div>
+            <img class="img-fluid rounded" :src="chosenWorkout.picture" :alt="chosenWorkout.name">
+            <h2 class="title">{{ chosenWorkout.name }}</h2>
+            <p class="description">
+              {{ chosenWorkout.description }}
+            </p>
+          </div>
+        </div>
         <div class="countdown-holder col-sm-12" v-bind:class="[state !== 0 ? 'col-md-6 col-lg-7' : 'col-md-12']">
           <count-down-timer ref="countdowntimer" @finished="togglePomodoro" :time="time"></count-down-timer>
         </div>
@@ -26,6 +35,11 @@
       return {
         state: STATE.WORKING,
         pomodoros: 0,
+        chosenWorkout: {
+          name: 'Pushups',
+          description: 'lorem ipsum',
+          picture: require('~/assets/images/pushups.png')
+        },
         config: {
           workingPomodoro: 0.2,
           shortBreak: 0.1,
