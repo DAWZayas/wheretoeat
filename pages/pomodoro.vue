@@ -4,12 +4,19 @@
     <div class="container min-full-height">
       <div class="main-content row">
         <div v-show="state !== 0" class="col-sm-12 col-md-6 col-lg-5">
-          <div>
+          <div v-if="!showKittens">
             <img class="img-fluid rounded" :src="chosenWorkout.picture" :alt="chosenWorkout.name">
             <h2 class="title">{{ chosenWorkout.name }}</h2>
             <p class="description">
               {{ chosenWorkout.description }}
             </p>
+          </div>
+          <div v-if="showKittens">
+            <kittens-component></kittens-component>
+          </div>
+          <div class="lazy-section">
+            <h4 class="title">Feeling <span class="bold">{{ showKittens ? 'energetic' : 'lazy' }}</span>?</h4>
+            <button type="button" class="button button-primary-faded" @click="toggleKittens">{{ showKittens ? showWorkoutsButtonText : showKittensButtonText }}</button>
           </div>
         </div>
         <div class="countdown-holder col-sm-12" v-bind:class="[state !== 0 ? 'col-md-6 col-lg-7' : 'col-md-12']">
@@ -22,6 +29,7 @@
 </template>
 <script>
   import CountDownTimer from '~/components/timer/CountDownTimer'
+  import KittensComponent from '~/components/timer/KittensComponent'
   import { HeaderComponent, FooterComponent } from '~/components/common'
   import { beep } from '~/utils/utils'
 
@@ -45,7 +53,10 @@
           shortBreak: 0.1,
           longBreak: 0.3,
           pomodorosTillLongBreak: 3
-        }
+        },
+        showKittens: false,
+        showKittensButtonText: 'Show me some kittens!',
+        showWorkoutsButtonText: 'I wanna exercise!'
       }
     },
     computed: {
@@ -73,15 +84,14 @@
     components: {
       FooterComponent,
       HeaderComponent,
-      CountDownTimer
+      CountDownTimer,
+      KittensComponent
     },
     methods: {
       togglePomodoro () {
         beep()
         switch (this.state) {
           case STATE.WORKING:
-            // we have switched to the break state, increase the number of pomodoros and choose between long and short break
-            this.pomodoros ++
             this.state = this.pomodoros % this.config.pomodorosTillLongBreak === 0
               ? STATE.LONG_BREAK : STATE.SHORT_BREAK
             alert('Time for exercise!')
