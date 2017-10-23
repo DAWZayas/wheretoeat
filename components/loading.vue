@@ -25,9 +25,9 @@
       }
     },
     methods: {
-      ...mapActions(['bindFirebaseReferences']),
+      ...mapActions(['bindAuth']),
       start () {
-        this.bindFirebaseReferences()
+        this.bindAuth()
         this.show = true
         this.canSuccess = true
         if (this._timer) {

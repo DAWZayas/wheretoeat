@@ -11,18 +11,23 @@
   import login from '~/pages/login'
   import pomodoro from '~/pages/pomodoro'
   import Tomato from '~/components/common/Tomato'
-  import { mapActions } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
 
   export default {
     data () {
       return {
-        isLoading: true,
-        isAuthenticated: false
+        isLoading: true
       }
     },
     components: {login, pomodoro, Tomato},
     methods: {
-      ...mapActions(['bindFirebaseReferences'])
+      ...mapActions(['bindAuth'])
+    },
+    computed: {
+      ...mapState(['user']),
+      isAuthenticated () {
+        return this.user && !this.user.isAnonymous
+      }
     },
     beforeCreate () {
       setTimeout(() => {
@@ -30,7 +35,7 @@
       }, 2000)
     },
     created () {
-      this.bindFirebaseReferences()
+      this.bindAuth()
     }
   }
 </script>

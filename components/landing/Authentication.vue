@@ -6,7 +6,7 @@
         <input class="input white" v-model="email" type="email" placeholder="username or email address" />
         <input class="input white" v-model="password" type="password" placeholder="password" />
         <div v-show="this.authError !== ''" class="border-0 alert alert-danger alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <button @click="onDisposeErrorAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           <strong>:( </strong> {{ this.errorText }}
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+  import {mapActions, mapGetters} from 'vuex'
+
   let TITLE_TEXT = {
     LOGIN: 'Already a member? Log in here!',
     SIGNUP: 'Don\'t have an account? Sign up here!'
@@ -42,11 +44,11 @@
       return {
         isLogin: true,
         email: '',
-        password: '',
-        authError: ''
+        password: ''
       }
     },
     computed: {
+      ...mapGetters(['authError']),
       titleText () {
         return this.isLogin ? TITLE_TEXT.LOGIN : TITLE_TEXT.SIGNUP
       },
@@ -61,11 +63,19 @@
       }
     },
     methods: {
+      ...mapActions(['createUser', 'authenticate', 'authenticateAnonymous', 'resetAuthError']),
       onSwitch () {
+        this.resetAuthError()
         this.isLogin = !this.isLogin
       },
       onAction (ev) {
         ev.preventDefault()
+        ev.stopPropagation()
+        let method = this.isLogin ? this.authenticate : this.createUser
+        method({email: this.email, password: this.password})
+      },
+      onDisposeErrorAlert (ev) {
+        this.resetAuthError()
         ev.stopPropagation()
       }
     }
@@ -149,4 +159,3 @@
   }
 
 </style>
-

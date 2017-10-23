@@ -56,7 +56,8 @@
     },
     computed: {
       ...mapGetters({
-        config: 'getConfig'
+        config: 'getConfig',
+        authenticated: 'isAuthenticated'
       }),
       time () {
         let minutes

@@ -17,36 +17,42 @@
               <nuxt-link class="nav-link profitoro-link" to="about">About </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link profitoro-link" to="settings">Settings </nuxt-link>
+              <nuxt-link class="nav-link profitoro-link" :class="{disabled:!isAuthenticated}" to="settings">Settings </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link profitoro-link" to="statistics">Statistics </nuxt-link>
+              <nuxt-link class="nav-link profitoro-link" :class="{disabled:!isAuthenticated}" to="statistics">Statistics </nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link profitoro-link" to="workouts">Workouts </nuxt-link>
+              <nuxt-link class="nav-link profitoro-link" :class="{disabled:!isAuthenticated}" to="workouts">Workouts </nuxt-link>
             </li>
           </ul>
           <form class="buttons-holder">
-            <span class="nav-link profitoro-link" @click="onStartPage">Go to the start page</span>
+            <span v-if="isAuthenticated" class="nav-link profitoro-link" @click="onLogout">Logout</span>
+            <span v-if="!isAuthenticated" class="nav-link profitoro-link" @click="onLogout">Go to the start page</span>
           </form>
         </div>
       </nav>
     </div>
   </header>
 </template>
-
 <script>
+  import {mapActions, mapGetters} from 'vuex'
   import Logo from '~/components/common/Logo'
-  export default {
 
+  export default {
     name: 'header-component',
-    components: {
-      Logo
+    computed: {
+      ...mapGetters({name: 'getDisplayName', isAuthenticated: 'isAuthenticated'})
     },
     methods: {
-      onStartPage () {
+      ...mapActions(['logout']),
+      onLogout () {
+        this.logout()
         this.$router.push('/')
       }
+    },
+    components: {
+      Logo
     }
   }
 </script>

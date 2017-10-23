@@ -10,5 +10,11 @@ export default {
   },
   setConfigRef (state, value) {
     state.configRef = value
+  },
+  setUser (state, value) {
+    state.user = value
+  },
+  setAuthError (state, value) {
+    state.authError = value
   }
 }

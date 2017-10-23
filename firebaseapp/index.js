@@ -2,7 +2,7 @@
 import firebase from 'firebase'
 
 let config = {
-  apiKey: 'apiKey',
+  apiKey: 'AIzaSyB4hXU1Keid_xYOJfIkUl6nuWahi8HwWEU',
   databaseURL: 'https://profitoro-zayas.firebaseio.com',
   authDomain: 'profitoro-zayas.firebaseapp.com',
   storageBucket: 'gs://profitoro-zayas.appspot.com'
