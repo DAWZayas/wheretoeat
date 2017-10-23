@@ -14,6 +14,10 @@
           <div v-if="showKittens">
             <kittens-component></kittens-component>
           </div>
+          <div v-if="!showKittens">
+            <button type="button" class="button button-primary">Done!</button>
+            <button type="button" class="button button-primary">Next</button>
+          </div>
           <div class="lazy-section">
             <h4 class="title">Feeling <span class="bold">{{ showKittens ? 'energetic' : 'lazy' }}</span>?</h4>
             <button type="button" class="button button-primary-faded" @click="toggleKittens">{{ showKittens ? showWorkoutsButtonText : showKittensButtonText }}</button>
@@ -44,11 +48,8 @@
       return {
         state: STATE.WORKING,
         pomodoros: 0,
-        chosenWorkout: {
-          name: 'Pushups',
-          description: 'lorem ipsum',
-          picture: require('~/assets/images/pushups.png')
-        },
+        source: require('~/assets/images/pushups.png'),
+        chosenWorkout: {name: '', description: '', picture: ''},
         showKittens: false,
         showKittensButtonText: 'Show me some kittens!',
         showWorkoutsButtonText: 'I wanna exercise!'
@@ -58,6 +59,7 @@
       ...mapGetters({
         config: 'getConfig',
         totalPomodoros: 'getTotalPomodoros',
+        workouts: 'getWorkouts',
         authenticated: 'isAuthenticated'
       }),
       time () {
@@ -89,6 +91,9 @@
     },
     methods: {
       ...mapActions(['updateTotalPomodoros']),
+      getRandomWorkout () {
+        return this.workouts[Math.floor(Math.random() * this.workouts.length)]
+      },
       togglePomodoro () {
         beep()
         switch (this.state) {
@@ -100,6 +105,8 @@
             }
             this.state = this.pomodoros % this.config.pomodorosTillLongBreak === 0
               ? STATE.LONG_BREAK : STATE.SHORT_BREAK
+            this.chosenWorkout = this.getRandomWorkout()
+            this.chosenWorkout.picture = this.chosenWorkout.pictures && this.chosenWorkout.pictures.length && this.chosenWorkout.pictures[0]
             alert('Time for exercise!')
             break
           default:
