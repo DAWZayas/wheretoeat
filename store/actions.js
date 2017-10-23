@@ -1,7 +1,31 @@
 import firebaseApp from '~/firebaseapp'
 import {firebaseAction} from 'vuexfire'
+import uuidv1 from 'uuid/v1'
+
+/**
+ * Uploads individual file
+ * @param file
+ * @returns {firebase.Promise}
+ * @private
+ */
+function _uploadImage (file) {
+  let ref = firebaseApp.storage().ref().child('workouts')
+  return ref.child(uuidv1()).child(file.name).put(file).then(snapshot => {
+    return snapshot.downloadURL
+  })
+}
 
 export default {
+  _uploadImage,
+  /**
+   * Uploads images to the firebase datastore
+   * @param state
+   * @param files
+   * @returns {Promise}
+   */
+  uploadImages ({state}, files) {
+    return Promise.all(files.map(_uploadImage))
+  },
     /**
    * Sets the working pomodoro timer
    * @param {object} store
@@ -63,6 +87,39 @@ export default {
       .catch(error => {
         commit('setAuthError', error.message)
       })
+  },
+  /**
+   * Updates user display name
+   * @param state
+   * @param commit
+   * @param {string} displayName
+   */
+  updateUserName ({state, commit}, displayName) {
+    state.user.updateProfile({
+      displayName
+    })
+  },
+  /**
+   * Updates user's profile pic
+   * @param state
+   * @param {string} photoURL
+   */
+  updatePhotoURL ({state}, photoURL) {
+    state.user.updateProfile({
+      photoURL
+    })
+  },
+  /**
+   * Updates user's email address
+   * @param state
+   * @param {string} email
+   */
+  updateUserEmail ({state}, email) {
+    state.user.updateEmail(email).then(() => {
+      // Update successful.
+    }, error => {
+      console.log(error)
+    })
   },
   /**
    * Authenticates a new user with given email and password
