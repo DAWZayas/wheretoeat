@@ -2,6 +2,12 @@
 
 > Take breaks during work. Exercise during breaks.
 
+## Demo
+
+[demo](https://profitoro-zayas.firebaseapp.com/)
+![demo](assets/images/screen.png)
+Forked from [chudaol/profitoro](https://github.com/chudaol/profitoro)
+
 ## Build Setup
 
 ``` bash
