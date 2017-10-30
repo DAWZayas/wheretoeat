@@ -4,7 +4,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'ProFitOro',
+    title: 'WhereToEat',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -16,7 +16,8 @@ module.exports = {
       { hid: 'ogdescription', property: 'og:description', name: 'og:description', content: 'ProFitOro is a Pomodoro timer implementation combined with office workouts. Take breaks during work. Exercise during breaks ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
     ],
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
