@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <headerC></headerC>
     <mainC></mainC>
     <asideC></asideC>
@@ -22,5 +22,8 @@ export default {
     asideC
   }
 }
-
 </script>
+
+<style media="screen">
+@media screen and (min-width: 850px) { .container{ width: 80%;} }
+</style>
