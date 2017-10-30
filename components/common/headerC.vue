@@ -13,7 +13,7 @@
 
 import logo from '~/components/common/logo'
 export default {
-  name: 'header-component',
+  name: 'headerC',
   components: {
     logo
   }
