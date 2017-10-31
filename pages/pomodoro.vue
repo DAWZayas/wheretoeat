@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="containe-r">
     <headerC></headerC>
     <mainC></mainC>
     <asideC></asideC>
@@ -9,7 +9,9 @@
 
 <script type="text/javascript">
 
-import { headerC, footerC, mainC, asideC } from '~/components/common'
+import { headerC, footerC } from '~/components/common'
+import mainC from '~/components/mainC'
+import asideC from '~/components/asideC'
 
 export default {
   data () {
@@ -25,5 +27,11 @@ export default {
 </script>
 
 <style media="screen">
-@media screen and (min-width: 850px) { .container{ width: 80%;} }
+@media screen and (min-width: 850px) {
+  .containe-r{
+    width: 80%;
+    margin-left: 10%;
+
+    }
+  }
 </style>
