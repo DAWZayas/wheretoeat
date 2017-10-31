@@ -27,11 +27,12 @@ export default {
 </script>
 
 <style media="screen">
+img{width: 100%;}
+
 @media screen and (min-width: 850px) {
   .containe-r{
     width: 80%;
     margin-left: 10%;
-
-    }
   }
+}
 </style>
