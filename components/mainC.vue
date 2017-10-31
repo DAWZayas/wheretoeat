@@ -34,7 +34,7 @@
   .main {
     background:white;
     padding:10px;
-    width:100%;
+    flex:1 1 70%;
   }
 
   .titulo-star{

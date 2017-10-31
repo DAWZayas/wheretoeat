@@ -3,7 +3,8 @@
     <headerC></headerC>
     <mainC></mainC>
     <asideC></asideC>
-    <footerC>></footerC>
+    <sectionC></sectionC>
+    <footerC></footerC>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import { headerC, footerC } from '~/components/common'
 import mainC from '~/components/mainC'
 import asideC from '~/components/asideC'
+import sectionC from '~/components/sectionC'
 
 export default {
   data () {
@@ -21,7 +23,8 @@ export default {
     headerC,
     footerC,
     mainC,
-    asideC
+    asideC,
+    sectionC
   }
 }
 </script>
@@ -32,6 +35,8 @@ img{width: 100%;}
 @media screen and (min-width: 850px) {
   .containe-r{
     width: 80%;
+    display:flex;
+	  flex-flow:row wrap;
     margin-left: 10%;
   }
 }

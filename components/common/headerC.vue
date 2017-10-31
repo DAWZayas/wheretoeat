@@ -33,6 +33,7 @@ export default {
 </script>
 <style media="screen">
 .header {
+  width: 100%;
   background:#fff;
   border-top-style: solid;
   border-left-style: solid;
