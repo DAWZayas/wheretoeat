@@ -29,6 +29,7 @@ export default {
 }
 </script>
 
+
 <style media="screen">
 img{width: 100%;}
 
@@ -39,5 +40,6 @@ img{width: 100%;}
 	  flex-flow:row wrap;
     margin-left: 10%;
   }
+
 }
 </style>

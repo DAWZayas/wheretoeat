@@ -15,9 +15,9 @@
       </div>
 
       <div class="icon-option">
-        <nuxt-link to="#" class="marg"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
-        <nuxt-link to="#" class="marg"><i class="material-icons">&#xe0b9;</i></nuxt-link>
-        <nuxt-link to="#" class="marg"><i class="material-icons">&#xe0cd;</i></nuxt-link>
+        <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
+        <nuxt-link to="#"><i class="material-icons">&#xe0b9;</i></nuxt-link>
+        <nuxt-link to="#"><i class="material-icons">&#xe0cd;</i></nuxt-link>
       </div>
 
     </div>
@@ -26,9 +26,24 @@
     <p>Una pulpería era, hasta inicios del siglo XX, el establecimiento comercial típico de
       las distintas regiones de Hispanoamérica, encontrándose ampliamente extendida desde
       Centroamérica hasta los países del Cono Sur. </p>
+
     </div>
   </template>
-
+  <!--
+  <script type="text/javascript">
+  export default {
+    data () {
+      return (
+        info: [
+          { photo: '~/assets/images/img1.jpg', name: 'Soul Food', location: '(Majadahonda)' },
+          { photo: '~/assets/images/img2.jpg', name: 'La Tapa Madrileña', location: '(Las Rozas)' },
+          { photo: '~/assets/images/img3.jpg', name: 'La Bohemia', location: '(Villalba)' }
+        ]
+      )
+    }
+  }
+  </script>
+  -->
   <style media="screen">
 
   .main {
@@ -79,7 +94,7 @@
     text-decoration: none;
   }
 
-  .marg{
+  .icon-option a{
     color: #2c3e50;
     margin-right: 15%;
   }
@@ -89,11 +104,6 @@
     margin-bottom: 10px;
   }
   @media screen and (min-width: 850px) {
-
-    .main {
-      width:70%;
-      padding:20px;
-    }
 
     .titulo-star h5{
       margin-top: 2%;
