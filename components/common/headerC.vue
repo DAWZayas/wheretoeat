@@ -88,7 +88,7 @@ export default {
   display: none;
 }
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 800px) {
 
   .header {
     padding: 20px;

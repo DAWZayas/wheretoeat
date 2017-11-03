@@ -60,24 +60,16 @@
 }
 .icoption a{
   color: #2c3e50;
-  margin-right: 5%;
+  margin-right: 10%;
 }
 
-@media screen and (min-width: 800px) {
-  .conta-in{
-    display: flex;
-    flex-flow: row wrap;
-  }
-  .icoption{
-    display: flex;
-    flex-flow: row nowrap;
-  }
+@media screen and (min-width: 650px) {
   .mainBloc{
     width: 50%;
     padding: 5px;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
   .mainBloc{
     width: 32%;
     padding: 5px;

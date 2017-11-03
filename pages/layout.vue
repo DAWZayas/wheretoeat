@@ -36,13 +36,19 @@ export default {
 <style media="screen">
 img{width: 100%;}
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 650px) {
   .containe-r{
-    width: 80%;
+    width: 100%;
     display:flex;
 	  flex-flow:row wrap;
+  }
+
+@media screen and (min-width: 1200px) {
+  .containe-r{
+    width: 80%;
     margin-left: 10%;
   }
+}
 
 }
 </style>

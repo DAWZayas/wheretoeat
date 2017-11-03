@@ -80,7 +80,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  @media screen and (min-width: 850px) {
+  @media screen and (min-width: 650px) {
     .titulo-star h5{
       margin-top: 2%;
       display: flex;

@@ -2,7 +2,7 @@
   <aside>
 			<div class="widget">
 				<img src="~/assets/images/img10.jpg">
-  			<a href="#" class="icon-location"><span>Travesia</span></a><h5>(Las Rozas)</h5>
+  			<nuxt-link to="#" class="icon-location"><span>Travesia</span></nuxt-link><h5>(Las Rozas)</h5>
   			<div class="aside-icons">
           <div class="stars">
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
@@ -19,7 +19,7 @@
 
 			<div class="widget">
 				<img src="~/assets/images/img2.jpg">
-  			<a href="#" class="icon-location"><span>La Fuente</span></a><h5>(Collado Villalba)</h5>
+  			<nuxt-link to="#" class="icon-location"><span>La Fuente</span></nuxt-link><h5>(Collado Villalba)</h5>
   			<div class="aside-icons">
           <div class="stars">
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
@@ -64,13 +64,13 @@ aside .widget {
 }
 .widget a span{
   color:#89563a;
-  font-size: 2rem;
+  font-size: 2.1rem;
 }
 .widget a {
   text-decoration: none;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 650px) {
   aside {
     width: 30%;
 		flex-direction: column;

@@ -74,7 +74,7 @@
   flex-direction: column;
   align-content: center;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 650px) {
   .listBloc {
     display: flex;
     flex-flow: row wrap;
