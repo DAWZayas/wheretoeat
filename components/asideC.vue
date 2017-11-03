@@ -1,8 +1,8 @@
 <template>
   <aside>
 			<div class="widget">
-				<img src="~/assets/images/img3.jpg">
-  			<span>Travesia</span><a href="#" class="icon-location loc" style="font-size: 2rem;"></a><h5>(Las Rozas)</h5>
+				<img src="~/assets/images/img10.jpg">
+  			<a href="#" class="icon-location"><span>Travesia</span></a><h5>(Las Rozas)</h5>
   			<div class="aside-icons">
           <div class="stars">
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
@@ -11,6 +11,7 @@
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
             <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
             <nuxt-link to="#" class="str">8.5</nuxt-link>
+            <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
             <nuxt-link to="#" clss="str">(Ver más)</nuxt-link>
           </div>
 			  </div>
@@ -18,7 +19,7 @@
 
 			<div class="widget">
 				<img src="~/assets/images/img2.jpg">
-  			<span>La Fuente</span><a href="#" class="icon-location loc" style="font-size: 2rem;"></a><h5>(Collado Villalba)</h5>
+  			<a href="#" class="icon-location"><span>La Fuente</span></a><h5>(Collado Villalba)</h5>
   			<div class="aside-icons">
           <div class="stars">
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
@@ -27,6 +28,7 @@
             <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
             <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
             <nuxt-link to="#" class="str">8.5</nuxt-link>
+            <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
             <nuxt-link to="#" clss="str">(Ver más)</nuxt-link>
           </div>
 			  </div>
@@ -60,6 +62,13 @@ aside .widget {
 	color: #2c3e50;
 	text-decoration: none;
 }
+.widget a span{
+  color:#89563a;
+  font-size: 2rem;
+}
+.widget a {
+  text-decoration: none;
+}
 
 @media screen and (min-width: 800px) {
   aside {
@@ -79,4 +88,3 @@ aside .widget {
   }
 }
 </style>
-

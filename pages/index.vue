@@ -1,15 +1,15 @@
 <template>
   <div>
-    <pomodoro></pomodoro>
+    <layout></layout>
   </div>
 </template>
 <script>
-  import pomodoro from '~/pages/pomodoro'
+  import layout from '~/pages/layout'
 
   export default {
     data () {
       return {}
     },
-    components: {pomodoro}
+    components: {layout}
   }
 </script>

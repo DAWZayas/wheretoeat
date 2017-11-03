@@ -23,43 +23,24 @@
     </div>
     <hr>
     <h3>Buena localización, mejor precio</h3>
-    <p>Una pulpería era, hasta inicios del siglo XX, el establecimiento comercial típico de
-      las distintas regiones de Hispanoamérica, encontrándose ampliamente extendida desde
-      Centroamérica hasta los países del Cono Sur. </p>
+    <p>Una pulpería era, hasta inicios del siglo XX, el establecimiento comercial típico de las distintas regiones de Hispanoamérica, encontrándose ampliamente extendida desde Centroamérica hasta los países del Cono Sur. </p>
 
     </div>
   </template>
-  <!--
-  <script type="text/javascript">
-  export default {
-    data () {
-      return (
-        info: [
-          { photo: '~/assets/images/img1.jpg', name: 'Soul Food', location: '(Majadahonda)' },
-          { photo: '~/assets/images/img2.jpg', name: 'La Tapa Madrileña', location: '(Las Rozas)' },
-          { photo: '~/assets/images/img3.jpg', name: 'La Bohemia', location: '(Villalba)' }
-        ]
-      )
-    }
-  }
-  </script>
-  -->
   <style media="screen">
-
   .main {
     background:white;
     padding:10px;
     flex:1 1 70%;
   }
-
   .titulo-star{
     display: flex;
     flex-flow: row wrap;
     font-size: 2rem;
     align-items: center;
     margin-top: 10px;
+    word-wrap: break-word;
   }
-
   .titulo-star h1{
     margin-right: 2%;
     color: #89563a;
@@ -77,38 +58,32 @@
     display: flex;
     flex-flow: row-reverse nowrap;
   }
-
   .icon-option a i{
     color: #2c3e50;;
     text-decoration: none;
     font-size: 2em;
   }
-
   .stars{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     font-size: .7em;
   }
   .stars a{
     color: #2c3e50;
     text-decoration: none;
   }
-
   .icon-option a{
     color: #2c3e50;
     margin-right: 15%;
   }
-
   hr {
     margin-top: 10px;
     margin-bottom: 10px;
   }
   @media screen and (min-width: 850px) {
-
     .titulo-star h5{
       margin-top: 2%;
       display: flex;
-
     }
 
     .main{

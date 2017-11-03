@@ -6,7 +6,6 @@
 </template>
 
 <script type="text/javascript">
-
 import mainC from '~/components/mainC'
 export default {
   data () {
@@ -23,9 +22,7 @@ export default {
   display: flex;
   flex-flow: column;
 }
-
 @media screen and (min-width: 800px) {
-
   .double-window {
     display: flex;
     flex-flow: row nowrap;
@@ -33,7 +30,6 @@ export default {
     border-color: #a85122;
     border-width: 2px;
   }
-
   .double-window > .main {
     border-style: none;
   }
