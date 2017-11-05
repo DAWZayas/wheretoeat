@@ -24,7 +24,6 @@
     <hr>
     <h3>Buena localización, mejor precio</h3>
     <p>Una pulpería era, hasta inicios del siglo XX, el establecimiento comercial típico de las distintas regiones de Hispanoamérica, encontrándose ampliamente extendida desde Centroamérica hasta los países del Cono Sur. </p>
-
     </div>
   </template>
   <style lang='scss'>

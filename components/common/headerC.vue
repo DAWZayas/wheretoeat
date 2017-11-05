@@ -17,12 +17,10 @@
       <nuxt-link to="#" class="line">Registrate</nuxt-link>
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
     </div>
-
   </div>
 </template>
 
 <script type="text/javascript">
-
 import logo from '~/components/common/logo'
 export default {
   name: 'headerC',
@@ -87,6 +85,7 @@ export default {
 .header .menu{
   display: none;
 }
+
 @media screen and (min-width: 800px) {
 
   .header {
