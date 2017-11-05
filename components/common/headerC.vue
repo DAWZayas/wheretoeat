@@ -31,15 +31,16 @@ export default {
   }
 }
 </script>
-<style media="screen">
+<style lang='scss'>
+@import "assets/sass/colors.scss";
 .header {
   width: 100%;
-  background:#fff;
+  background:$whiteColor;
   border-top-style: solid;
   border-left-style: solid;
   border-right-style: solid;
   border-width: 2px;
-  border-color: #a85122;
+  border-color: $redColor;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding:10px;
@@ -51,7 +52,7 @@ export default {
 }
 
 .header .logo {
-  color:#fff;
+  color:$whiteColor;
   font-size:30px;
   max-width: 240px;
   margin-left: 2%;
@@ -59,11 +60,10 @@ export default {
 
 
 .header nav {
+  @extend .flexWrap;
   width:30%;
   font-size: 30px;
   padding-top: 5px;
-  display:flex;
-  flex-wrap:wrap;
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items:center;
@@ -71,8 +71,8 @@ export default {
 
 .header nav a {
 
-  border-radius: #fff;
-  color:#38393a;
+  border-radius: $whiteColor;
+  color:$blueColor;
   text-align: center;
   text-decoration: none;
   padding:5px;
@@ -87,7 +87,6 @@ export default {
 .header .menu{
   display: none;
 }
-
 @media screen and (min-width: 800px) {
 
   .header {
@@ -111,12 +110,12 @@ export default {
     border-bottom-style: solid;
     border-top-style: solid;
     border-width: 2px;
-    border-bottom-color: #a85122;
+    border-bottom-color: $redColor;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
     border-top-left-radius: 3px;
-    color:#38393a;
+    color:$darkBlue;
     padding: 7px;
     text-decoration: none;
   }
@@ -130,7 +129,7 @@ export default {
   }
 
   .userch a{
-    color:#38393a;
+    color:$darkBlue;
     padding: 10px;
     text-decoration: none;
   }

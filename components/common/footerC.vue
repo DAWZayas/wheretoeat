@@ -14,27 +14,25 @@
  </template>
 
 
-<style media="screen">
+ <style lang='scss'>
+ @import "assets/sass/colors.scss";
 .footer {
-background:#2c3e50;
+@extend .flexWrap;
+background:$blueColor;
 width: 100%;
 padding:20px;
-display: flex;
-flex-wrap:wrap;
 align-items: center;
 justify-content:space-around;
 }
 
 .footer .links {
+@extend .flexWrap;
 font-size: 1rem;
-display:flex;
-flex-wrap:wrap;
 }
 
 .footer .links a {
 flex-grow:1;
-
-color:#fff;
+color:$whiteColor;
 padding:10px;
 text-align: center;
 text-decoration:none;
@@ -42,7 +40,7 @@ text-decoration:none;
 
 .footer .social a {
 font-size: 2rem;
-color:#fff;
+color:$whiteColor;
 text-decoration: none;
 padding:10px;
 display: inline-block;

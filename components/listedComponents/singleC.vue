@@ -34,10 +34,10 @@
     }
   }
 </script>
-<style>
 
-<style media="screen">
+<style lang='scss'>
 
+@import "assets/sass/colors.scss";
 .mainBloc {
   background:white;
   padding:10px;
@@ -54,12 +54,12 @@
   flex-flow: row-reverse nowrap;
 }
 .icoption a i{
-  color: #2c3e50;;
+  color: $blueColor;
   text-decoration: none;
   font-size: 2em;
 }
 .icoption a{
-  color: #2c3e50;
+  color: $blueColor;
   margin-right: 10%;
 }
 
@@ -73,12 +73,6 @@
   .mainBloc{
     width: 32%;
     padding: 5px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .conta-in{
-    display: flex;
-    flex-flow: row nowrap;
   }
 }
 </style>

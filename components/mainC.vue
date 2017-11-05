@@ -27,9 +27,10 @@
 
     </div>
   </template>
-  <style media="screen">
+  <style lang='scss'>
+  @import "assets/sass/colors.scss";
   .main {
-    background:white;
+    background:$whiteColor;
     padding:10px;
     flex:1 1 70%;
   }
@@ -43,7 +44,7 @@
   }
   .titulo-star h1{
     margin-right: 2%;
-    color: #89563a;
+    color: $redTitle;
   }
   .titulo-star h5{
     margin-right: 3%;
@@ -59,7 +60,7 @@
     flex-flow: row-reverse nowrap;
   }
   .icon-option a i{
-    color: #2c3e50;;
+    color: $blueColor;
     text-decoration: none;
     font-size: 2em;
   }
@@ -69,11 +70,11 @@
     font-size: .7em;
   }
   .stars a{
-    color: #2c3e50;
+    color: $blueColor;
     text-decoration: none;
   }
   .icon-option a{
-    color: #2c3e50;
+    color: $blueColor;
     margin-right: 15%;
   }
   hr {
@@ -81,6 +82,9 @@
     margin-bottom: 10px;
   }
   @media screen and (min-width: 650px) {
+    .main {
+      padding: 20px;
+    }
     .titulo-star h5{
       margin-top: 2%;
       display: flex;
@@ -88,7 +92,7 @@
 
     .main{
       border-left-style: solid;
-      border-color: #a85122;
+      border-color: $redColor;
       border-width: 2px;
     }
   }

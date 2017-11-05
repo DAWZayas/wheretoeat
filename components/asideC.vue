@@ -1,6 +1,6 @@
 <template>
   <aside>
-			<div class="widget">
+			<div class="widget" style="margin-top: 5%;">
 				<img src="~/assets/images/img10.jpg">
   			<nuxt-link to="#" class="icon-location"><span>Travesia</span></nuxt-link><h5>(Las Rozas)</h5>
   			<div class="aside-icons">
@@ -35,14 +35,14 @@
 			</div>
 		</aside>
 </template>
-<style media="screen">
+<style lang='scss'>
+@import "assets/sass/colors.scss";
 aside {
-	background:#fff;
+  @extend .flexWrap;
+	background:$whiteColor;
 	padding:10px;
 	font-size: 1.3em;
 	flex:1 1 30%;
-	display: flex;
-	flex-wrap:wrap;
 	flex-direction:column;
 	justify-content:flex-start;
 }
@@ -59,11 +59,11 @@ aside .widget {
 	align-items: baseline;
 }
 .str{
-	color: #2c3e50;
+	color: $blueColor;
 	text-decoration: none;
 }
 .widget a span{
-  color:#89563a;
+  color:$redTitle;
   font-size: 2.1rem;
 }
 .widget a {
@@ -77,7 +77,7 @@ aside .widget {
 		flex: 1 1 30%;
 		border-top-style: solid;
 		border-top-left-radius: 20px;
-		border-color: #38393a;
+		border-color: $darkBlue;
 		border-width: 2px;
   }
   aside .widget {
