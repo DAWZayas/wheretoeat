@@ -4,9 +4,19 @@
       <logo></logo>
     </div>
     <nav>
-      <nuxt-link to="#"><i class="material-icons">&#xe5d2;</i></nuxt-link>
+      <nuxt-link to="#menu" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu"><i class="material-icons">&#xe5d2;</i></nuxt-link>
       <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
     </nav>
+    <div id="menu" class="collapse mob-menu">
+      <ul class="list-group">
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Inicia sesión</li></nuxt-link>
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Regístrate</li></nuxt-link>
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Lo + visto</li></nuxt-link>
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
+        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0be;</i>Contacto</li></nuxt-link>
+      </ul>
+    </div>
 
     <div class="menu">
       <div class="userch">
@@ -14,7 +24,7 @@
         <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
       </div>
       <nuxt-link to="#" class="line">TuZona</nuxt-link>
-      <nuxt-link to="#" class="line">Registrate</nuxt-link>
+      <nuxt-link to="#" class="line">Regístrate</nuxt-link>
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
     </div>
   </div>
@@ -86,7 +96,56 @@ export default {
   display: none;
 }
 
+/*MENU*/
+
+.mob-menu {
+	position:absolute;
+	z-index:1;
+	background-color:#fff;
+  margin-left: -3em;
+	margin-top: 5em;
+	width: 130%;
+	color: black;
+}
+
+.ul-menu {
+	display:flex;
+	align-items:center;
+	background-color: #fff;
+	padding: none;
+	padding-left: 7em;
+}
+
+li .icon-l {
+	float:right;
+	margin-right: .8em;
+	color:$blueColor;
+}
+
+.list-group a{
+	color: black;
+	text-decoration: none;
+	background-color:#fff;
+}
+
+.ul-menu {
+	background-color:#fff;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.ul-menu a:hover{
+	color: grey;
+
+}
+/*MENU*/
+
 @media screen and (min-width: 800px) {
+
+  .header .mob-menu {
+    display: none;
+  }
 
   .header {
     padding: 20px;
@@ -135,5 +194,7 @@ export default {
   .userch a i{
     font-size: 30px;
   }
+
+
 }
 </style>

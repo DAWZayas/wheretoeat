@@ -22,7 +22,10 @@ module.exports = {
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
       { type: 'text/javascript', src: '/tether.js' },
-      { type: 'text/javascript', src: '/bootstrap.js' }
+      { type: 'text/javascript', src: '/bootstrap.js' },
+      { type: 'text/javascript', src: '/bootstrap.min.js' },
+      { type: 'text/javascript', src: '/bootstrap.min.css' },
+      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }
     ]
   },
   /*
