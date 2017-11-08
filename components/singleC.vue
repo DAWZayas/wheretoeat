@@ -7,7 +7,7 @@
           <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
-        <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;<!--&#xe157;--></i></nuxt-link>
+        <nuxt-link to="#" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;<!--&#xe157;--></i></nuxt-link>
         <nuxt-link to="#"><i class="material-icons">&#xe0b9;</i></nuxt-link>
         <nuxt-link to="#" v-if="info.showButton"><i class="material-icons">&#xe0cd;</i></nuxt-link>
       </div>
@@ -16,12 +16,14 @@
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
     <ratingC :info="info"></ratingC>
+    <showMapC :info="info"></showMapC>
     </div>
 </template>
 
 <script>
   import ratingC from '~/components/ratingC'
   import starsC from '~/components/starsC'
+  import showMapC from '~/components/showMapC'
   export default {
     props: ['info'],
     data () {
@@ -29,7 +31,8 @@
     },
     components: {
       ratingC,
-      starsC
+      starsC,
+      showMapC
     }
   }
 </script>
