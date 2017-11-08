@@ -5,7 +5,6 @@
 </template>
 <script>
   import layout from '~/pages/layout'
-
   export default {
     data () {
       return {}

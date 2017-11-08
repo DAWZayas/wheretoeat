@@ -17,15 +17,13 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+      { rel: 'stylesheet', href: '/bootstrap.min.css' }
     ],
     script: [
       { type: 'text/javascript', src: '/jquery.js' },
       { type: 'text/javascript', src: '/tether.js' },
-      { type: 'text/javascript', src: '/bootstrap.js' },
-      { type: 'text/javascript', src: '/bootstrap.min.js' },
-      { type: 'text/javascript', src: '/bootstrap.min.css' },
-      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }
+      { type: 'text/javascript', src: '/bootstrap.js' }
     ]
   },
   /*

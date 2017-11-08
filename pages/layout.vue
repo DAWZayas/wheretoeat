@@ -3,7 +3,6 @@
     <headerC></headerC>
     <mainC></mainC>
     <asideC></asideC>
-    <!--<sectionC></sectionC>-->
     <listC></listC>
     <footerC></footerC>
   </div>
@@ -14,8 +13,7 @@
 import { headerC, footerC } from '~/components/common'
 import mainC from '~/components/mainC'
 import asideC from '~/components/asideC'
-import sectionC from '~/components/sectionC'
-import listC from '~/components/listedComponents/listC'
+import listC from '~/components/listC'
 
 export default {
   data () {
@@ -26,7 +24,6 @@ export default {
     footerC,
     mainC,
     asideC,
-    sectionC,
     listC
   }
 }
@@ -36,7 +33,7 @@ export default {
 <style media="screen">
 img{width: 100%;}
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 750px) {
   .containe-r{
     width: 100%;
     display:flex;
@@ -45,8 +42,8 @@ img{width: 100%;}
 
 @media screen and (min-width: 1200px) {
   .containe-r{
-    width: 80%;
-    margin-left: 10%;
+    width: 85%;
+    margin-left: 7.5%;
   }
 }
 

@@ -39,7 +39,7 @@ export default {
   }
 }
 </script>
-<style lang='scss'>
+<style scoped lang='scss'>
 @import "assets/sass/colors.scss";
 .header {
   width: 100%;
@@ -96,8 +96,6 @@ export default {
   display: none;
 }
 
-/*MENU*/
-
 .mob-menu {
 	position:absolute;
 	z-index:1;
@@ -139,7 +137,6 @@ li .icon-l {
 	color: grey;
 
 }
-/*MENU*/
 
 @media screen and (min-width: 800px) {
 

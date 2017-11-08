@@ -1,80 +1,76 @@
 <template>
   <aside>
-			<div class="widget" style="margin-top: 5%;">
-				<img src="~/assets/images/img10.jpg">
-  			<nuxt-link to="#" class="icon-location"><span>Travesia</span></nuxt-link><h5>(Las Rozas)</h5>
-  			<div class="aside-icons">
-          <div class="stars">
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
-            <nuxt-link to="#" class="str">8.5</nuxt-link>
-            <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
-            <nuxt-link to="#" clss="str">(Ver más)</nuxt-link>
-          </div>
-			  </div>
-			</div>
-
-			<div class="widget">
-				<img src="~/assets/images/img2.jpg">
-  			<nuxt-link to="#" class="icon-location"><span>La Fuente</span></nuxt-link><h5>(Collado Villalba)</h5>
-  			<div class="aside-icons">
-          <div class="stars">
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-            <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
-            <nuxt-link to="#" class="str">8.5</nuxt-link>
-            <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
-            <nuxt-link to="#" clss="str">(Ver más)</nuxt-link>
-          </div>
-			  </div>
-			</div>
-		</aside>
+    <singleC v-for="info in infoA" :key="info.title" :info="info" class="widget"></singleC>
+  </aside>
 </template>
-<style lang='scss'>
+
+<script type="text/javascript">
+  import singleC from '~/components/singleC'
+  export default {
+    data () {
+      return {
+        infoA: [
+          {
+            img: require('~/assets/images/img10.jpg'),
+            title: 'Travesia',
+            points: '6.2',
+            comTitle: '',
+            comment: '',
+            showButton: false
+          },
+          {
+            img: require('~/assets/images/img2.jpg'),
+            title: 'La Fuente',
+            points: '8.5',
+            comTitle: '',
+            comment: '',
+            showButton: false
+          }
+        ]
+      }
+    },
+    components: {
+      singleC
+    }
+  }
+</script>
+<style scoped lang='scss'>
 @import "assets/sass/colors.scss";
 aside {
-  @extend .flexWrap;
+  display: flex;
+  flex-direction:column;
 	background:$whiteColor;
-	padding:10px;
-	font-size: 1.3em;
-	flex:1 1 30%;
-	flex-direction:column;
-	justify-content:flex-start;
+
+
+  width:100%;
 }
 aside .widget {
-  padding-bottom: 10%;
+  width:100%;
   margin-bottom: 5%;
-	font-size: 1.5rem;
 	flex-flow: row wrap;
 }
-
-.aside-icons{
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
+.mainBloc{
+  width: 100%;
 }
-.str{
-	color: $blueColor;
-	text-decoration: none;
-}
-.widget a span{
-  color:$redTitle;
-  font-size: 2.1rem;
-}
-.widget a {
-  text-decoration: none;
-}
-
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 600px) {
   aside {
-    width: 30%;
-		flex-direction: column;
-		flex: 1 1 30%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  aside .widget { width:50%;}
+}
+@media screen and (min-width: 950px) {
+  aside {
+    display: flex;
+  	flex-direction:column;
+    width:30%;
+}
+aside .widget { width:100%;}
+}
+
+@media screen and (min-width: 1100px) {
+  aside {
+    padding:10px;
 		border-top-style: solid;
 		border-top-left-radius: 20px;
 		border-color: $darkBlue;
@@ -82,9 +78,9 @@ aside .widget {
   }
   aside .widget {
     border-right-style: solid;
-    border-top-style: solid;
     border-color: black;
     border-width: 1px;
   }
 }
+
 </style>

@@ -1,98 +1,47 @@
 <template>
   <div class="main">
-    <img src="~/assets/images/img1.jpg">
-    <div class="cabecera">
-      <div class="titulo-star">
-        <h1>Soul Food</h1> <h5>(Majadahonda)</h5>
-        <div class="stars">
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
-          <nuxt-link to="#" class="str">8.5</nuxt-link>
-        </div>
-      </div>
-
-      <div class="icon-option">
-        <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
-        <nuxt-link to="#"><i class="material-icons">&#xe0b9;</i></nuxt-link>
-        <nuxt-link to="#"><i class="material-icons">&#xe0cd;</i></nuxt-link>
-      </div>
-
-    </div>
-    <hr>
-    <h3>Buena localización, mejor precio</h3>
-    <p>Una pulpería era, hasta inicios del siglo XX, el establecimiento comercial típico de las distintas regiones de Hispanoamérica, encontrándose ampliamente extendida desde Centroamérica hasta los países del Cono Sur. </p>
-    </div>
-  </template>
-  <style lang='scss'>
-  @import "assets/sass/colors.scss";
-  .main {
-    background:$whiteColor;
-    padding:10px;
-    flex:1 1 70%;
-  }
-  .titulo-star{
-    display: flex;
-    flex-flow: row wrap;
-    font-size: 2rem;
-    align-items: center;
-    margin-top: 10px;
-    word-wrap: break-word;
-  }
-  .titulo-star h1{
-    margin-right: 2%;
-    color: $redTitle;
-  }
-  .titulo-star h5{
-    margin-right: 3%;
-  }
-  .cabecera{
-    display: flex;
-    align-items: flex-end;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-  .icon-option{
-    display: flex;
-    flex-flow: row-reverse nowrap;
-  }
-  .icon-option a i{
-    color: $blueColor;
-    text-decoration: none;
-    font-size: 2em;
-  }
-  .stars{
-    display: flex;
-    flex-flow: row wrap;
-    font-size: .7em;
-  }
-  .stars a{
-    color: $blueColor;
-    text-decoration: none;
-  }
-  .icon-option a{
-    color: $blueColor;
-    margin-right: 15%;
-  }
-  hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  @media screen and (min-width: 650px) {
-    .main {
-      padding: 20px;
+    <singleC :info="infoM"></singleC>
+  </div>
+</template>
+<script type="text/javascript">
+import singleC from '~/components/singleC'
+export default {
+  data () {
+    return {
+      infoM:
+      {
+        img: require('~/assets/images/img1.jpg'),
+        title: 'Soul Food',
+        points: '7.4',
+        comTitle: 'Le Grand Dictionnaire',
+        comment: 'En el Renacimiento se revitalizó la cultura clásica, llegando la gastronomía a altas cotas de refinamiento y sofisticación. Destacó la cocina veneciana, que gracias a su comercio con el Oriente favoreció la importación de todo tipo de especias: pimienta, mostaza, azafrán, nuez moscada, clavo, canela, etc.',
+        showButton: true
+      }
     }
-    .titulo-star h5{
-      margin-top: 2%;
-      display: flex;
-    }
-
-    .main{
-      border-left-style: solid;
-      border-color: $redColor;
-      border-width: 2px;
-    }
+  },
+  components: {
+    singleC
   }
-  </style>
+}
+</script>
+<style scoped lang='scss'>
+@import "assets/sass/colors.scss";
+
+.main {
+  background:$whiteColor;
+  flex:1 1 70%;
+}
+
+@media screen and (min-width: 650px) {
+
+  .mainBloc{
+    min-width: 100%;
+  }
+  .main{
+    padding: 20px;
+    border-left-style: solid;
+    border-color: $redColor;
+    border-width: 2px;
+  }
+}
+</style>

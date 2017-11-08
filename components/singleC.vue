@@ -3,7 +3,7 @@
     <img :src="info.img">
     <div class="conta-in">
       <div class="titulo-star">
-        <h1>{{ info.title }}</h1> <h5>{{ info.location }}</h5>
+        <h1>{{ info.title }}</h1><h5>{{ info.location }}</h5>
         <div class="stars">
           <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
           <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
@@ -14,44 +14,76 @@
         </div>
       </div>
       <div class="icoption">
-        <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
+        <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;<!--&#xe157;--></i></nuxt-link>
         <nuxt-link to="#"><i class="material-icons">&#xe0b9;</i></nuxt-link>
-        <nuxt-link to="#"><i class="material-icons">&#xe0cd;</i></nuxt-link>
+        <nuxt-link to="#" v-if="info.showButton"><i class="material-icons">&#xe0cd;</i></nuxt-link>
       </div>
     </div>
     <hr>
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
+    <ratingC :info="info"></ratingC>
+
     </div>
 </template>
 
 <script>
+  import ratingC from '~/components/ratingC'
   export default {
     props: ['info'],
     data () {
-      return {
-      }
+      return {}
+    },
+    components: {
+      ratingC
     }
   }
 </script>
 
-<style lang='scss'>
+<style scoped lang='scss'>
 
 @import "assets/sass/colors.scss";
+
 .mainBloc {
   background:white;
   padding:10px;
 }
 
 .conta-in{
+/*
+  display: flex;
+  flex-direction: column;
+  */
   display: flex;
   align-items: flex-end;
-  flex-flow: row nowrap;
+  flex-direction: row nowrap;
   justify-content: space-between;
+
 }
+
+.titulo-star{
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 2rem;
+  align-items: center;
+  margin-top: 10px;
+  word-wrap: break-word;
+}
+.titulo-star h1{
+  margin-right: 2%;
+  color: $redTitle;
+}
+.titulo-star h5{
+  margin-right: 3%;
+}
+
 .icoption{
   display: flex;
   flex-flow: row-reverse nowrap;
+  /*flex-grow: 1;*/
+  /*
+  display: flex;
+  justify-content: space-around;*/
 }
 .icoption a i{
   color: $blueColor;
@@ -60,13 +92,38 @@
 }
 .icoption a{
   color: $blueColor;
-  margin-right: 10%;
+  margin-right: 20%;
 }
 
+.stars{
+  display: flex;
+  flex-flow: row wrap;
+  font-size: .7em;
+}
+.stars a{
+  color: $blueColor;
+  text-decoration: none;
+}
+
+.cabecera{
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 @media screen and (min-width: 650px) {
   .mainBloc{
     width: 50%;
     padding: 5px;
+  }
+
+  .str {
+    font-size: .7em;
   }
 }
 @media screen and (min-width: 1100px) {
