@@ -11,20 +11,26 @@
       return {
         infoA: [
           {
+            id: 2,
             img: require('~/assets/images/img10.jpg'),
+            location: '(Las Rozas)',
             title: 'Travesia',
             points: '5.2',
             comTitle: '',
             comment: '',
-            showButton: false
+            showButton: false,
+            tlf: '736 455 123'
           },
           {
+            id: 3,
             img: require('~/assets/images/img2.jpg'),
+            location: '(Villalba)',
             title: 'La Fuente',
             points: '8.5',
             comTitle: '',
             comment: '',
-            showButton: false
+            showButton: false,
+            tlf: '112 432 847'
           }
         ]
       }

@@ -3,13 +3,13 @@
     <img :src="info.img">
     <div class="conta-in">
       <div class="titulo-star">
-        <h1>{{ info.title }}</h1><h5>{{ info.location }}</h5>
+        <h1>{{ info.title }}</h1><h5></h5>
           <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
         <nuxt-link to="#" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;<!--&#xe157;--></i></nuxt-link>
         <nuxt-link to="#" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></nuxt-link>
-        <nuxt-link to="#" v-if="info.showButton"><i class="material-icons">&#xe0cd;</i></nuxt-link>
+        <nuxt-link to="#" data-toggle="modal" v-bind:data-target="nInfo" v-if="info.showButton"><i class="material-icons">&#xe0cd;</i></nuxt-link>
       </div>
     </div>
     <hr>
@@ -18,6 +18,7 @@
     <ratingC :info="info"></ratingC>
     <showMapC :info="info"></showMapC>
     <showCommentsC :info="info"></showCommentsC>
+    <showInfoC :info="info"></showInfoC>
     </div>
 </template>
 <script>
@@ -25,16 +26,20 @@
   import starsC from '~/components/starsC'
   import showMapC from '~/components/showMapC'
   import showCommentsC from '~/components/showCommentsC'
+  import showInfoC from '~/components/showInfoC'
   export default {
     props: ['info'],
     data () {
-      return {}
+      return {
+        nInfo: '#' + this.info.id
+      }
     },
     components: {
       ratingC,
       starsC,
       showMapC,
-      showCommentsC
+      showCommentsC,
+      showInfoC
     }
   }
 </script>

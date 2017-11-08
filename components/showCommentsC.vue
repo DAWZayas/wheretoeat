@@ -1,9 +1,9 @@
 <template>
-  <div class="modal fade" id="showComments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="showComments" tabindex="-1" role="dialog" aria-labelledby="exampleShowComments" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Comentarios</h5>
+          <h5 class="modal-title" id="exampleShowComments">Comentarios</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -44,10 +44,6 @@ export default {
         {
           user: 'Luis',
           comment: 'Sitio agradable, el escalope muy rico.'
-        },
-        {
-          user: 'Pedro',
-          comment: 'Los baños sucios de cojones,me dio asco cagar aunque hice el esfuerzo'
         },
         {
           user: 'Andrea',
