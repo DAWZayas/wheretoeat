@@ -1,6 +1,7 @@
 <template>
   <div class="containe-r">
     <headerC></headerC>
+    <topButton><topButton>
     <mainC></mainC>
     <asideC></asideC>
     <listC></listC>
@@ -10,7 +11,7 @@
 
 <script type="text/javascript">
 
-import { headerC, footerC } from '~/components/common'
+import { headerC, topButton, footerC } from '~/components/common'
 import mainC from '~/components/mainC'
 import asideC from '~/components/asideC'
 import listC from '~/components/listC'
@@ -21,6 +22,7 @@ export default {
   },
   components: {
     headerC,
+    topButton,
     footerC,
     mainC,
     asideC,
