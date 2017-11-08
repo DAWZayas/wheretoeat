@@ -1,8 +1,8 @@
 {
-  "name": "ProFitOro",
+  "name": "WhereToEat",
   "version": "1.0.0",
-  "description": "Take breaks during work. Exercise during breaks.",
-  "author": "Olga Filipova <chudaol@gmail.com>",
+  "description": "Look restaurants. Enjoy the food.",
+  "author": " Victor Gonzalez <vicdata@outlook.com>, Alberto Vilches <hysteriashoot@gmail.com>, Guillermo Morillo <gmmviking@gmail.com>",
   "private": true,
   "dependencies": {
     "moment": "^2.18.1",

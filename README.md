@@ -1,6 +1,6 @@
-# Profitoro
+# WhereToEat
 
-> Take breaks during work. Exercise during breaks.
+> Look restaurants. Enjoy the food.
 
 ## Build Setup
 
@@ -23,4 +23,4 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 ## Licensing
 
-ProFitOro is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.
+WhereToEat is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full license text.
