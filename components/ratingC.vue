@@ -24,7 +24,7 @@ export default {
       showNremove: false,
       show: false,
       showAdvert: false,
-      logged: false
+      logged: true
     }
   },
   methods: {

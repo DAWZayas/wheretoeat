@@ -4,14 +4,7 @@
     <div class="conta-in">
       <div class="titulo-star">
         <h1>{{ info.title }}</h1><h5>{{ info.location }}</h5>
-        <div class="stars">
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe838;</i></nuxt-link>
-          <nuxt-link to="#"><i class="material-icons">&#xe839;</i></nuxt-link>
-          <nuxt-link to="#" class="str">{{ info.points }}</nuxt-link>
-        </div>
+          <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
         <nuxt-link to="#"><i class="material-icons" style="color:#a85122;">&#xe55f;<!--&#xe157;--></i></nuxt-link>
@@ -23,19 +16,20 @@
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
     <ratingC :info="info"></ratingC>
-
     </div>
 </template>
 
 <script>
   import ratingC from '~/components/ratingC'
+  import starsC from '~/components/starsC'
   export default {
     props: ['info'],
     data () {
       return {}
     },
     components: {
-      ratingC
+      ratingC,
+      starsC
     }
   }
 </script>
@@ -50,15 +44,10 @@
 }
 
 .conta-in{
-/*
-  display: flex;
-  flex-direction: column;
-  */
   display: flex;
   align-items: flex-end;
   flex-direction: row nowrap;
   justify-content: space-between;
-
 }
 
 .titulo-star{
@@ -93,16 +82,6 @@
 .icoption a{
   color: $blueColor;
   margin-right: 20%;
-}
-
-.stars{
-  display: flex;
-  flex-flow: row wrap;
-  font-size: .7em;
-}
-.stars a{
-  color: $blueColor;
-  text-decoration: none;
 }
 
 .cabecera{

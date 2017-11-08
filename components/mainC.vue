@@ -12,7 +12,7 @@ export default {
       {
         img: require('~/assets/images/img1.jpg'),
         title: 'Soul Food',
-        points: '7.4',
+        points: '7.2',
         comTitle: 'Le Grand Dictionnaire',
         comment: 'En el Renacimiento se revitalizó la cultura clásica, llegando la gastronomía a altas cotas de refinamiento y sofisticación. Destacó la cocina veneciana, que gracias a su comercio con el Oriente favoreció la importación de todo tipo de especias: pimienta, mostaza, azafrán, nuez moscada, clavo, canela, etc.',
         showButton: true

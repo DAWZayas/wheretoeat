@@ -13,7 +13,7 @@
           {
             img: require('~/assets/images/img10.jpg'),
             title: 'Travesia',
-            points: '6.2',
+            points: '5.2',
             comTitle: '',
             comment: '',
             showButton: false

@@ -20,7 +20,7 @@
           {
             img: require('~/assets/images/img5.jpg'),
             title: 'La Tapa Madrileña',
-            points: '8.5',
+            points: '1',
             comTitle: 'Agradable y con estilo',
             comment: 'En la Antigua Roma la cocina evolucionó de la frugalidad de la época republicana, basada en vegetales, legumbres y cereales, a la riqueza de la época imperial, donde se importaban numerosos alimentos de países extranjeros, con gran influencia de la cocina griega',
             showButton: true
@@ -28,7 +28,7 @@
           {
             img: require('~/assets/images/img6.jpg'),
             title: 'La Bohemia',
-            points: '4.3',
+            points: '2.2',
             comTitle: 'La mejor carne asada',
             comment: 'Herederas de la cocina griega y romana fueron la bizantina y la árabe: de la primera destacó su repostería, así como la elaboración de quesos y el gusto por los rellenos y la carne picada.',
             showButton: true
@@ -36,7 +36,7 @@
           {
             img: require('~/assets/images/img7.jpg'),
             title: 'Casa pepe',
-            points: '6',
+            points: '5',
             comTitle: 'el Renacimiento',
             comment: 'Le Grand Dictionnaire de Cuisine de Alexandre Dumas (1873); también apareció entonces la crítica gastronómica, con publicaciones como la Guía Michelin.',
             showButton: true
