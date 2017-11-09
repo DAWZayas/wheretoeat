@@ -1,17 +1,18 @@
 <template>
   <div class="containe-r">
     <headerC></headerC>
-    <topButton></topButton>
+    <searcherC></searcherC>
     <mainC></mainC>
     <asideC></asideC>
     <listC></listC>
+    <topButton></topButton>
     <footerC></footerC>
   </div>
 </template>
 
 <script type="text/javascript">
 
-import { headerC, topButton, footerC } from '~/components/common'
+import { headerC, topButton, footerC, searcherC } from '~/components/common'
 import mainC from '~/components/mainC'
 import asideC from '~/components/asideC'
 import listC from '~/components/listC'
@@ -26,7 +27,8 @@ export default {
     footerC,
     mainC,
     asideC,
-    listC
+    listC,
+    searcherC
   }
 }
 </script>

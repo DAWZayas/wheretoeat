@@ -5,7 +5,6 @@
     </div>
     <nav>
       <nuxt-link to="#menu" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu"><i class="material-icons">&#xe5d2;</i></nuxt-link>
-      <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
     </nav>
     <div id="menu" class="collapse mob-menu">
       <ul class="list-group">
@@ -21,7 +20,14 @@
     <div class="menu">
       <div class="userch">
         <nuxt-link to="#"><i class="material-icons">&#xe7fd;</i></nuxt-link>
-        <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
+        <div class="btn-group" role="group">
+          <div class="btn-group">
+            <nuxt-link to="#" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">&#xe8b6;</i></nuxt-link>
+            <div class="dropdown-menu srchBloc" aria-labelledby="showSearcher">
+              <div class="srch"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
+            </div>
+          </div>
+        </div>
       </div>
       <nuxt-link to="#" class="line">TuZona</nuxt-link>
       <nuxt-link to="#" class="line">Regístrate</nuxt-link>
@@ -32,10 +38,12 @@
 
 <script type="text/javascript">
 import logo from '~/components/common/logo'
+import searcherC from '~/components/common/searcherC'
 export default {
   name: 'headerC',
   components: {
-    logo
+    logo,
+    searcherC
   }
 }
 </script>
@@ -43,6 +51,7 @@ export default {
 @import "assets/sass/colors.scss";
 .header {
   width: 100%;
+  height: 70px;
   background:$whiteColor;
   border-top-style: solid;
   border-left-style: solid;
@@ -68,24 +77,20 @@ export default {
 
 
 .header nav {
-  @extend .flexWrap;
+  display: flex;
   width:30%;
   font-size: 30px;
-  padding-top: 5px;
   flex-direction: row-reverse;
-  justify-content: space-around;
-  align-items:center;
+
 }
 
 .header nav a {
-
+  text-align: right;
   border-radius: $whiteColor;
   color:$blueColor;
-  text-align: center;
   text-decoration: none;
   padding:5px;
   margin-right: 2px;
-
 }
 
 .header nav i {
@@ -101,7 +106,7 @@ export default {
 	z-index:1;
 	background-color:#fff;
   margin-left: -3em;
-	margin-top: 5em;
+	margin-top: 6.4em;
 	width: 130%;
 	color: black;
 }
@@ -146,14 +151,14 @@ li .icon-l {
 
   .header {
     padding: 20px;
+    height: auto;
   }
 
   .header nav{
     display:none;
   }
-
   .header .menu{
-    max-height: 50px;
+    max-height: 48px;
     font-size: 1.2rem;
     width:60%;
     display:flex;
@@ -192,6 +197,16 @@ li .icon-l {
     font-size: 30px;
   }
 
+  .srch {
+    width: 100%;
+    height: 40px;
+    width: 600px;
+  }
+
+  .srchBloc {
+    margin-left: -30em;
+    margin-top: .7em;
+  }
 
 }
 </style>

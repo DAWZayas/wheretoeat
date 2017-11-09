@@ -36,15 +36,15 @@ export default {
 }
 
 @media screen and (min-width: 650px) {
-
   .mainBloc{
     min-width: 100%;
   }
+}
+
+@media screen and (min-width: 800px) {
   .main{
     padding: 20px;
-    border-left-style: solid;
-    border-color: $redColor;
-    border-width: 2px;
+    border-left:2px solid $redColor;
   }
 }
 </style>
