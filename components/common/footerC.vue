@@ -3,7 +3,7 @@
     <div class="links">
       <nuxt-link to="/">Inicio</nuxt-link>
       <nuxt-link to="#">Politica de privacidad</nuxt-link>
-      <nuxt-link to="#">Contacto</nuxt-link>
+      <nuxt-link to="contact">Contacto</nuxt-link>
     </div>
     <div class="social">
       <nuxt-link to="#"><i class="material-icons">&#xe54b;</i></nuxt-link>

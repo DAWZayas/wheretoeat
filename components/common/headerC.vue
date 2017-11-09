@@ -9,12 +9,12 @@
     </nav>
     <div id="menu" class="collapse mob-menu">
       <ul class="list-group">
-        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
+        <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Inicia sesión</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Regístrate</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Lo + visto</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
-        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0be;</i>Contacto</li></nuxt-link>
+        <nuxt-link to="contact"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0be;</i>Contacto</li></nuxt-link>
       </ul>
     </div>
 

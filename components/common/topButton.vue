@@ -46,29 +46,8 @@ export default {
   outline: none;
   background-color: transparent;
   
-  /*
-  background-color: red;
-  color: white;
-  opacity: 0.7;
-  cursor: pointer;
-  border-radius: 50%;
-  animation-duration: 1s;
-  animation-name: slidein;
-  */
-}
-/*
-@keyframes slidein {
-  from {
-    margin-left: 0%;
-    width: 25%
-  }
 
-  to {
-    margin-left: 0%;
-    width: 10%;
-  }
 }
-*/
 .topButton:hover .size{
   color: #555;
 }
