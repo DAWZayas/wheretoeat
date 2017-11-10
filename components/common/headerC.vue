@@ -10,7 +10,7 @@
       <ul class="list-group">
         <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Inicia sesión</li></nuxt-link>
-        <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Regístrate</li></nuxt-link>
+        <nuxt-link to="login"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Regístrate</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Lo + visto</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
         <nuxt-link to="contact"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0be;</i>Contacto</li></nuxt-link>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <nuxt-link to="#" class="line">TuZona</nuxt-link>
-      <nuxt-link to="#" class="line">Regístrate</nuxt-link>
+      <nuxt-link to="login" class="line">Regístrate</nuxt-link>
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
     </div>
   </div>
@@ -106,7 +106,7 @@ export default {
 	z-index:1;
 	background-color:#fff;
   margin-left: -3em;
-	margin-top: 6.4em;
+	margin-top: 3.6em;
 	width: 130%;
 	color: black;
 }

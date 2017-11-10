@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <commentC v-for="comment in comments" :comment="comment"></commentC>
+          <commentC v-for="comment in comments" :comment="comment" :key="comment.id"></commentC>
         </div>
         <div class="bloc">
           <input type="text" class="comment" placeholder="escribe un comentario..">
@@ -30,22 +30,27 @@ export default {
     return {
       comments: [
         {
+          id: 22,
           user: 'Maria',
           comment: 'Me gusto mucho el sitio,muy bien decorado y un trato exquisíto'
         },
         {
+          id: 33,
           user: 'Luis',
           comment: 'El camarero iba borracho y tardaron 20 minutos en traernos la cuenta'
         },
         {
+          id: 44,
           user: 'Juan',
           comment: 'Celebré mi cumpleaños y nos dejaron liarla parda!! la peña subida en la barra y todo!'
         },
         {
-          user: 'Luis',
+          id: 55,
+          user: 'Elena',
           comment: 'Sitio agradable, el escalope muy rico.'
         },
         {
+          id: 66,
           user: 'Andrea',
           comment: 'Los postres son el plato fuerte de este lugar! el brownie espectacular'
         }
