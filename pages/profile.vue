@@ -1,8 +1,9 @@
-<template lang="html">
+<template>
   <div class="containe-r">
     <headerC></headerC>
     <searcherC></searcherC>
-    <faqC></faqC>
+    <profileC></profileC>
+    <listC></listC>
     <topButton></topButton>
     <footerC></footerC>
   </div>
@@ -10,8 +11,9 @@
 
 <script>
 
-import faqC from '~/components/faqC'
-import { headerC, topButton, footerC, searcherC } from '~/components/common'
+import profileC from '~/components/profileC'
+import { headerC, footerC, topButton, searcherC } from '~/components/common'
+import listC from '~/components/listC'
 
 export default{
   data () {
@@ -19,9 +21,10 @@ export default{
   },
   components: {
     headerC,
+    profileC,
     topButton,
     footerC,
-    faqC,
+    listC,
     searcherC
   }
 }

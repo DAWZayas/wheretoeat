@@ -1,6 +1,7 @@
 <template>
   <div class="containe-r">
     <headerC></headerC>
+    <searcherC></searcherC>
     <contactC></contactC>
     <topButton></topButton>
     <footerC></footerC>
@@ -10,7 +11,7 @@
 <script>
 
 import contactC from '~/components/contactC'
-import { headerC, footerC, topButton } from '~/components/common'
+import { headerC, footerC, topButton, searcherC } from '~/components/common'
 
 export default{
   data () {
@@ -20,7 +21,8 @@ export default{
     headerC,
     contactC,
     topButton,
-    footerC
+    footerC,
+    searcherC
   }
 }
 </script>

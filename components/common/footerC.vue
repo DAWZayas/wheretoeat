@@ -24,6 +24,7 @@ width: 100%;
 padding:20px;
 align-items: center;
 justify-content:space-around;
+clear: both;
 }
 
 .footer .links {
