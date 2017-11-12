@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h5>Subir publicación</h5>
+    <h2>Subir publicación</h2>
+    <h5>Imagen</h5>
     <input type="file" name="" value="">
     <h5>Titulo</h5>
     <input type="text" name="" placeholder="titulo..">
@@ -27,7 +28,7 @@
         <button type="button" class="btn btn-info">Buscar en Google Maps</button>
       </div>
       <div class="cel">
-        <h5>Subir</h5>
+        <h5 style="color:white; background:white;">.</h5>
         <button type="button" class="btn btn-danger" style="width:100%;">Subir post</button>
       </div>
     </div>

@@ -5,7 +5,7 @@
       <div class="cel">
         <h1>Perfil</h1>
         <div class="avatar" v-bind:style="showImg()"></div>
-        <nuxt-link to="#"><button type="button" class="btn btn-warning" style="font-size:.8em;">Editar pefil</button></nuxt-link>
+        <nuxt-link to="editprofile"><button type="button" class="btn btn-warning" style="font-size:.8em;">Editar pefil</button></nuxt-link>
       </div>
       <div class="cel">
         <h5>Nombre</h5>
@@ -31,14 +31,12 @@
         <button @click="follow" type="button" class="btn btn-danger align">{{followText}}</button>
         <button type="button" class="btn btn-default align"><i class="material-icons" v-html="showStar()"></i></button>
       </div>
-
     </div>
-
     </div>
     <div class="col left">
       <uploadC></uploadC>
     </div>
-    <div style="width:100%;">
+    <div class="posts">
       <h1>Mis publicaciones</h1>
     </div>
   </div>
@@ -94,6 +92,12 @@ export default {
 </script>
 <style scoped lang='scss'>
 @import "assets/sass/colors.scss";
+
+.posts {
+  width:100%;
+  padding:10px;
+  margin-bottom:-3%;
+}
 .align {
   display: flex;
   justify-content: space-between;
