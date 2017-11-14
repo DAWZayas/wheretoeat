@@ -2,30 +2,42 @@
     <div class="icol">
         <h2>Editar perfil</h2>
         <div class="avatar" v-bind:style="showImg()"></div>
-        <input type="file" name="" value="">
+        <input type="file" ref="img">
         <h5>Nombre</h5>
-        <input type="text" name="" :value="infoP.name"><i class="material-icons ico">&#xE87C;</i>
+        <input type="text" ref="name" :value="infoP.name"><i class="material-icons ico">&#xE87C;</i>
         <h5>Nombre de usuario</h5>
-        <input type="text" name="" :value="infoP.username"><i class="material-icons ico">&#xe7fd;</i>
+        <input type="text" ref="username" :value="infoP.username"><i class="material-icons ico">&#xe7fd;</i>
         <h5>Ciudad</h5>
-        <input type="text" name="" :value="infoP.city"><i class="material-icons ico">&#xE88A;</i>
+        <input type="text" ref="city" :value="infoP.city"><i class="material-icons ico">&#xE88A;</i>
         <h5>Edad</h5>
-        <input type="text" name="" :value="infoP.age"><i class="material-icons ico">&#xE878;</i>
+        <input type="text" ref="age" :value="infoP.age"><i class="material-icons ico">&#xE878;</i>
         <h5>Sobre mi</h5>
-        <textarea>{{infoP.info}}</textarea>
-        <button type="button" class="btn btn-info">Editar perfil</button>
+        <textarea ref="info">{{infoP.info}}</textarea>
+        <button @click="onEditProfile" type="button" class="btn btn-info">Editar perfil</button>
         <nuxt-link to="profile"><button type="button" class="btn btn-danger align">Descartar cambios</button></nuxt-link>
     </div>
 </template>
 <script type="text/javascript">
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
     }
   },
   methods: {
+    ...mapActions(['editProfile']),
+    onEditProfile () {
+      const newProfile = {
+        img: require('~/assets/images/profile.jpg'),
+        name: this.$refs.name.value,
+        username: this.$refs.username.value,
+        age: this.$refs.age.value,
+        city: this.$refs.city.value,
+        info: this.$refs.info.value
+      }
+      this.editProfile(newProfile)
+    },
     showImg () {
       return 'background-image: url(' + this.infoP.img + ')'
     }
