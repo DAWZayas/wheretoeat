@@ -13,6 +13,7 @@
       </div>
     </div>
     <hr>
+    <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span>
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
     <ratingC :info="info"></ratingC>
@@ -32,6 +33,16 @@
     data () {
       return {
         nInfo: '#' + this.info.id
+      }
+    },
+    methods: {
+      showBill (n) {
+        var x = parseInt(n)
+        if (x === 0) {
+          return '0 - 10 €'
+        } else {
+          return x + '0 - ' + (parseInt(x) + 1) + '0 €'
+        }
       }
     },
     components: {
@@ -105,6 +116,11 @@ hr {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.red {
+  color: $redColor;
+  font-weight:500;
+}
 @media screen and (min-width: 650px) {
   .mainBloc{
     width: 50%;
@@ -117,7 +133,7 @@ hr {
 }
 @media screen and (min-width: 1100px) {
   .mainBloc{
-    width: 32%;
+    width: 33%;
     padding: 5px;
   }
 }

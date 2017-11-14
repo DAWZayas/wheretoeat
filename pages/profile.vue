@@ -3,7 +3,7 @@
     <headerC></headerC>
     <searcherC></searcherC>
     <profileC></profileC>
-    <listC></listC>
+    <myListC></myListC>
     <topButton></topButton>
     <footerC></footerC>
   </div>
@@ -13,7 +13,7 @@
 
 import profileC from '~/components/profileC'
 import { headerC, footerC, topButton, searcherC } from '~/components/common'
-import listC from '~/components/listC'
+import myListC from '~/components/myListC'
 
 export default{
   data () {
@@ -24,7 +24,7 @@ export default{
     profileC,
     topButton,
     footerC,
-    listC,
+    myListC,
     searcherC
   }
 }

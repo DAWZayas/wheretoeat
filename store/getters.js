@@ -1,3 +1,4 @@
 export default {
-  getConfig: state => state.infoProfile
+  getProfile: state => state.infoProfile,
+  myPosts: state => state.myList
 }

@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      infoP: 'getConfig'
+      infoP: 'getProfile'
     })
   }
 }

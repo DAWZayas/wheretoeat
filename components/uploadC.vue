@@ -3,22 +3,30 @@
     <h2>Subir publicación</h2>
     <h5>Imagen</h5>
     <input type="file" name="" value="">
-    <h5>Titulo</h5>
-    <input type="text" name="" placeholder="titulo..">
+    <div class="blocinf">
+      <div class="cel">
+        <h5>Restaurante</h5>
+        <input type="text" ref="name" placeholder="titulo..">
+      </div>
+      <div class="cel">
+        <h5>Titulo post</h5>
+        <input type="text" ref="title" placeholder="titulo..">
+      </div>
+    </div>
     <h5>Descripción</h5>
-    <textarea placeholder="tu experiencia.."></textarea>
+    <textarea ref="description" placeholder="tu experiencia.."></textarea>
     <div class="blocinf">
       <div class="cel">
         <h5>Precio Medio</h5>
-        <select>
+        <select ref="bill">
           <option value="0">0 - 10 €</option>
-          <option v-for="n in 9" value="n">{{n}}0 - {{n+1}}0 €</option>
+          <option v-for="n in 9" :value="n">{{n}}0 - {{n+1}}0 €</option>
         </select>
       </div>
       <div class="cel">
         <h5>Valoración</h5>
-        <select>
-          <option v-for="n in 10" value="n">{{n}}</option>
+        <select ref="rate">
+          <option v-for="n in 10" :value="n">{{n}}</option>
         </select>
       </div>
     </div>
@@ -29,24 +37,44 @@
       </div>
       <div class="cel">
         <h5 style="color:white; background:white;">.</h5>
-        <button type="button" class="btn btn-danger" style="width:100%;">Subir post</button>
+        <button @click="onAddNewPost" type="button" class="btn btn-danger" style="width:100%;">Subir post</button>
       </div>
     </div>
   </div>
 </template>
-
+<script type="text/javascript">
+import { mapActions } from 'vuex'
+export default {
+  data () {
+    return {
+    }
+  },
+  methods: {
+    ...mapActions(['addNewPost']),
+    onAddNewPost () {
+      const newPost = {
+        id: 4,
+        img: require('~/assets/images/empty.png'),
+        location: '(googleMaps)',
+        title: this.$refs.name.value,
+        points: this.$refs.rate.value,
+        bill: this.$refs.bill.value,
+        comTitle: this.$refs.title.value,
+        comment: this.$refs.description.value,
+        showButton: true,
+        tlf: '123 456 789'
+      }
+      this.addNewPost(newPost)
+    }
+  }
+}
+</script>
 <style scoped media="screen">
 
 .cel {
   padding: 10px;
   width: 100%;
   border-top:1px solid #E9E9E9;
-}
-
-input {
-  width: 85%;
-  height: 40px;
-  padding: 5px;
 }
 
 select {
@@ -64,7 +92,7 @@ h5 {
 }
 
 input {
-  width: 85%;
+  width: 100%;
   height: 40px;
   padding: 5px;
 }
