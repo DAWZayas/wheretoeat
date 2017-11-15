@@ -13,7 +13,7 @@
         <input type="text" ref="age" :value="infoP.age"><i class="material-icons ico">&#xE878;</i>
         <h5>Sobre mi</h5>
         <textarea ref="info">{{infoP.info}}</textarea>
-        <button @click="onEditProfile" type="button" class="btn btn-info">Editar perfil</button>
+        <nuxt-link to="profile"><button @click="onEditProfile" type="button" class="btn btn-info">Editar perfil</button></nuxt-link>
         <nuxt-link to="profile"><button type="button" class="btn btn-danger align">Descartar cambios</button></nuxt-link>
     </div>
 </template>
@@ -34,7 +34,8 @@ export default {
         username: this.$refs.username.value,
         age: this.$refs.age.value,
         city: this.$refs.city.value,
-        info: this.$refs.info.value
+        info: this.$refs.info.value,
+        followers: this.infoP.followers
       }
       this.editProfile(newProfile)
     },
