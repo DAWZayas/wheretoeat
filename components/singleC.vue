@@ -3,7 +3,7 @@
     <img :src="info.img">
     <div class="conta-in">
       <div class="titulo-star">
-        <h1>{{ info.title }}</h1><h5></h5>
+        <h1>{{ info.title }}</h1>
           <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
@@ -71,17 +71,25 @@
   justify-content: space-between;
 }
 
+.mainBloc h3 {
+  word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
 .titulo-star{
   display: flex;
   flex-flow: row wrap;
   font-size: 2rem;
   align-items: center;
   margin-top: 10px;
-  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 .titulo-star h1{
   margin-right: 2%;
   color: $redTitle;
+  word-wrap: break-word;
+	overflow-wrap: break-word;
+  max-width: 300px;
 }
 .titulo-star h5{
   margin-right: 3%;

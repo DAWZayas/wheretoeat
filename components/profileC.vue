@@ -34,7 +34,7 @@
     </div>
     </div>
     <div class="col left">
-      <uploadC></uploadC>
+      <addPostC></addPostC>
     </div>
     <div class="posts">
       <h1>Mis publicaciones</h1>
@@ -43,7 +43,7 @@
 </template>
 <script type="text/javascript">
 
-import uploadC from '~/components/uploadC'
+import addPostC from '~/components/addPostC'
 import { mapGetters } from 'vuex'
 export default {
   data () {
@@ -76,7 +76,7 @@ export default {
     }
   },
   components: {
-    uploadC
+    addPostC
   },
   computed: {
     ...mapGetters({
