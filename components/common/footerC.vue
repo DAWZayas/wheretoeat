@@ -2,14 +2,15 @@
   <div class="footer">
     <div class="links">
       <nuxt-link to="/">Inicio</nuxt-link>
-      <nuxt-link to="#">Politica de privacidad</nuxt-link>
+      <nuxt-link to="privacity">Politica de privacidad</nuxt-link>
       <nuxt-link to="contact">Contacto</nuxt-link>
       <nuxt-link to="faq">FAQ</nuxt-link>
     </div>
     <div class="social">
-      <nuxt-link to="#"><i class="material-icons">&#xe54b;</i></nuxt-link>
-      <nuxt-link to="#"><i class="material-icons">&#xe541;</i></nuxt-link>
-      <nuxt-link to="#"><i class="material-icons">&#xe80d;</i></nuxt-link>
+      <a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook-square"></i></a>
+      <a href="https://instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a>
+      <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter-square"></i></a>
+      <a href="https://googleplus.com/ "target="_blank"><i class="fa fa-google-plus-square"></i></a>
     </div>
  </div>
  </template>

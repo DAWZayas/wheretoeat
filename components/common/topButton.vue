@@ -36,16 +36,16 @@ export default {
   opacity: 0.7;
 }
 .topButton {
-  
+
   position: fixed;
   display: none;
-  bottom: 1%;
+  bottom: 7%;
   right: 1%;
   z-index: 99;
   border: none;
   outline: none;
   background-color: transparent;
-  
+
 
 }
 .topButton:hover .size{

@@ -5,7 +5,7 @@
       <div class="cel">
         <h1>Perfil</h1>
         <div class="avatar" v-bind:style="showImg()"></div>
-        <nuxt-link to="editprofile"><button type="button" class="btn btn-warning" style="font-size:.8em;">Editar pefil</button></nuxt-link>
+        <nuxt-link class="pen" to="editprofile"><i class="material-icons">&#xE22B;</i></nuxt-link>
       </div>
       <div class="cel">
         <h5>Nombre</h5>
@@ -168,6 +168,12 @@ div.avatar {
     background-position: 50%;
     background-size: 100% auto;
     background-color: white;
+}
+
+.pen {
+  color: #FFCC00;
+  display: inline-block;
+  padding-top: 2%;
 }
 
 @media screen and (min-width: 750px) {
