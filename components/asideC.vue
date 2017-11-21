@@ -5,14 +5,14 @@
 </template>
 
 <script type="text/javascript">
-  import singleC from '~/components/singleC'
+  import singleC from '~/components/post/singleC'
   export default {
     data () {
       return {
         infoA: [
           {
             id: 2,
-            img: require('~/assets/images/img10.jpg'),
+            src: 9,
             location: '(Las Rozas)',
             title: 'Travesia',
             points: '5.2',
@@ -24,7 +24,7 @@
           },
           {
             id: 3,
-            img: require('~/assets/images/img2.jpg'),
+            src: 1,
             location: '(Villalba)',
             title: 'La Fuente',
             points: '8.5',

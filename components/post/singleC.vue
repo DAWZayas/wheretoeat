@@ -1,6 +1,6 @@
 <template>
   <div class="mainBloc">
-    <img :src="info.img">
+    <img :src="img[this.images]">
     <div class="conta-in">
       <div class="titulo-star">
         <h1>{{ info.title }}</h1>
@@ -23,16 +23,18 @@
     </div>
 </template>
 <script>
-  import ratingC from '~/components/ratingC'
-  import starsC from '~/components/starsC'
-  import showMapC from '~/components/showMapC'
-  import showCommentsC from '~/components/showCommentsC'
-  import showInfoC from '~/components/showInfoC'
+  import ratingC from '~/components/post/ratingC'
+  import starsC from '~/components/post/starsC'
+  import showMapC from '~/components/post/showMapC'
+  import showCommentsC from '~/components/post/showCommentsC'
+  import showInfoC from '~/components/post/showInfoC'
+  import { mapGetters } from 'vuex'
   export default {
     props: ['info'],
     data () {
       return {
-        nInfo: '#' + this.info.id
+        nInfo: '#' + this.info.id,
+        images: this.info.src
       }
     },
     methods: {
@@ -41,7 +43,7 @@
         if (x === 0) {
           return '0 - 10 €'
         } else {
-          return x + '0 - ' + (parseInt(x) + 1) + '0 €'
+          return x + '0 - ' + (x + 1) + '0 €'
         }
       }
     },
@@ -51,6 +53,11 @@
       showMapC,
       showCommentsC,
       showInfoC
+    },
+    computed: {
+      ...mapGetters({
+        img: 'myImages'
+      })
     }
   }
 </script>

@@ -10,7 +10,7 @@
 
 <script>
 
-import editprofileC from '~/components/editprofileC'
+import editprofileC from '~/components/profile/editprofileC'
 import { headerC, footerC, topButton, searcherC } from '~/components/common'
 import listC from '~/components/listC'
 

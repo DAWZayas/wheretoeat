@@ -10,7 +10,7 @@
 
 <script>
 
-import contactC from '~/components/contactC'
+import contactC from '~/components/footer/contactC'
 import { headerC, footerC, topButton, searcherC } from '~/components/common'
 
 export default{

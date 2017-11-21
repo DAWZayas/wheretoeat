@@ -1,4 +1,5 @@
 export default {
   getProfile: state => state.infoProfile,
-  myPosts: state => state.myList
+  profilePosts: state => state.profilePosts,
+  myImages: state => state.images
 }

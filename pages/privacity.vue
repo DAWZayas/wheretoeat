@@ -10,7 +10,7 @@
 
 <script>
 
-import privacityC from '~/components/privacityC'
+import privacityC from '~/components/footer/privacityC'
 import { headerC, topButton, footerC, searcherC } from '~/components/common'
 
 export default{

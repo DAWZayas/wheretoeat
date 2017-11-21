@@ -47,7 +47,7 @@
   </div>
 </template>
 <script type="text/javascript">
-import addPostConfirmC from '~/components/addPostConfirmC'
+import addPostConfirmC from '~/components/profile/addPostConfirmC'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -74,7 +74,7 @@ export default {
 
         const newPost = {
           id: 4,
-          img: require('~/assets/images/empty.png'),
+          src: 14,
           location: '(googleMaps)',
           title: this.title,
           points: this.points,

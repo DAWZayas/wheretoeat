@@ -10,7 +10,7 @@
 
 <script>
 
-import faqC from '~/components/faqC'
+import faqC from '~/components/footer/faqC'
 import { headerC, topButton, footerC, searcherC } from '~/components/common'
 
 export default{

@@ -4,14 +4,14 @@
   </div>
 </template>
 <script type="text/javascript">
-import singleC from '~/components/singleC'
+import singleC from '~/components/post/singleC'
 export default {
   data () {
     return {
       infoM:
       {
         id: 1,
-        img: require('~/assets/images/img1.jpg'),
+        src: 0,
         location: '(Majadahonda)',
         title: 'Soul Food',
         points: '7.2',

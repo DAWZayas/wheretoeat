@@ -3,17 +3,17 @@
     <headerC></headerC>
     <searcherC></searcherC>
     <profileC></profileC>
-    <myListC></myListC>
+    <profilePostsC></profilePostsC>
     <topButton></topButton>
     <footerC></footerC>
   </div>
 </template>
-
 <script>
 
-import profileC from '~/components/profileC'
+import profileC from '~/components/profile/profileC'
 import { headerC, footerC, topButton, searcherC } from '~/components/common'
-import myListC from '~/components/myListC'
+import profilePostsC from '~/components/profile/profilePostsC'
+import { mapActions } from 'vuex'
 
 export default{
   data () {
@@ -24,8 +24,15 @@ export default{
     profileC,
     topButton,
     footerC,
-    myListC,
+    profilePostsC,
     searcherC
+  },
+  methods: {
+    ...mapActions(['bindFirebaseSetPost', 'bindFirebaseSetProfile'])
+  },
+  created () {
+    this.bindFirebaseSetPost()
+    this.bindFirebaseSetProfile()
   }
 }
 </script>

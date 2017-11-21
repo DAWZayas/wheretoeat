@@ -3,9 +3,9 @@ import firebase from 'firebase'
 
 let config = {
   apiKey: 'apiKey',
-  databaseURL: 'https://example.firebaseio.com',
-  authDomain: 'example.firebaseapp.com',
-  storageBucket: 'gs://example.appspot.com'
+  databaseURL: 'https://wheretoeat-ca57a.firebaseio.com',
+  authDomain: 'wheretoeat-ca57a.firebaseapp.com',
+  storageBucket: 'wheretoeat-ca57a.appspot.com'
 }
 
 let firebaseApp

@@ -4,14 +4,14 @@
   </div>
 </template>
 <script>
-  import singleC from '~/components/singleC'
+  import singleC from '~/components/post/singleC'
   export default {
     data () {
       return {
         information: [
           {
             id: 4,
-            img: require('~/assets/images/img4.jpg'),
+            src: 3,
             location: '(El Escorial)',
             title: 'El Pecado',
             points: '6.2',
@@ -23,7 +23,7 @@
           },
           {
             id: 5,
-            img: require('~/assets/images/img5.jpg'),
+            src: 4,
             location: '(Leganés)',
             title: 'La Tapa Madrileña',
             points: '1',
@@ -35,7 +35,7 @@
           },
           {
             id: 6,
-            img: require('~/assets/images/img6.jpg'),
+            src: 5,
             location: '(Barcelona)',
             title: 'La Bohemia',
             points: '2.2',
@@ -47,7 +47,7 @@
           },
           {
             id: 7,
-            img: require('~/assets/images/img7.jpg'),
+            src: 6,
             location: '(Fuenlabrada)',
             title: 'Casa pepe',
             points: '5',
@@ -59,7 +59,7 @@
           },
           {
             id: 8,
-            img: require('~/assets/images/img8.jpg'),
+            src: 7,
             location: '(Aravaca)',
             title: 'La pulperia',
             points: '5.2',
@@ -71,7 +71,7 @@
           },
           {
             id: 9,
-            img: require('~/assets/images/img9.jpg'),
+            src: 8,
             location: '(Pozuelo de Alarcon)',
             title: 'Starbucks',
             points: '7.5',
@@ -83,7 +83,7 @@
           },
           {
             id: 10,
-            img: require('~/assets/images/img3.jpg'),
+            src: 2,
             location: '(Moncloa)',
             title: 'McDonals',
             points: '3.4',

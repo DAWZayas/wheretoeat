@@ -1,10 +1,10 @@
 <template>
   <div class="listBloc">
-      <singleC v-for="info in myList" :key="info.title" :info="info"></singleC>
+      <singleC v-for="info in profilePosts" :key="info.title" :info="info"></singleC>
   </div>
 </template>
 <script>
-  import singleC from '~/components/singleC'
+  import singleC from '~/components/post/singleC'
   import { mapGetters } from 'vuex'
   export default {
     data () {
@@ -16,7 +16,7 @@
     },
     computed: {
       ...mapGetters({
-        myList: 'myPosts'
+        profilePosts: 'profilePosts'
       })
     }
   }

@@ -23,7 +23,7 @@
   </div>
 </template>
 <script type="text/javascript">
-import commentC from '~/components/commentC'
+import commentC from '~/components/post/commentC'
 export default {
   props: ['info'],
   data () {

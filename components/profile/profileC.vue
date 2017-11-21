@@ -43,11 +43,12 @@
 </template>
 <script type="text/javascript">
 
-import addPostC from '~/components/addPostC'
+import addPostC from '~/components/profile/addPostC'
 import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      staticImg: require('~/assets/images/profile.jpg'),
       followText: 'Seguir',
       following: false,
       fullStar: '&#xe838;',
@@ -72,7 +73,8 @@ export default {
       }
     },
     showImg () {
-      return 'background-image: url(' + this.infoP.img + ')'
+      // return 'background-image: url(' + this.infoP.src + ')'
+      return 'background-image: url(' + this.staticImg + ')'
     }
   },
   components: {
@@ -171,7 +173,7 @@ div.avatar {
 }
 
 .pen {
-  color: #FFCC00;
+  color: #E5BE5C;
   display: inline-block;
   padding-top: 2%;
 }
