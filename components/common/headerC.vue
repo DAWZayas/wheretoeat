@@ -9,7 +9,7 @@
     <div id="menu" class="collapse mob-menu">
       <ul class="list-group">
         <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
-        <nuxt-link to="profile"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Perfil</li></nuxt-link>
+        <nuxt-link :to="linkin()"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Perfil</li></nuxt-link>
         <nuxt-link to="login"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Inicia sesión / Regístrate</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Lo + visto</li></nuxt-link>
         <nuxt-link to="#"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
@@ -19,7 +19,7 @@
 
     <div class="menu">
       <div class="userch">
-        <nuxt-link to="profile"><i class="material-icons">&#xe7fd;</i></nuxt-link>
+        <nuxt-link :to="linkin()"><i class="material-icons">&#xe7fd;</i></nuxt-link>
         <div class="btn-group" role="group">
           <div class="btn-group">
             <nuxt-link to="#" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">&#xe8b6;</i></nuxt-link>
@@ -39,11 +39,21 @@
 <script type="text/javascript">
 import logo from '~/components/common/logo'
 import searcherC from '~/components/common/searcherC'
+import { mapGetters } from 'vuex'
 export default {
   name: 'headerC',
   components: {
     logo,
     searcherC
+  },
+  methods: {
+    linkin () {
+      if (this.isLogged) return 'profile'
+      else return 'login'
+    }
+  },
+  computed: {
+    ...mapGetters({ isLogged: 'getIsLogged' })
   }
 }
 </script>

@@ -14,7 +14,7 @@
   </div>
 </template>
 <script type="text/javascript">
-
+import { mapGetters } from 'vuex'
 export default {
   props: ['info'],
   data () {
@@ -24,7 +24,7 @@ export default {
       showNremove: false,
       show: false,
       showAdvert: false,
-      logged: true
+      logged: this.isLogged
     }
   },
   methods: {
@@ -71,6 +71,9 @@ export default {
         return 'btn btn-success'
       }
     }
+  },
+  computed: {
+    ...mapGetters({ isLogged: 'getIsLogged' })
   }
 }
 </script>

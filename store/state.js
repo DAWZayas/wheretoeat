@@ -1,3 +1,4 @@
+const isLogged = true
 const infoProfile = {}
 var profilePosts = []
 
@@ -22,5 +23,6 @@ var images = {
 export default {
   infoProfile,
   profilePosts,
-  images
+  images,
+  isLogged
 }
