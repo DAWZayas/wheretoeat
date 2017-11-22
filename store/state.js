@@ -1,3 +1,4 @@
+const infoPRef = null
 const isLogged = true
 const infoProfile = {}
 var profilePosts = []
@@ -21,6 +22,7 @@ var images = {
 }
 
 export default {
+  infoPRef,
   infoProfile,
   profilePosts,
   images,

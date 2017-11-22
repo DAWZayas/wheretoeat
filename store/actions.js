@@ -6,7 +6,11 @@ export default {
     commit('addNewPost', newPost)
   },
   editProfile ({commit, state}, newProfile) {
+    if (state.infoPRef){
+      state.infoPRef.update(newProfile)
+    } else {
     commit('editProfile', newProfile)
+    }
   },
   /**
    * Binds firebase configuration database reference to the store's corresponding object
@@ -25,7 +29,7 @@ export default {
     let usrProfile = db.ref('/users/1qzjsw20gwx')
 
     dispatch('bindFirebaseReference', {reference: usrProfile, toBind: 'infoProfile'}).then(() => {
-      commit('setProfile', usrProfile)
+      commit('editProfileRef', usrProfile)
     })
   }),
   /**

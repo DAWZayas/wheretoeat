@@ -5,6 +5,9 @@ export default {
   editProfile (state, newProfile) {
     state.infoProfile = newProfile
   },
+  editProfileRef (state, value) {
+    state.infoPRef = value
+  },
   setPosts (state, profilePosts) {
     state.profilePosts = profilePosts
   },
