@@ -2,6 +2,7 @@ const infoPRef = null
 const isLogged = true
 const infoProfile = {}
 var profilePosts = []
+const postRef = null
 
 var images = {
   img1: require('~/assets/images/img1.jpg'),
@@ -26,5 +27,6 @@ export default {
   infoProfile,
   profilePosts,
   images,
-  isLogged
+  isLogged,
+  postRef
 }

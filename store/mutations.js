@@ -8,8 +8,8 @@ export default {
   editProfileRef (state, value) {
     state.infoPRef = value
   },
-  setPosts (state, profilePosts) {
-    state.profilePosts = profilePosts
+  setPostRef (state, value) {
+    state.postRef = value
   },
   setProfile (state, usrProfile) {
     state.infoProfile = usrProfile

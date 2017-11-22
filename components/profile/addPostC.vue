@@ -74,7 +74,7 @@ export default {
 
         const newPost = {
           id: 4,
-          src: 14,
+          src: 'empty',
           location: '(googleMaps)',
           title: this.title,
           points: this.points,

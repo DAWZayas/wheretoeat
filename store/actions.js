@@ -3,13 +3,17 @@ import {firebaseAction} from 'vuexfire'
 
 export default {
   addNewPost ({commit, state}, newPost) {
-    commit('addNewPost', newPost)
+    if (state.postRef) {
+      state.postRef.push(newPost)
+    } else {
+      commit('addNewPost', newPost)
+    }
   },
   editProfile ({commit, state}, newProfile) {
-    if (state.infoPRef){
+    if (state.infoPRef) {
       state.infoPRef.update(newProfile)
     } else {
-    commit('editProfile', newProfile)
+      commit('editProfile', newProfile)
     }
   },
   /**
@@ -21,7 +25,7 @@ export default {
     let postRef = db.ref('/posts')
 
     dispatch('bindFirebaseReference', {reference: postRef, toBind: 'profilePosts'}).then(() => {
-      commit('setPosts', postRef)
+      commit('setPostRef', postRef)
     })
   }),
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}) => {
