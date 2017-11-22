@@ -1,6 +1,6 @@
 <template>
   <div class="mainBloc">
-    <img :src="img[this.images]">
+    <img :src="images[this.src]">
     <div class="conta-in">
       <div class="titulo-star">
         <h1>{{ info.title }}</h1>
@@ -34,7 +34,7 @@
     data () {
       return {
         nInfo: '#' + this.info.id,
-        images: this.info.src
+        src: this.info.src
       }
     },
     methods: {
@@ -56,7 +56,7 @@
     },
     computed: {
       ...mapGetters({
-        img: 'myImages'
+        images: 'myImages'
       })
     }
   }
