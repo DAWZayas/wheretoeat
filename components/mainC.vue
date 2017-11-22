@@ -11,7 +11,7 @@ export default {
       infoM:
       {
         id: 1,
-        src: 0,
+        src: 'img1',
         location: '(Majadahonda)',
         title: 'Soul Food',
         points: '7.2',

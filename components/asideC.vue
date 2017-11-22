@@ -12,7 +12,7 @@
         infoA: [
           {
             id: 2,
-            src: 9,
+            src: 'img3',
             location: '(Las Rozas)',
             title: 'Travesia',
             points: '5.2',
@@ -24,7 +24,7 @@
           },
           {
             id: 3,
-            src: 1,
+            src: 'img2',
             location: '(Villalba)',
             title: 'La Fuente',
             points: '8.5',

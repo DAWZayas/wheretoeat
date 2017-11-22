@@ -11,7 +11,7 @@
         information: [
           {
             id: 4,
-            src: 3,
+            src: 'img4',
             location: '(El Escorial)',
             title: 'El Pecado',
             points: '6.2',
@@ -23,7 +23,7 @@
           },
           {
             id: 5,
-            src: 4,
+            src: 'img5',
             location: '(Leganés)',
             title: 'La Tapa Madrileña',
             points: '1',
@@ -35,7 +35,7 @@
           },
           {
             id: 6,
-            src: 5,
+            src: 'img10',
             location: '(Barcelona)',
             title: 'La Bohemia',
             points: '2.2',
@@ -47,7 +47,7 @@
           },
           {
             id: 7,
-            src: 6,
+            src: 'img7',
             location: '(Fuenlabrada)',
             title: 'Casa pepe',
             points: '5',
@@ -59,7 +59,7 @@
           },
           {
             id: 8,
-            src: 7,
+            src: 'img8',
             location: '(Aravaca)',
             title: 'La pulperia',
             points: '5.2',
@@ -71,7 +71,7 @@
           },
           {
             id: 9,
-            src: 8,
+            src: 'img9',
             location: '(Pozuelo de Alarcon)',
             title: 'Starbucks',
             points: '7.5',
@@ -83,7 +83,7 @@
           },
           {
             id: 10,
-            src: 2,
+            src: 'img6',
             location: '(Moncloa)',
             title: 'McDonals',
             points: '3.4',
