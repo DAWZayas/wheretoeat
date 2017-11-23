@@ -23,14 +23,13 @@ export default {
       rate: '',
       showNremove: false,
       show: false,
-      showAdvert: false,
-      logged: this.isLogged
+      showAdvert: false
     }
   },
   methods: {
     showButton () {
       if (!this.show) {
-        if (!this.logged) {
+        if (!this.isLogged) {
           if (!this.showAdvert) {
             this.showAdvert = true
             setTimeout(() => {

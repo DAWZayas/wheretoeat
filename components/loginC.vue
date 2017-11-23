@@ -16,27 +16,126 @@
       *Todos los campos son obligatorios
       <div class="login">
         <h5>Nombre completo</h5>
-        <input type="text" name="" placeholder="nombre y apellidos"><i class="material-icons ico">&#xE87C;</i>
+        <input type="text" v-model="fullName" maxlength="20" placeholder="nombre y apellidos"><i class="material-icons ico">&#xE87C;</i>
         <h5>Nombre de usuario</h5>
-        <input type="text" name="" placeholder="nombre de usuario"><i class="material-icons ico">&#xe7fd;</i>
+        <input type="text" v-model="userName" maxlength="15" placeholder="nombre de usuario"><i class="material-icons ico">&#xe7fd;</i>
         <h5>Contraseña</h5>
-        <input type="text" name="" placeholder="contraseña"><i class="material-icons ico">&#xE899;</i>
+        <input type="password" v-model="password" maxlength="20" placeholder="contraseña"><i class="material-icons ico">&#xE899;</i>
         <h5>Repetir contraseña</h5>
-        <input type="text" name="" placeholder="repetir contraseña"><i class="material-icons ico">&#xE899;</i>
+        <input type="password" v-model="repeatPassword" maxlength="20" placeholder="repetir contraseña"><i class="material-icons ico">&#xE899;</i>
+        <div v-if="showPassAdv" class="fillF"><h5>{{this.passwordAlert}}</h5></div>
+        <h5>E-mail</h5>
+        <input type="email" v-model="email" maxlength="30" placeholder="@"><i class="material-icons ico">&#xE878;</i>
+        <div v-if="showEmailAdv" class="fillF"><h5>{{this.emailAlert}}</h5></div>
         <h5>Edad</h5>
-        <input type="text" name="" placeholder="edad"><i class="material-icons ico">&#xE878;</i>
+        <input type="text" v-model="age" maxlength="3" placeholder="edad"><i class="material-icons ico">&#xE878;</i>
         <h5>Ciudad</h5>
-        <input type="text" name="" placeholder="ciudad"><i class="material-icons ico">&#xE88A;</i>
+        <input type="text" v-model="city" maxlength="30" placeholder="ciudad"><i class="material-icons ico">&#xE88A;</i>
         <div class="conditions">
-          <input type="checkbox" style="width:5%;"><span>Acepto términos y condiciones de uso</span>
+          <input type="checkbox" v-model="termsCheck" style="width:5%;"><span>Acepto términos y condiciones de uso</span>
         </div>
-        <button type="button" class="btn btn-info send">Registrarse</button>
+        <nuxt-link :to="confirmation()"><button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button></nuxt-link>
       </div>
+      <div v-if="showFieldAdv" class="fillF"><h5>{{this.fillField}}</h5></div>
     </div>
   </div>
 </template>
+<script type="text/javascript">
+import { mapActions } from 'vuex'
+export default {
+  data () {
+    return {
+      user_id: '',
+      fullName: '',
+      userName: '',
+      password: '',
+      repeatPassword: '',
+      email: '',
+      age: '',
+      city: '',
+      fillField: '',
+      emailAlert: '',
+      passwordAlert: '',
+      showFieldAdv: false,
+      showEmailAdv: false,
+      showPassAdv: false,
+      confirmed: false,
+      termsCheck: []
+    }
+  },
+  methods: {
+    ...mapActions(['addNewUser']),
+    onAddNewUser () {
+      this.showFieldAdv = false
+      this.showPassAdv = false
+      this.showEmailAdv = false
+      var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+      if (this.fullName === '' || this.userName === '' || this.password === '' || this.repeatPassword === '' || this.email === '' || this.email === '' || this.age === '' || this.city === '') {
+        this.showFieldAdv = true
+        this.fillField = '**Tienes que rellenar todos los campos'
+      } else {
+        if (this.password !== this.repeatPassword) {
+          this.showPassAdv = true
+          this.passwordAlert = '**Las contraseñas no son iguales'
+        } else if (!emailRegex.test(this.email)) {
+          this.showEmailAdv = true
+          this.emailAlert = '**Email incorrecto'
+        } else if (this.termsCheck.length === 0) {
+          this.showFieldAdv = true
+          this.fillField = '**Debes aceptar los términos y condiciones'
+        } else {
+          this.confirmed = true
+          var char = /[^a-zA-Z 0-9]+/g
+          this.user_id = Math.random().toString(36).split('.')[1]
+          this.fullName = this.fullName.replace(char, ' ')
+          this.userName = this.userName.replace(char, ' ')
+          this.password = this.password.replace(char, ' ')
+          this.repeatPassword = this.repeatPassword.replace(char, ' ')
+          this.age = this.age.replace(char, ' ')
+          this.city = this.city.replace(char, ' ')
+
+          const newUser = {
+            user_id: this.user_id,
+            name: this.fullName,
+            username: this.userName,
+            password: this.password,
+            repeatPassword: this.repeatPassword,
+            email: this.email,
+            age: this.age,
+            city: this.city,
+            followers: 0,
+            src: 'profile'
+          }
+          this.addNewUser(newUser)
+        }
+      }
+    },
+    fieldFilter (ref) {
+      var char2 = /[^a-zA-Z 0-9]+/g
+      return ref.replace(char2, ' ')
+    },
+    confirmation () {
+      if (this.confirmed) {
+        return '/profile'
+      } else {
+        return ''
+      }
+    }
+  }
+}
+</script>
 <style scoped lang='scss'>
 @import "assets/sass/colors.scss";
+
+.fillF {
+  width: 85%;
+}
+
+.fillF h5 {
+  background-color: #E5BE5C;
+  border-radius: 5px;
+  padding: 5px;
+}
 
 .conditions { display: flex;align-items: center;}
 

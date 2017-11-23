@@ -6,15 +6,15 @@
     <div class="blocinf">
       <div class="cel">
         <h5>Restaurante</h5>
-        <input type="text" v-model="title" @keydown="limiter($event, 25)" placeholder="titulo..">
+        <input type="text" v-model="title" maxlength="24" placeholder="titulo..">
       </div>
       <div class="cel">
         <h5>Titulo post</h5>
-        <input type="text" v-model="comTitle" @keydown="limiter($event, 30)" placeholder="titulo..">
+        <input type="text" v-model="comTitle" maxlength="30" placeholder="titulo..">
       </div>
     </div>
     <h5>Descripción</h5>
-    <textarea v-model="comment" @keydown="limiter($event, 200)" placeholder="tu experiencia.."></textarea>
+    <textarea v-model="comment" maxlength="200" placeholder="tu experiencia.."></textarea>
     <div class="blocinf">
       <div class="cel">
         <h5>Precio Medio</h5>
@@ -96,12 +96,6 @@ export default {
     },
     setModalState () {
       this.showModal = false
-    },
-    limiter (evt, lim) {
-      if (this.title.length > lim || this.comTitle.length > lim || this.comment.length > lim) {
-        evt.preventDefault()
-        return
-      }
     }
   },
   components: {

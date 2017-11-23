@@ -11,6 +11,9 @@ export default {
   setPostRef (state, value) {
     state.postRef = value
   },
+  setNewUser (state, userid) {
+    state.userId = userid
+  },
   setProfile (state, usrProfile) {
     state.infoProfile = usrProfile
   }

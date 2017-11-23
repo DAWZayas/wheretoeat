@@ -9,6 +9,10 @@ export default {
       commit('addNewPost', newPost)
     }
   },
+  addNewUser ({commit, state}, newUser) {
+    let usrid = firebaseApp.database().ref('/users').push(newUser).key
+    commit('setNewUser', usrid)
+  },
   editProfile ({commit, state}, newProfile) {
     if (state.infoPRef) {
       state.infoPRef.update(newProfile)
@@ -30,7 +34,7 @@ export default {
   }),
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}) => {
     let db = firebaseApp.database()
-    let usrProfile = db.ref('/users/1qzjsw20gwx')
+    let usrProfile = db.ref('/users/' + state.userId)
 
     dispatch('bindFirebaseReference', {reference: usrProfile, toBind: 'infoProfile'}).then(() => {
       commit('editProfileRef', usrProfile)

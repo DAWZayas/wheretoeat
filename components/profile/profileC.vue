@@ -74,7 +74,7 @@ export default {
     },
     showImg () {
       // return 'background-image: url(' + this.infoP.src + ')'
-      return 'background-image: url(' + this.staticImg + ')'
+      return 'background-image: url(' + this.images[this.infoP.src] + ')'
     }
   },
   components: {
@@ -82,7 +82,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      infoP: 'getProfile'
+      infoP: 'getProfile',
+      images: 'myImages'
     })
   }
 }

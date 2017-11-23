@@ -3,6 +3,8 @@ const isLogged = true
 const infoProfile = {}
 var profilePosts = []
 const postRef = null
+const newUserRef = null
+const userId = null || '2zxjrs75xwx'
 
 var images = {
   img1: require('~/assets/images/img1.jpg'),
@@ -19,7 +21,8 @@ var images = {
   myimg2: require('~/assets/images/myimg2.jpg'),
   myimg3: require('~/assets/images/myimg3.jpg'),
   myimg4: require('~/assets/images/myimg4.jpg'),
-  empty: require('~/assets/images/empty.png')
+  empty: require('~/assets/images/empty.png'),
+  profile: require('~/assets/images/profile.jpg')
 }
 
 export default {
@@ -28,5 +31,7 @@ export default {
   profilePosts,
   images,
   isLogged,
-  postRef
+  postRef,
+  newUserRef,
+  userId
 }
