@@ -41,7 +41,9 @@
   </div>
 </template>
 <script type="text/javascript">
+
 import { mapActions } from 'vuex'
+import { fieldFilter, emailTest, isEmpty } from '~/utils/utils'
 export default {
   data () {
     return {
@@ -69,15 +71,15 @@ export default {
       this.showFieldAdv = false
       this.showPassAdv = false
       this.showEmailAdv = false
-      var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
-      if (this.fullName === '' || this.userName === '' || this.password === '' || this.repeatPassword === '' || this.email === '' || this.email === '' || this.age === '' || this.city === '') {
+      const obj = {fullName: this.fullName, userName: this.userName, password: this.password, repeatPassword: this.repeatPassword, email: this.email, age: this.age, city: this.city}
+      if (isEmpty(obj)) {
         this.showFieldAdv = true
         this.fillField = '**Tienes que rellenar todos los campos'
       } else {
         if (this.password !== this.repeatPassword) {
           this.showPassAdv = true
           this.passwordAlert = '**Las contraseñas no son iguales'
-        } else if (!emailRegex.test(this.email)) {
+        } else if (!emailTest(this.email)) {
           this.showEmailAdv = true
           this.emailAlert = '**Email incorrecto'
         } else if (this.termsCheck.length === 0) {
@@ -85,14 +87,13 @@ export default {
           this.fillField = '**Debes aceptar los términos y condiciones'
         } else {
           this.confirmed = true
-          var char = /[^a-zA-Z 0-9]+/g
           this.user_id = Math.random().toString(36).split('.')[1]
-          this.fullName = this.fullName.replace(char, ' ')
-          this.userName = this.userName.replace(char, ' ')
-          this.password = this.password.replace(char, ' ')
-          this.repeatPassword = this.repeatPassword.replace(char, ' ')
-          this.age = this.age.replace(char, ' ')
-          this.city = this.city.replace(char, ' ')
+          this.fullName = fieldFilter(this.fullName)
+          this.userName = fieldFilter(this.userName)
+          this.password = fieldFilter(this.password)
+          this.repeatPassword = fieldFilter(this.repeatPassword)
+          this.age = fieldFilter(this.age)
+          this.city = fieldFilter(this.city)
 
           const newUser = {
             user_id: this.user_id,
@@ -109,10 +110,6 @@ export default {
           this.addNewUser(newUser)
         }
       }
-    },
-    fieldFilter (ref) {
-      var char2 = /[^a-zA-Z 0-9]+/g
-      return ref.replace(char2, ' ')
     },
     confirmation () {
       if (this.confirmed) {
