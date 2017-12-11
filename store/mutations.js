@@ -11,10 +11,20 @@ export default {
   setPostRef (state, value) {
     state.postRef = value
   },
-  setNewUser (state, userid) {
+  setUserId (state, userid) {
     state.userId = userid
   },
   setProfile (state, usrProfile) {
     state.infoProfile = usrProfile
+  },
+  setAuthError (state, value) {
+    state.authError = value
+  },
+  setLogged (state) {
+    if (!state.isLogged) {
+      state.isLogged = true
+    } else {
+      state.isLogged = false
+    }
   }
 }

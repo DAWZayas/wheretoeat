@@ -30,7 +30,8 @@
         </div>
       </div>
       <nuxt-link to="#" class="line">TuZona</nuxt-link>
-      <nuxt-link to="login" class="line">Regístrate</nuxt-link>
+      <nuxt-link v-if="!this.isLogged" to="login" class="line">Regístrate</nuxt-link>
+      <nuxt-link v-if="this.isLogged" to="login" class="line"><button class="desapear" @click="onLogout">Logout</button></nuxt-link>
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
     </div>
   </div>
@@ -39,7 +40,7 @@
 <script type="text/javascript">
 import logo from '~/components/common/logo'
 import searcherC from '~/components/common/searcherC'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'headerC',
   components: {
@@ -47,6 +48,10 @@ export default {
     searcherC
   },
   methods: {
+    ...mapActions(['setLogged']),
+    onLogout () {
+      this.setLogged()
+    },
     linkin () {
       if (this.isLogged) return 'profile'
       else return 'login'
@@ -152,7 +157,10 @@ li .icon-l {
 	color: grey;
 
 }
-
+.desapear {
+  background: none;
+  border: none;
+}
 @media screen and (min-width: 800px) {
 
   .header .mob-menu {
@@ -217,6 +225,5 @@ li .icon-l {
     margin-left: -30em;
     margin-top: .7em;
   }
-
 }
 </style>

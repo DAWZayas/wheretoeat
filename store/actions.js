@@ -2,6 +2,20 @@ import firebaseApp from '~/firebaseapp'
 import {firebaseAction} from 'vuexfire'
 
 export default {
+  logged ({state, commit}, {email, password}) {
+    firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+      state.userId = firebaseApp.auth().R
+      console.log('Conectado')
+      commit('setLogged')
+    })
+  },
+  resetLogError ({commit}) {
+    commit('setAuthError', '')
+  },
+  setLogged ({commit, state}) {
+    firebaseApp.auth().signOut()
+    commit('setLogged')
+  },
   addNewPost ({commit, state}, newPost) {
     if (state.postRef) {
       state.postRef.push(newPost)
@@ -9,9 +23,16 @@ export default {
       commit('addNewPost', newPost)
     }
   },
-  addNewUser ({commit, state}, newUser) {
-    let usrid = firebaseApp.database().ref('/users').push(newUser).key
-    commit('setNewUser', usrid)
+  createUser ({commit, state}, {email, password, newUser}) {
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+      .then(({uid}) => {
+        firebaseApp.database().ref('/users/' + uid).set(newUser)
+        commit('setUserId', uid)
+        commit('setAuthError', '')
+      })
+      .catch(error => {
+        commit('setAuthError', error.message)
+      })
   },
   editProfile ({commit, state}, newProfile) {
     if (state.infoPRef) {
@@ -35,11 +56,16 @@ export default {
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}) => {
     let db = firebaseApp.database()
     let usrProfile = db.ref('/users/' + state.userId)
-
     dispatch('bindFirebaseReference', {reference: usrProfile, toBind: 'infoProfile'}).then(() => {
       commit('editProfileRef', usrProfile)
     })
   }),
+
+  bindAuth ({commit, state}) {
+    firebaseApp.auth().onAuthStateChanged(userId => {
+      commit('setUserId', userId)
+    })
+  },
   /**
    * Generic binder of the firebase reference to the given key of the store's state
    * Checks if the value already exists in the database, otherwise will set it with the default store's state before binding

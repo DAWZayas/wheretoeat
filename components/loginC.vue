@@ -4,11 +4,12 @@
       <h1>Accede</h1>
       <div class="login">
         <h5>Usuario</h5>
-        <input type="text" name="" placeholder="usuario"><i class="material-icons ico">&#xe7fd;</i>
+        <input type="email" v-model="nameLogin" placeholder="usuario"><i class="material-icons ico">&#xe7fd;</i>
         <h5>Contraseña</h5>
-        <input type="password" name="" placeholder="contraseña"><i class="material-icons ico">&#xE899;</i>
+        <input type="password" v-model="passwordLogin" placeholder="contraseña"><i class="material-icons ico">&#xE899;</i>
         <p>No recuerdas tu contraseña?</p>
-        <button type="button" class="btn btn-danger send">Log-in</button>
+        <!--<nuxt-link :to='confirmation()'><button type="button" @click="login" class="btn btn-danger send">Log-in</button></nuxt-link>-->
+        <button type="button" @click="login" class="btn btn-danger send">Log-in</button>
       </div>
     </div>
     <div class="col left">
@@ -34,7 +35,7 @@
         <div class="conditions">
           <input type="checkbox" v-model="termsCheck" style="width:5%;"><span>Acepto términos y condiciones de uso</span>
         </div>
-        <nuxt-link :to="confirmation()"><button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button></nuxt-link>
+        <nuxt-link to="profile"><button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button></nuxt-link>
       </div>
       <div v-if="showFieldAdv" class="fillF"><h5>{{this.fillField}}</h5></div>
     </div>
@@ -47,6 +48,8 @@ import { fieldFilter, emailTest, isEmpty } from '~/utils/utils'
 export default {
   data () {
     return {
+      nameLogin: '',
+      passwordLogin: '',
       user_id: '',
       fullName: '',
       userName: '',
@@ -66,7 +69,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addNewUser']),
+    ...mapActions(['logged', 'createUser']),
+    login () {
+      this.logged({
+        email: this.nameLogin,
+        password: this.passwordLogin
+      })
+    },
     onAddNewUser () {
       this.showFieldAdv = false
       this.showPassAdv = false
@@ -107,7 +116,7 @@ export default {
             followers: 0,
             src: 'profile'
           }
-          this.addNewUser(newUser)
+          this.createUser({email: this.email, password: this.password, newUser})
         }
       }
     },

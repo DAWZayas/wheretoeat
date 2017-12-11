@@ -1,11 +1,13 @@
 // Initialize Firebase
 import firebase from 'firebase'
 
-let config = {
-  apiKey: 'apiKey',
-  databaseURL: 'https://wheretoeat-ca57a.firebaseio.com',
+var config = {
+  apiKey: 'AIzaSyAbhBrk54KaH7yE1hn986TiYLC2sUJtYYU',
   authDomain: 'wheretoeat-ca57a.firebaseapp.com',
-  storageBucket: 'wheretoeat-ca57a.appspot.com'
+  databaseURL: 'https://wheretoeat-ca57a.firebaseio.com',
+  projectId: 'wheretoeat-ca57a',
+  storageBucket: 'wheretoeat-ca57a.appspot.com',
+  messagingSenderId: '343748273017'
 }
 
 let firebaseApp

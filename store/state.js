@@ -1,10 +1,10 @@
 const infoPRef = null
-const isLogged = true
+const isLogged = false
 const infoProfile = {}
 var profilePosts = []
 const postRef = null
 const newUserRef = null
-const userId = null || '2zxjrs75xwx'
+const userId = null
 
 var images = {
   img1: require('~/assets/images/img1.jpg'),
@@ -33,5 +33,6 @@ export default {
   isLogged,
   postRef,
   newUserRef,
-  userId
+  userId,
+  authError: ''
 }
