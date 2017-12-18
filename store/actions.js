@@ -61,9 +61,16 @@ export default {
     })
   }),
 
-  bindAuth ({commit, state}) {
-    firebaseApp.auth().onAuthStateChanged(userId => {
-      commit('setUserId', userId)
+  bindAuth ({commit, dispatch, state}) {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      commit('setUserId', user)
+      if (user) {
+        console.log(user.uid)
+        return true
+      } else {
+        console.log('Not log')
+        return false
+      }
     })
   },
   /**

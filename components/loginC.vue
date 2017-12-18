@@ -8,8 +8,8 @@
         <h5>Contraseña</h5>
         <input type="password" v-model="passwordLogin" placeholder="contraseña"><i class="material-icons ico">&#xE899;</i>
         <p>No recuerdas tu contraseña?</p>
-        <!--<nuxt-link :to='confirmation()'><button type="button" @click="login" class="btn btn-danger send">Log-in</button></nuxt-link>-->
-        <button type="button" @click="login" class="btn btn-danger send">Log-in</button>
+        <nuxt-link :to='confirmation()'><button type="button" @click="login" class="btn btn-danger send">Log-in</button></nuxt-link>
+        <!--<button type="button" @click="login" class="btn btn-danger send">Log-in</button>-->
       </div>
     </div>
     <div class="col left">
@@ -35,7 +35,8 @@
         <div class="conditions">
           <input type="checkbox" v-model="termsCheck" style="width:5%;"><span>Acepto términos y condiciones de uso</span>
         </div>
-        <nuxt-link to="profile"><button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button></nuxt-link>
+        <nuxt-link :to='confirmation()'><button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button></nuxt-link>
+        <!--<button type="button" @click="onAddNewUser" class="btn btn-info send">Registrarse</button>-->
       </div>
       <div v-if="showFieldAdv" class="fillF"><h5>{{this.fillField}}</h5></div>
     </div>
@@ -69,12 +70,22 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['logged', 'createUser']),
+    ...mapActions(['logged', 'createUser', 'bindAuth']),
+    confirmation () {
+      // this.confirmed = this.bindAuth()
+      this.confirmed = this.bindAuth()
+      if (this.confirmed) {
+        return '/profile'
+      } else {
+        return '/privacity'
+      }
+    },
     login () {
       this.logged({
         email: this.nameLogin,
         password: this.passwordLogin
       })
+      this.confirmation()
     },
     onAddNewUser () {
       this.showFieldAdv = false
@@ -118,13 +129,6 @@ export default {
           }
           this.createUser({email: this.email, password: this.password, newUser})
         }
-      }
-    },
-    confirmation () {
-      if (this.confirmed) {
-        return '/profile'
-      } else {
-        return ''
       }
     }
   }
