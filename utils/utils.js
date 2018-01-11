@@ -13,5 +13,5 @@ export const isEmpty = obj => {
 }
 
 export const newFaceGooUser = email => {
-  return {username: '-', password: '-', repeatPassword: '-', email: email, city: '-', followers: '0', src: 'profile'}
+  return {username: '-', password: '-', repeatPassword: '-', email: email, city: '-', followers: '0', src: 'https://firebasestorage.googleapis.com/v0/b/wheretoeat-ca57a.appspot.com/o/defaultImages%2Fprofile.jpg?alt=media&token=a4d0d1f4-03c4-409c-bdb6-de7f81a533a3'}
 }
