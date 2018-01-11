@@ -2,15 +2,15 @@
   <div class="containe-r">
     <headerC></headerC>
     <loginC></loginC>
-    <topButton></topButton>
     <footerC></footerC>
   </div>
 </template>
 
 <script>
 
-import loginC from '~/components/loginC'
-import { headerC, footerC, topButton } from '~/components/common'
+import loginC from '~/components/auth/loginC'
+import { headerC, footerC } from '~/components/common'
+import { mapActions } from 'vuex'
 
 export default{
   data () {
@@ -19,8 +19,16 @@ export default{
   components: {
     headerC,
     loginC,
-    topButton,
     footerC
+  },
+  computed: {
+    ...mapActions(['bindAuth', 'unbindFirebaseReferences'])
+  },
+  created () {
+    this.bindAuth
+  },
+  destroyed () {
+    this.unbindFirebaseReferences
   }
 }
 </script>
@@ -34,13 +42,5 @@ img{width: 100%;}
     display:flex;
 	  flex-flow:row wrap;
   }
-
-@media screen and (min-width: 1200px) {
-  .containe-r{
-    width: 85%;
-    margin-left: 7.5%;
-  }
-}
-
 }
 </style>

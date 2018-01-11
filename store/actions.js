@@ -1,98 +1,82 @@
 import firebaseApp from '~/firebaseapp'
 import {firebaseAction} from 'vuexfire'
+import { newFaceGooUser } from '~/utils/utils'
+import uuidv1 from 'uuid/v1'
 
+const _uploadImage = (folder, user) => (file) => {
+  let ref = firebaseApp.storage().ref().child(folder + '/' + user)
+  return ref.child(uuidv1()).child(file.name).put(file).then(snapshot => {
+    return snapshot.downloadURL
+  })
+}
 export default {
-  logged ({state, commit}, {email, password}) {
-    firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
-      state.userId = firebaseApp.auth().R
-      console.log('Conectado')
-      commit('setLogged')
+  uploadImage ({state}, {files, folder}) {
+    return Promise.all(files.map(_uploadImage(folder, state.userId)))
+  },
+  updatePhotoURL ({state}, photoURL) {
+    state.newProfile.update(photoURL)
+  },
+  createUserAuth ({commit, dispatch}, {email, password, newUser}) {
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(({uid}) => {
+      commit('setAuthError', '')
+      let db = firebaseApp.database()
+      db.ref('/users/' + uid).set(newUser)
+      db.ref('/posts/' + uid).set({user: newUser.email})
+    }).catch(error => {
+      commit('setAuthError', error.message)
     })
   },
-  resetLogError ({commit}) {
-    commit('setAuthError', '')
-  },
-  setLogged ({commit, state}) {
-    firebaseApp.auth().signOut()
-    commit('setLogged')
-  },
-  addNewPost ({commit, state}, newPost) {
-    if (state.postRef) {
-      state.postRef.push(newPost)
-    } else {
-      commit('addNewPost', newPost)
-    }
-  },
-  createUser ({commit, state}, {email, password, newUser}) {
-    firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-      .then(({uid}) => {
-        firebaseApp.database().ref('/users/' + uid).set(newUser)
-        commit('setUserId', uid)
-        commit('setAuthError', '')
-      })
-      .catch(error => {
-        commit('setAuthError', error.message)
-      })
-  },
-  editProfile ({commit, state}, newProfile) {
-    if (state.infoPRef) {
-      state.infoPRef.update(newProfile)
-    } else {
-      commit('editProfile', newProfile)
-    }
-  },
-  /**
-   * Binds firebase configuration database reference to the store's corresponding object
-   * @param {object} store
-   */
-  bindFirebaseSetPost: firebaseAction(({state, commit, dispatch}) => {
-    let db = firebaseApp.database()
-    let postRef = db.ref('/posts')
-
-    dispatch('bindFirebaseReference', {reference: postRef, toBind: 'profilePosts'}).then(() => {
-      commit('setPostRef', postRef)
-    })
-  }),
-  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}) => {
-    let db = firebaseApp.database()
-    let usrProfile = db.ref('/users/' + state.userId)
-    dispatch('bindFirebaseReference', {reference: usrProfile, toBind: 'infoProfile'}).then(() => {
-      commit('editProfileRef', usrProfile)
-    })
-  }),
-
   bindAuth ({commit, dispatch, state}) {
     firebaseApp.auth().onAuthStateChanged(user => {
-      commit('setUserId', user)
       if (user) {
-        console.log(user.uid)
-        return true
+        let db = firebaseApp.database()
+        let userReference = db.ref('/users/' + user['uid'])
+        userReference.once('value').then(snapshot => {
+          if (!snapshot.val()) {
+            let postReference = db.ref('/posts/' + user['uid'])
+            userReference.set(newFaceGooUser(user.email))
+            postReference.set({user: user.email})
+          }
+        })
+        commit('setUser', user['uid'])
+        dispatch('bindFirebaseSetProfile', user['uid'])
       } else {
-        console.log('Not log')
-        return false
+        dispatch('unbindFirebaseReferences')
       }
     })
   },
-  /**
-   * Generic binder of the firebase reference to the given key of the store's state
-   * Checks if the value already exists in the database, otherwise will set it with the default store's state before binding
-   * @param {object} store
-   */
+  onSetLogOut ({state, dispatch}) {
+    firebaseApp.auth().signOut().then(() => {
+    }).catch(error => {
+      console.log(error)
+    })
+  },
+  addNewPost ({commit, state, dispatch}, newPost) { state.newPost.push(newPost) },
+  editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },
+  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
+    let db = firebaseApp.database()
+    let userProfile = db.ref('/users/' + uid)
+    let userPosts = db.ref('/posts/' + uid)
+    dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
+    dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'}).then(() => { commit('setNewPost', userPosts) })
+  }),
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
     return reference.once('value').then(snapshot => {
       if (!snapshot.val()) {
-        reference.set(state[toBind])
+        let values = state[toBind]
+        typeof values === 'object' && delete values['.key']
+        reference.set(values)
       }
       bindFirebaseRef(toBind, reference)
     })
   }),
-    /**
-   * Undbinds firebase references
-   */
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
-    commit('setpostRef', null)
+    commit('setUser', null)
+    commit('setUserData', null)
+    commit('setUserPosts', null)
     try {
-      unbindFirebaseRef('config')
+      unbindFirebaseRef('posts')
+      unbindFirebaseRef('users')
     } catch (error) {
       return
     }

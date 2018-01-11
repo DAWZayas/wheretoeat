@@ -2,9 +2,8 @@
   <div class="footer">
     <div class="links">
       <nuxt-link to="/">Inicio</nuxt-link>
-      <nuxt-link to="privacity">Politica de privacidad</nuxt-link>
-      <nuxt-link to="contact">Contacto</nuxt-link>
-      <nuxt-link to="faq">FAQ</nuxt-link>
+      <nuxt-link to="/">Politica de privacidad</nuxt-link>
+      <nuxt-link to="/">Contacto</nuxt-link>
     </div>
     <div class="social">
       <a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook-square"></i></a>

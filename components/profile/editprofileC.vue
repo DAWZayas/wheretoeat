@@ -1,20 +1,17 @@
 <template>
     <div class="icol">
         <h2>Editar perfil</h2>
-        <div class="avatar" v-bind:style="showImg()"></div>
-        <input type="file" ref="img">
-        <h5>Nombre</h5>
-        <input type="text" ref="name" :value="infoP.name"><i class="material-icons ico">&#xE87C;</i>
+        <a @click="onClick"><div class="avatar" v-bind:style="showImg()"></div></a>
+        <input @change="onChangeProfilePicture($event.target.files)" type="file" ref="imageFile">
         <h5>Nombre de usuario</h5>
         <input type="text" ref="username" :value="infoP.username"><i class="material-icons ico">&#xe7fd;</i>
         <h5>Ciudad</h5>
         <input type="text" ref="city" :value="infoP.city"><i class="material-icons ico">&#xE88A;</i>
-        <h5>Edad</h5>
-        <input type="text" ref="age" :value="infoP.age"><i class="material-icons ico">&#xE878;</i>
         <h5>Sobre mi</h5>
         <textarea ref="info">{{infoP.info}}</textarea>
         <nuxt-link to="profile"><button @click="onEditProfile" type="button" class="btn btn-info">Editar perfil</button></nuxt-link>
         <nuxt-link to="profile"><button type="button" class="btn btn-danger align">Descartar cambios</button></nuxt-link>
+
     </div>
 </template>
 <script type="text/javascript">
@@ -23,16 +20,15 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      photoURL: ''
     }
   },
   methods: {
-    ...mapActions(['editProfile']),
+    ...mapActions(['editProfile', 'uploadImage', 'updatePhotoURL']),
     onEditProfile () {
       const newProfile = {
-        img: require('~/assets/images/profile.jpg'),
-        name: this.$refs.name.value,
+        src: this.infoP.src,
         username: this.$refs.username.value,
-        age: this.$refs.age.value,
         city: this.$refs.city.value,
         info: this.$refs.info.value,
         followers: this.infoP.followers
@@ -40,7 +36,29 @@ export default {
       this.editProfile(newProfile)
     },
     showImg () {
-      return 'background-image: url(' + this.infoP.img + ')'
+      return 'background-image: url(' + this.infoP.src + ')'
+    },
+    onChangeProfilePicture (files) {
+      this.uploadImage({files: [...files], folder: 'profileImages'}).then(picUrls => {
+        this.photoURL = picUrls[0]
+        const newPhoto = {
+          src: this.photoURL,
+          username: this.$refs.username.value,
+          city: this.$refs.city.value,
+          info: this.$refs.info.value,
+          followers: this.infoP.followers
+        }
+        this.updatePhotoURL(newPhoto)
+        this.$refs.imageFile.value = null
+      })
+    },
+    onClick () {
+      let clickEvent = new MouseEvent('click', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true
+      })
+      this.$refs.imageFile.dispatchEvent(clickEvent)
     }
   },
   computed: {

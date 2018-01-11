@@ -13,5 +13,8 @@ export default {
     }
   }
 }
-
 </script>
+
+<style scoped media="screen">
+
+</style>

@@ -1,30 +1,20 @@
 export default {
-  addNewPost (state, newPost) {
-    state.profilePosts.unshift(newPost)
+  setNewProfile (state, value) {
+    state.newProfile = value
   },
-  editProfile (state, newProfile) {
-    state.infoProfile = newProfile
+  setNewPost (state, value) {
+    state.newPost = value
   },
-  editProfileRef (state, value) {
-    state.infoPRef = value
+  setUserPosts (state, value) {
+    state.userPosts = value
   },
-  setPostRef (state, value) {
-    state.postRef = value
-  },
-  setUserId (state, userid) {
+  setUser (state, userid) {
     state.userId = userid
   },
-  setProfile (state, usrProfile) {
-    state.infoProfile = usrProfile
+  setUserData (state, userData) {
+    state.userData = userData
   },
   setAuthError (state, value) {
     state.authError = value
-  },
-  setLogged (state) {
-    if (!state.isLogged) {
-      state.isLogged = true
-    } else {
-      state.isLogged = false
-    }
   }
 }

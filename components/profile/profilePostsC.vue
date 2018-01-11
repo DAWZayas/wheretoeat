@@ -1,6 +1,6 @@
 <template>
   <div class="listBloc">
-      <singleC v-for="info in profilePosts" :key="info.title" :info="info"></singleC>
+      <singleC v-for="info in userPosts" :key="info.src" v-if="info.src" :info="info"></singleC>
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@
     },
     computed: {
       ...mapGetters({
-        profilePosts: 'profilePosts'
+        userPosts: 'profilePosts'
       })
     }
   }
@@ -24,6 +24,7 @@
 
 <style scoped media="screen">
 .listBloc{
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-content: center;

@@ -3,7 +3,6 @@
     <headerC></headerC>
     <searcherC></searcherC>
     <editprofileC></editprofileC>
-    <topButton></topButton>
     <footerC></footerC>
   </div>
 </template>
@@ -11,19 +10,26 @@
 <script>
 
 import editprofileC from '~/components/profile/editprofileC'
-import { headerC, footerC, topButton, searcherC } from '~/components/common'
-import listC from '~/components/listC'
+import { headerC, footerC, searcherC } from '~/components/common'
+import { mapActions } from 'vuex'
 
 export default{
   data () {
     return {}
   },
+  computed: {
+    ...mapActions(['bindAuth', 'unbindFirebaseReferences'])
+  },
+  created () {
+    this.bindAuth
+  },
+  destroyed () {
+    this.unbindFirebaseReferences
+  },
   components: {
     headerC,
     editprofileC,
-    topButton,
     footerC,
-    listC,
     searcherC
   }
 }
@@ -38,13 +44,5 @@ img{width: 100%;}
     display:flex;
 	  flex-flow:row wrap;
   }
-
-@media screen and (min-width: 1200px) {
-  .containe-r{
-    width: 85%;
-    margin-left: 7.5%;
-  }
-}
-
 }
 </style>

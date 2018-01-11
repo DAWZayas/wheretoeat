@@ -9,5 +9,9 @@ export const emailTest = email => {
 }
 
 export const isEmpty = obj => {
-  return obj['fullName'] === '' || obj['userName'] === '' || obj['password'] === '' || obj['repeatPassword'] === '' || obj['email'] === '' || obj['age'] === '' || obj['city'] === ''
+  return obj['userName'] === '' || obj['password'] === '' || obj['repeatPassword'] === '' || obj['email'] === '' || obj['city'] === ''
+}
+
+export const newFaceGooUser = email => {
+  return {username: '-', password: '-', repeatPassword: '-', email: email, city: '-', followers: '0', src: 'profile'}
 }

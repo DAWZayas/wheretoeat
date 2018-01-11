@@ -1,6 +1,6 @@
 export default {
-  getProfile: state => state.infoProfile,
-  profilePosts: state => state.profilePosts,
+  getProfile: state => state.userData || {},
+  profilePosts: state => state.userPosts,
   myImages: state => state.images,
-  getIsLogged: state => state.isLogged
+  getUser: state => state.userId
 }

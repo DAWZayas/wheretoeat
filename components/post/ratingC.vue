@@ -72,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ isLogged: 'getIsLogged' })
+    ...mapGetters({ isLogged: 'getUser' })
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="mainBloc">
-    <img :src="images[this.src]">
+    <img :src="info.src" v-show="loadedImage" @load="handleLoadedImage">
+    <div class="spinner" v-show="loadingImage"><img src="~/assets/ovalImg.svg" width="80" alt=""></div>
     <div class="conta-in">
       <div class="titulo-star">
         <h1>{{ info.title }}</h1>
@@ -34,7 +35,9 @@
     data () {
       return {
         nInfo: '#' + this.info.id,
-        src: this.info.src
+        src: this.info.src,
+        loadingImage: true,
+        loadedImage: false
       }
     },
     methods: {
@@ -45,6 +48,10 @@
         } else {
           return x + '0 - ' + (x + 1) + '0 €'
         }
+      },
+      handleLoadedImage () {
+        this.loadingImage = false
+        this.loadedImage = true
       }
     },
     components: {
@@ -66,6 +73,12 @@
 
 @import "assets/sass/colors.scss";
 
+.spinner {
+  padding-top: 20%;
+  padding-left: 47%;
+  width: 100%;
+  height: 300px;
+}
 .mainBloc {
   background:white;
   padding:10px;

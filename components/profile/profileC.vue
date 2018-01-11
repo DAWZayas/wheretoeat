@@ -8,24 +8,22 @@
         <nuxt-link class="pen" to="editprofile"><i class="material-icons">&#xE22B;</i></nuxt-link>
       </div>
       <div class="cel">
-        <h5>Nombre</h5>
-        <h4>{{infoP.name}}</h4>
         <h5>Nombre usuario</h5>
-        <h4>@{{infoP.username}}</h4>
+        <h4>{{this.infoUser.username}}</h4>
+        <h5>Email</h5>
+        <h4>{{this.infoUser.email}}</h4>
         <h5>Ciudad</h5>
-        <h4>{{infoP.city}}</h4>
-        <h5>Edad</h5>
-        <h4>{{infoP.age}}</h4>
+        <h4>{{this.infoUser.city}}</h4>
       </div>
     </div>
     <div class="info">
       <h5>Sobre mi</h5>
-      <p>{{infoP.info}}</p>
+      <p>{{this.infoUser.info}}</p>
     </div>
     <div class="blocinf ">
       <div class="btn-group cel">
         <button type="button" class="btn btn-danger align"><i class="material-icons">&#xE7EF;</i> Seguidores</button>
-        <button type="button" class="btn btn-info align">{{infoP.followers}}</button>
+        <button type="button" class="btn btn-info align">{{this.infoUser.followers}}</button>
       </div>
       <div class="btn-group cel">
         <button @click="follow" type="button" class="btn btn-danger align">{{followText}}</button>
@@ -44,7 +42,7 @@
 <script type="text/javascript">
 
 import addPostC from '~/components/profile/addPostC'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -56,6 +54,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['bindAuth']),
     follow () {
       if (this.following) {
         this.following = false
@@ -73,8 +72,7 @@ export default {
       }
     },
     showImg () {
-      // return 'background-image: url(' + this.infoP.src + ')'
-      return 'background-image: url(' + this.images[this.infoP.src] + ')'
+      return 'background-image: url(' + this.infoUser.src + ')'
     }
   },
   components: {
@@ -82,8 +80,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      infoP: 'getProfile',
-      images: 'myImages'
+      images: 'myImages',
+      infoUser: 'getProfile'
     })
   }
 }
@@ -197,11 +195,6 @@ div.avatar {
   .cel {
     width: 100%;
 
-  }
-  .left {
-    border-left: 2px solid #E9E9E9;
-    border-top:1px solid #E9E9E9;
-    border-radius: 20px;
   }
 }
 
