@@ -22,7 +22,7 @@
         <nuxt-link :to="this.logged"><i class="material-icons ico">&#xe7fd;</i></nuxt-link>
         <div class="btn-group" role="group">
           <div class="btn-group">
-            <nuxt-link to="#" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons ico">&#xe8b6;</i></nuxt-link>
+            <a href="#" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons ico">&#xe8b6;</i></a>
             <div class="dropdown-menu srchBloc" aria-labelledby="showSearcher">
               <div class="srch"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
             </div>

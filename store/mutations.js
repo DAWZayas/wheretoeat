@@ -14,7 +14,13 @@ export default {
   setUserData (state, userData) {
     state.userData = userData
   },
+  setRefPosts (state, value) {
+    state.refPosts = value
+  },
   setAuthError (state, value) {
     state.authError = value
+  },
+  setSearch (state, value) {
+    state.searchValue = value
   }
 }

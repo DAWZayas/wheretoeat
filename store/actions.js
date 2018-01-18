@@ -51,14 +51,25 @@ export default {
       console.log(error)
     })
   },
+  bindSearch ({commit, dispatch, state}) {
+    let db = firebaseApp.database()
+    db.ref('/refPosts/').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        // console.log(snapshot.val())
+        commit('setSearch', snapshot.val())
+      }
+    })
+  },
   addNewPost ({commit, state, dispatch}, newPost) { state.newPost.push(newPost) },
   editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
     let db = firebaseApp.database()
     let userProfile = db.ref('/users/' + uid)
     let userPosts = db.ref('/posts/' + uid)
+    // let refPosts = db.ref('/refPosts/')
     dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
     dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'}).then(() => { commit('setNewPost', userPosts) })
+    // dispatch('bindFirebaseReference', {reference: refPosts, toBind: 'refPosts'}).then(() => { commit('setRefPosts', refPosts) })
   }),
   bindFirebaseReference: firebaseAction(({bindFirebaseRef, state}, {reference, toBind}) => {
     return reference.once('value').then(snapshot => {
