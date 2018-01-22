@@ -48,7 +48,7 @@
 </template>
 <script type="text/javascript">
 import addPostConfirmC from '~/components/profile/addPostConfirmC'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -62,8 +62,12 @@ export default {
       comment: '',
       showModal: false,
       fillField: '',
-      loaded: false
+      loaded: false,
+      postId: ''
     }
+  },
+  computed: {
+    ...mapGetters({ userId: 'getUser' })
   },
   methods: {
     ...mapActions(['addNewPost', 'uploadImage']),
@@ -78,6 +82,7 @@ export default {
         this.title = this.title.replace(char, ' ')
         this.comTitle = this.comTitle.replace(char, ' ')
         this.comment = this.comment.replace(char, ' ')
+        this.postId = Math.random().toString(36).replace('0.', '') + Date.now().toString(36)
         const newPost = {
           id: 4,
           src: this.photoURL,
@@ -88,7 +93,9 @@ export default {
           comTitle: this.comTitle,
           comment: this.comment,
           showButton: true,
-          tlf: '123 456 789'
+          tlf: '123 456 789',
+          post_id: this.postId,
+          user_id: this.userId
         }
         if (this.tarjet !== '') {
           this.uploadImage({files: [...this.tarjet], folder: 'postImages'}).then(picUrls => {
@@ -110,6 +117,7 @@ export default {
         this.photoURL = 'https://firebasestorage.googleapis.com/v0/b/wheretoeat-ca57a.appspot.com/o/defaultImages%2Fempty.png?alt=media&token=5ea847ec-0c84-477d-9635-313d4acf73cd'
         this.tarjet = ''
         this.$refs.imageFile.value = null
+        this.postId = ''
       }
     },
     setModalState () {

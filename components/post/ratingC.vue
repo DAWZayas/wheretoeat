@@ -14,7 +14,8 @@
   </div>
 </template>
 <script type="text/javascript">
-import { mapGetters } from 'vuex'
+import firebaseApp from '~/firebaseapp'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: ['info'],
   data () {
@@ -27,6 +28,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['addNewRating', 'deleteRating']),
     showButton () {
       if (!this.show) {
         if (!this.isLogged) {
@@ -53,12 +55,14 @@ export default {
           this.textVote = 'Valorar'
           this.showNremove = false
           this.show = false
+          this.deleteRating({postid: this.info.post_id, userpost: this.info.user_id})
         }
       } else {
         this.rate = score
         this.textVote = 'Valorado'
         this.showNremove = true
         this.show = false
+        this.addNewRating({postid: this.info.post_id, userpost: this.info.user_id, score: score})
       }
     },
     chooseColor (n) {
@@ -73,6 +77,17 @@ export default {
   },
   computed: {
     ...mapGetters({ isLogged: 'getUser' })
+  },
+  mounted () {
+    let db = firebaseApp.database()
+    db.ref('/ratings/' + this.info.post_id + '/' + this.info.user_id).once('value').then(snapshot => {
+      if (snapshot.val()) {
+        this.rate = snapshot.val().score
+        this.textVote = 'Valorado'
+        this.showNremove = true
+        this.show = false
+      }
+    })
   }
 }
 </script>

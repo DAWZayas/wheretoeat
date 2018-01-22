@@ -1,10 +1,10 @@
-const refPosts = []
 const userPosts = null
 const userData = null
 const userId = null
 const newProfile = null
-const newPost = null
-const searchValue = null
+const postComments = null
+const newComment = null
+const vPosts = null
 
 var images = {
   empty: require('~/assets/images/empty.png'),
@@ -13,11 +13,11 @@ var images = {
 
 export default {
   userPosts,
-  refPosts,
   userData,
   userId,
   newProfile,
-  newPost,
-  searchValue,
+  postComments,
+  newComment,
+  vPosts,
   images
 }

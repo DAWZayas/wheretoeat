@@ -1,15 +1,23 @@
 <template>
   <div class="commentBloc">
-      <span class="user">{{ comment.user }}</span> {{ comment.comment }}
+      <span class="user">{{ usrName }}</span> {{ comment.comment }}
       <hr>
   </div>
 </template>
 <script type="text/javascript">
+import firebaseApp from '~/firebaseapp'
 export default {
   props: ['comment'],
   data () {
     return {
+      usrName: ''
     }
+  },
+  mounted () {
+    let db = firebaseApp.database()
+    db.ref('/users/' + this.comment.user_id).once('value').then(snapshot => {
+      if (snapshot.val()) { this.usrName = snapshot.val().username }
+    })
   }
 }
 </script>

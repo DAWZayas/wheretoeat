@@ -9,11 +9,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <commentC v-for="comment in comments" :comment="comment" :key="comment.id"></commentC>
+          <commentC v-for="comment in comments" :comment="comment" :key="comment.id" v-if="comment.user_id"></commentC>
         </div>
         <div class="bloc">
-          <input type="text" class="comment" placeholder="escribe un comentario..">
-          <button type="button" class="btn btn-info send">Comentar</button>
+          <input type="text" v-model="newCom" class="comment" placeholder="escribe un comentario..">
+          <button type="button" @click="addNewCom" class="btn btn-info send">Comentar</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -24,38 +24,25 @@
 </template>
 <script type="text/javascript">
 import commentC from '~/components/post/commentC'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props: ['info'],
   data () {
     return {
-      comments: [
-        {
-          id: 22,
-          user: 'Maria',
-          comment: 'Me gusto mucho el sitio,muy bien decorado y un trato exquisíto'
-        },
-        {
-          id: 33,
-          user: 'Luis',
-          comment: 'El camarero iba borracho y tardaron 20 minutos en traernos la cuenta'
-        },
-        {
-          id: 44,
-          user: 'Juan',
-          comment: 'Celebré mi cumpleaños y nos dejaron liarla parda!! la peña subida en la barra y todo!'
-        },
-        {
-          id: 55,
-          user: 'Elena',
-          comment: 'Sitio agradable, el escalope muy rico.'
-        },
-        {
-          id: 66,
-          user: 'Andrea',
-          comment: 'Los postres son el plato fuerte de este lugar! el brownie espectacular'
-        }
-      ]
+      newCom: ''
     }
+  },
+  methods: {
+    ...mapActions(['addNewComment']),
+    addNewCom () {
+      if (this.newCom !== '') { this.addNewComment({user_id: this.userId, comment: this.newCom}) }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      comments: 'getComments',
+      userId: 'getUser'
+    })
   },
   components: {
     commentC

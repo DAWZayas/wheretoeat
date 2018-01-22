@@ -1,19 +1,41 @@
 <template>
-  <div class="bloc">
-    <profileInfoC :infoUser="this.infoUser"></profileInfoC>
-    <div class="col left">
-      <addPostC></addPostC>
+  <div class="col">
+    <div class="blocinf">
+      <div class="cel">
+        <h1>Perfil</h1>
+        <div class="avatar" v-bind:style="showImg()"></div>
+        <nuxt-link v-if="!this.showActions" to="editprofile" class="pen"><i class="material-icons">&#xE22B;</i></nuxt-link>
+      </div>
+      <div class="cel">
+        <h5>Nombre usuario</h5>
+        <h4>{{infoUser.username}}</h4>
+        <h5>Email</h5>
+        <h4>{{infoUser.email}}</h4>
+        <h5>Ciudad</h5>
+        <h4>{{infoUser.city}}</h4>
+      </div>
     </div>
-    <div class="posts">
-      <h1>Mis publicaciones</h1>
+    <div class="info">
+      <h5>Sobre mi</h5>
+      <p>{{infoUser.info}}</p>
+    </div>
+    <div class="blocinf ">
+      <div class="btn-group cel">
+        <button type="button" class="btn btn-danger align"><i class="material-icons">&#xE7EF;</i> Seguidores</button>
+        <button type="button" class="btn btn-info align">{{infoUser.followers}}</button>
+      </div>
+      <div v-if="this.showActions" class="btn-group cel">
+        <button @click="follow" type="button" class="btn btn-danger align">{{followText}}</button>
+        <button type="button" class="btn btn-default align"><i class="material-icons" v-html="showStar()"></i></button>
+      </div>
     </div>
   </div>
 </template>
 <script type="text/javascript">
-import profileInfoC from '~/components/profile/profileInfoC'
 import addPostC from '~/components/profile/addPostC'
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  props: ['infoUser'],
   data () {
     return {
       staticImg: require('~/assets/images/profile.jpg'),
@@ -22,6 +44,10 @@ export default {
       fullStar: '&#xe838;',
       emptyStar: '&#xe83a;'
     }
+  },
+  computed: {
+    ...mapGetters({ logUser: 'getUser' }),
+    showActions () { if (this.logUser === this.infoUser['.key']) { return false } else { return true } }
   },
   methods: {
     ...mapActions(['bindAuth']),
@@ -46,22 +72,12 @@ export default {
     }
   },
   components: {
-    addPostC,
-    profileInfoC
-  },
-  computed: {
-    ...mapGetters({ infoUser: 'getProfile' })
+    addPostC
   }
 }
 </script>
 <style scoped lang='scss'>
 @import "assets/sass/colors.scss";
-
-.posts {
-  width:100%;
-  padding:10px;
-  margin-bottom:-3%;
-}
 .align {
   display: flex;
   justify-content: space-between;

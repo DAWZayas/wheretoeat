@@ -1,36 +1,13 @@
 <template>
     <div class="searcher">
-      <input v-model="searchTerm" class="input" type="search" placeholder="Restaurante,Ciudad,Plato...">
+      <input type="text" name="" placeholder="restaurante,ciudad,plato...">
       <div class="searchBloc">
-        <span @click="setSearch"><i class="material-icons">&#xe8b6;</i></span>
-
+        <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
       </div>
   </div>
 
 </template>
-<script>
-  import { mapActions } from 'vuex'
 
-  export default {
-    data () {
-      return {
-        searchTerm: '',
-        displayPosts: []
-      }
-    },
-    methods: {
-      ...mapActions(['bindSearch']),
-      setSearch () {
-        if (this.searchTerm) {
-          this.bindSearch()
-          this.$router.push({ path: '/result', query: { title: this.searchTerm } })
-          console.log('RESULT')
-          // console.log(this.bindSearch)
-        }
-      }
-    }
-  }
-</script>
 <style scoped media="screen">
 @import "assets/sass/colors.scss";
 .searcher {

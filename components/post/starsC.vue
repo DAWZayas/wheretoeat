@@ -1,7 +1,7 @@
 <template>
   <div class="stars">
-    <i v-for="n in stars" class="material-icons" v-html="showStar(n)"></i>
-    <nuxt-link to="#" class="str">{{ points }}</nuxt-link>
+    <i v-for="n in stars" class="material-icons" v-html="showStar(n,info.points)"></i>
+    <nuxt-link to="#" class="str">{{ info.points.toFixed(1) }}</nuxt-link>
   </div>
 </template>
 <script type="text/javascript">
@@ -13,14 +13,13 @@ export default {
       fullStar: '&#xe838;',
       halfStar: '&#xe839;',
       emptyStar: '&#xe83a;',
-      stars: this.info.stars || 5,
-      points: this.info.points
+      stars: 5
     }
   },
   methods: {
-    showStar (n) {
+    showStar (n, points) {
       var multiply = this.stars / 5
-      var nStars = (this.stars * this.points * multiply) / (this.stars * 2)
+      var nStars = (this.stars * points * multiply) / (this.stars * 2)
       if (n <= nStars) {
         return this.fullStar
       } else {

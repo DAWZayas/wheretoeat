@@ -28,26 +28,18 @@ export default{
     profilePostsC,
     searcherC
   },
-  methods: {
-    overflowVisible () {
-      console.log('**')
-      // document.getElementsByTagName('body')[0].style.overflow = 'visible'
-    }
-  },
   computed: {
     ...mapActions(['bindAuth', 'unbindFirebaseReferences'])
   },
-  beforeCreate () {
+  mounted () {
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden'
     setTimeout(() => {
       this.isLoading = false
-      this.overflowVisible()
+      document.getElementsByTagName('body')[0].style.overflow = 'visible'
     }, 2000)
   },
   created () {
     this.bindAuth
-    /* this.$nextTick(function () {
-      this.isLoading = false
-    }) */
   },
   destroyed () {
     this.unbindFirebaseReferences
@@ -56,11 +48,6 @@ export default{
 </script>
 
 <style media="screen">
-/*
-body {
-  overflow: hidden;
-}
-*/
 img {
   width: 100%;
 }
