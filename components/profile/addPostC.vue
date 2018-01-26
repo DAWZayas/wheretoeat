@@ -84,7 +84,6 @@ export default {
         this.comment = this.comment.replace(char, ' ')
         this.postId = Math.random().toString(36).replace('0.', '') + Date.now().toString(36)
         const newPost = {
-          id: 4,
           src: this.photoURL,
           location: '(googleMaps)',
           title: this.title,
@@ -92,10 +91,10 @@ export default {
           bill: this.bill,
           comTitle: this.comTitle,
           comment: this.comment,
-          showButton: true,
           tlf: '123 456 789',
           post_id: this.postId,
-          user_id: this.userId
+          user_id: this.userId,
+          date: ''
         }
         if (this.tarjet !== '') {
           this.uploadImage({files: [...this.tarjet], folder: 'postImages'}).then(picUrls => {

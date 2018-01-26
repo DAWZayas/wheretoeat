@@ -1,4 +1,5 @@
 import firebaseApp from '~/firebaseapp'
+import firebase from 'firebase'
 import {firebaseAction} from 'vuexfire'
 import { newFaceGooUser } from '~/utils/utils'
 import { userRef, usrPosts, postComments } from '~/utils/firebaseReferences'
@@ -81,6 +82,7 @@ export default {
     })
   }),
   addNewPost ({commit, state, dispatch}, newPost) {
+    newPost.date = firebase.database.ServerValue.TIMESTAMP
     userPostRef(state.userId, newPost.post_id).set(newPost)
     postComments(newPost.post_id).set({post_id: newPost.post_id})
     ratingUserRef(newPost.post_id, state.userId).set({user_id: state.userId, score: newPost.points})
@@ -88,9 +90,13 @@ export default {
   },
   addNewComment ({state}, newComment) { state.newComment.push(newComment) },
   editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },
+  showMorePosts: firebaseAction(({state, commit, dispatch}, pag) => {
+    let userPosts = usrPosts(state.userId).orderByChild('date').limitToFirst(pag)
+    dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'})
+  }),
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
     let userProfile = userRef(uid)
-    let userPosts = usrPosts(uid)
+    let userPosts = usrPosts(uid).orderByChild('date').limitToFirst(7)
     dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
     dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'})
   }),
@@ -115,7 +121,7 @@ export default {
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
     commit('setUser', null)
     commit('setUserData', null)
-    commit('setUserPosts', null)
+    commit('setUserPosts', [])
     try {
       unbindFirebaseRef('posts')
       unbindFirebaseRef('users')

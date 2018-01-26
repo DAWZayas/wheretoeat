@@ -4,6 +4,7 @@
     <searcherC></searcherC>
     <profileC></profileC>
     <profilePostsC></profilePostsC>
+    <topButtonC></topButtonC>
     <footerC></footerC>
     <div v-if="isLoading" class="load"><img src="~/assets/oval.svg" width="80" alt=""></div>
   </div>
@@ -11,7 +12,7 @@
 <script>
 
 import profileC from '~/components/profile/profileC'
-import { headerC, footerC, searcherC } from '~/components/common'
+import { headerC, footerC, searcherC, topButtonC } from '~/components/common'
 import profilePostsC from '~/components/profile/profilePostsC'
 import { mapActions } from 'vuex'
 
@@ -26,6 +27,7 @@ export default{
     profileC,
     footerC,
     profilePostsC,
+    topButtonC,
     searcherC
   },
   computed: {

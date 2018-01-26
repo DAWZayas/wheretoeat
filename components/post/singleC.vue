@@ -10,12 +10,12 @@
       <div class="icoption">
         <nuxt-link to="#" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
         <a href="#" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
-        <nuxt-link to="#" data-toggle="modal" v-bind:data-target="nInfo" v-if="info.showButton"><i class="material-icons">&#xe0cd;</i></nuxt-link>
+        <nuxt-link to="#" data-toggle="modal" v-bind:data-target="nInfo"><i class="material-icons">&#xe0cd;</i></nuxt-link>
       </div>
     </div>
     <hr>
     <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span></br>
-      <nuxt-link :to="this.userDirect" class="user"><i class="material-icons ico">&#xe7fd;</i><span class="name">@{{userData.username}}</span></nuxt-link>
+      <nuxt-link :to="this.userDirect" class="user"><i class="material-icons ico">&#xe7fd;</i><span class="name">@{{userData.username}} | <span style="font-size:12px;">{{ (new Date(info.date)).toUTCString().substr(5, 11) }}</span></span></nuxt-link>
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
     <ratingC :info="info"></ratingC>
