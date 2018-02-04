@@ -5,14 +5,13 @@
     <mainC></mainC>
     <asideC></asideC>
     <listC></listC>
-    <topButtonC></topButtonC>
     <footerC></footerC>
   </div>
 </template>
 
 <script type="text/javascript">
 
-import { headerC, footerC, searcherC, topButtonC } from '~/components/common'
+import { headerC, footerC, searcherC } from '~/components/common'
 import mainC from '~/components/homepage/mainC'
 import asideC from '~/components/homepage/asideC'
 import listC from '~/components/homepage/listC'
@@ -37,7 +36,6 @@ export default {
     mainC,
     asideC,
     listC,
-    topButtonC,
     searcherC
   }
 }

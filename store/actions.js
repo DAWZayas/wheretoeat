@@ -40,7 +40,8 @@ export default {
           }
         })
         commit('setUser', user['uid'])
-        dispatch('bindFirebaseSetProfile', user['uid'])
+        console.log('*******' + user['uid'])
+        dispatch('bindFirebaseSetProfile', {uid: user['uid'], pag: 7})
       } else {
         dispatch('unbindFirebaseReferences')
       }
@@ -88,15 +89,13 @@ export default {
     ratingUserRef(newPost.post_id, state.userId).set({user_id: state.userId, score: newPost.points})
     globalRef(newPost.post_id).set({num: 1, sum: newPost.points})
   },
+  setCoordinates ({commit}, coordinates) { commit('setCoords', coordinates) },
   addNewComment ({state}, newComment) { state.newComment.push(newComment) },
   editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },
-  showMorePosts: firebaseAction(({state, commit, dispatch}, pag) => {
-    let userPosts = usrPosts(state.userId).orderByChild('date').limitToFirst(pag)
-    dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'})
-  }),
-  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, uid) => {
+  bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, {uid, pag}) => {
     let userProfile = userRef(uid)
-    let userPosts = usrPosts(uid).orderByChild('date').limitToFirst(7)
+    let userPosts = usrPosts(uid).orderByChild('date').limitToFirst(pag)
+    usrPosts(uid).once('value', snapshot => { if (snapshot.val()) { commit('setNumPosts', snapshot.numChildren()) } })
     dispatch('bindFirebaseReference', {reference: userProfile, toBind: 'userData'}).then(() => { commit('setNewProfile', userProfile) })
     dispatch('bindFirebaseReference', {reference: userPosts, toBind: 'userPosts'})
   }),
@@ -121,7 +120,7 @@ export default {
   unbindFirebaseReferences: firebaseAction(({unbindFirebaseRef, commit}) => {
     commit('setUser', null)
     commit('setUserData', null)
-    commit('setUserPosts', [])
+    commit('setUserPosts', null)
     try {
       unbindFirebaseRef('posts')
       unbindFirebaseRef('users')

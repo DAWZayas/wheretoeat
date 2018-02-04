@@ -1,9 +1,9 @@
 <template>
-  <div class="">
-  <div class="listBloc">
-      <singleC v-for="info in userPosts" :key="info.src" v-if="info.src" :info="info"></singleC>
-  </div>
-  <div class="showmore"><button @click="showMore" type="button" class="btn btn-info">Mostrar mas</button></div>
+  <div class="contain">
+    <div class="listBloc">
+      <singleC v-for="info in userPosts" :key="info.date" v-if="info.date" :info="info"></singleC>
+    </div>
+    <div class="showmore" v-if="nPosts"><button @click="showMore" type="button" class="btn btn-info">Mostrar mas</button></div>
   </div>
 </template>
 <script>
@@ -12,23 +12,32 @@
   export default {
     data () {
       return {
-        showPag: 13
+        showPag: 7
       }
     },
     components: {
       singleC
     },
     methods: {
-      ...mapActions(['showMorePosts']),
+      ...mapActions(['bindFirebaseSetProfile']),
       showMore () {
-        this.showMorePosts(this.showPag)
         this.showPag = this.showPag + 6
+        this.bindFirebaseSetProfile({uid: this.userId, pag: this.showPag})
       }
     },
     computed: {
       ...mapGetters({
-        userPosts: 'profilePosts'
-      })
+        userPosts: 'profilePosts',
+        numPosts: 'getNumPosts',
+        userId: 'getUser'
+      }),
+      nPosts () {
+        if (this.numPosts <= 7 || this.showPag > this.numPosts) {
+          return false
+        } else {
+          return true
+        }
+      }
     }
   }
   </script>
@@ -43,6 +52,9 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+.contain {
+  width: 100%;
 }
 @media screen and (min-width: 650px) {
   .listBloc {

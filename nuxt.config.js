@@ -31,6 +31,10 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: false,
+  /*vue2-google-maps*/
+  plugins: [
+    '~plugins/maps.js'
+  ],
   /*
   ** Build configuration
   */

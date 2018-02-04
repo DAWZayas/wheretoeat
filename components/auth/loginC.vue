@@ -30,8 +30,7 @@ export default {
   },
   methods: {
     loggin () {
-      firebaseApp.auth().signInWithEmailAndPassword(this.userLog, this.passwordLog).then((user) => {
-        this.errorLog = ''
+      firebaseApp.auth().signInWithEmailAndPassword(this.userLog, this.passwordLog).then(user => {
         this.$router.push('/profile')
       }).catch(err => {
         this.errorLog = 'Datos incorrectos'

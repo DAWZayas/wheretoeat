@@ -33,7 +33,7 @@
     <div class="blocinf">
       <div class="cel">
         <h5>Añadir localización</h5>
-        <button type="button" class="btn btn-info">Buscar en Google Maps</button>
+        <button type="button" @click="setMod" id="myBtn2" class="btn btn-info">Buscar en Google Maps</button>
       </div>
       <div class="cel">
         <h5 style="color:white; background:white;">.</h5>
@@ -44,11 +44,13 @@
       </div>
       <addPostConfirmC :initialShow="showModal" @onCloseModal="setModalState"></addPostConfirmC>
     </div>
+    <div id="myModal2" class="modl"><addLocationC @closeMod="closeMod()" @setCoor="setCoordinates($event)"></addLocationC></div>
   </div>
 </template>
 <script type="text/javascript">
 import addPostConfirmC from '~/components/profile/addPostConfirmC'
 import { mapActions, mapGetters } from 'vuex'
+import addLocationC from '~/components/profile/addLocationC'
 export default {
   data () {
     return {
@@ -63,7 +65,9 @@ export default {
       showModal: false,
       fillField: '',
       loaded: false,
-      postId: ''
+      postId: '',
+      lat: 0,
+      lng: 0
     }
   },
   computed: {
@@ -71,6 +75,11 @@ export default {
   },
   methods: {
     ...mapActions(['addNewPost', 'uploadImage']),
+    setCoordinates (data) {
+      this.lat = data.lat
+      this.lng = data.lng
+      this.closeMod()
+    },
     imgRef (file) {
       this.tarjet = file
     },
@@ -94,7 +103,9 @@ export default {
           tlf: '123 456 789',
           post_id: this.postId,
           user_id: this.userId,
-          date: ''
+          date: '',
+          lat: this.lat,
+          lng: this.lng
         }
         if (this.tarjet !== '') {
           this.uploadImage({files: [...this.tarjet], folder: 'postImages'}).then(picUrls => {
@@ -117,18 +128,22 @@ export default {
         this.tarjet = ''
         this.$refs.imageFile.value = null
         this.postId = ''
+        this.lat = ''
+        this.lng = ''
       }
     },
-    setModalState () {
-      this.showModal = false
-    }
+    setModalState () { this.showModal = false },
+    setMod () { document.getElementById('myModal2').style.visibility = 'visible' },
+    closeMod () { document.getElementById('myModal2').style.visibility = 'hidden' }
   },
   components: {
-    addPostConfirmC
+    addPostConfirmC,
+    addLocationC
   }
 }
 </script>
-<style scoped media="screen">
+<style scoped lang='scss'>
+@import 'assets/sass/modalcss';
 @import "assets/sass/colors.scss";
 
 .fillF {

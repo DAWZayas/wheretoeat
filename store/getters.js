@@ -4,5 +4,7 @@ export default {
   myImages: state => state.images,
   getUser: state => state.userId,
   getComments: state => state.postComments,
-  getVPosts: state => state.vPosts
+  getVPosts: state => state.vPosts,
+  getCoords: state => state.coords,
+  getNumPosts: state => state.numPosts
 }

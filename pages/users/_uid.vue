@@ -60,7 +60,7 @@ export default{
 </script>
 
 <style scoped media="screen">
-@import "assets/sass/colors.scss";
+/* @import "assets/sass/colors.scss"; */
 .listBloc{
   width: 100%;
   display: flex;

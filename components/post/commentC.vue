@@ -1,16 +1,29 @@
 <template>
   <div class="commentBloc">
-      <span class="user">{{ usrName }}</span> {{ comment.comment }}
+      <nuxt-link :to="'/' + this.userDir" class="userdir"><span class="user">{{ usrName }}</span></nuxt-link> {{ comment.comment }}
       <hr>
   </div>
 </template>
 <script type="text/javascript">
+import { mapGetters } from 'vuex'
 import firebaseApp from '~/firebaseapp'
 export default {
   props: ['comment'],
   data () {
     return {
       usrName: ''
+    }
+  },
+  computed: {
+    ...mapGetters({
+      userId: 'getUser'
+    }),
+    userDir () {
+      if (this.userId === this.comment.user_id) {
+        return 'profile'
+      } else {
+        return 'users/' + this.comment.user_id
+      }
     }
   },
   mounted () {
@@ -27,5 +40,9 @@ export default {
     font-size: 16px;
     color: $redColor;
     font-weight: bold;
+  }
+  .userdir {
+    color: black;
+    text-decoration: none;
   }
 </style>
