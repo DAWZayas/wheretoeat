@@ -25,5 +25,8 @@ export default {
   },
   setNumPosts (state, value) {
     state.numPosts = value
+  },
+  setSearchPost (state, value) {
+    state.searchPost = value
   }
 }

@@ -7,6 +7,7 @@ const newComment = null
 const vPosts = null
 const coords = {lat: 0, lng: 0}
 const numPosts = 0
+const searchPost = []
 
 var images = {
   empty: require('~/assets/images/empty.png'),
@@ -23,5 +24,6 @@ export default {
   vPosts,
   images,
   coords,
-  numPosts
+  numPosts,
+  searchPost
 }

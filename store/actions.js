@@ -89,6 +89,42 @@ export default {
     ratingUserRef(newPost.post_id, state.userId).set({user_id: state.userId, score: newPost.points})
     globalRef(newPost.post_id).set({num: 1, sum: newPost.points})
   },
+  // Busqueda
+  bindSearch ({commit, dispatch, state}, toSearch) {
+    let db = firebaseApp.database()
+    db.ref('/posts').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        const dataSearch = []
+        Object.keys(snapshot.val()).forEach(function (key) {
+          var user = snapshot.val()[key]
+          Object.keys(user).forEach(function (key) {
+            var posts = user[key]
+            if (toSearch.type === 'normal') {
+              if (typeof posts.title !== 'undefined' || typeof posts.comTitle !== 'undefined') {
+                if (posts.title.toLowerCase() === toSearch.searchTerm || posts.comTitle.toLowerCase() === toSearch.searchTerm) {
+                  console.log('Encontrado')
+                  dataSearch.push(posts)
+                } else {
+                  console.log('No encontrado')
+                }
+              }
+            } else {
+              if (typeof posts.points !== 'undefined' || typeof posts.bill !== 'undefined') {
+                if (toSearch.points === 0) {
+                  if (posts.bill === toSearch.bill) {
+                    dataSearch.push(posts)
+                  }
+                } else if (posts.bill === toSearch.bill && posts.points === toSearch.points) {
+                  dataSearch.push(posts)
+                }
+              }
+            }
+          })
+        })
+        commit('setSearchPost', dataSearch)
+      }
+    })
+  },
   setCoordinates ({commit}, coordinates) { commit('setCoords', coordinates) },
   addNewComment ({state}, newComment) { state.newComment.push(newComment) },
   editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },

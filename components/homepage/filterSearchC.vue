@@ -2,8 +2,9 @@
     <div class="col">
       <div>
         <h5>Busqueda personalizada</h5>
-        <input type="text" placeholder="nombre del restaurante..">
+        <input v-model="searchTerm" type="input" placeholder="nombre del restaurante..">
         <input type="text" placeholder="ciudad..">
+        <button @click="setSearch" type="button" class="btn btn-danger send">Buscar</button>
         <h5>Filtros</h5>
         <div class="login">
         <div class="cel">
@@ -16,22 +17,48 @@
         <div class="cel">
           <h6>Valoración</h6>
           <select v-model="points">
+            <option value="0">Omitir</option>
             <option v-for="n in 10" :value="n">{{n}}</option>
           </select>
         </div>
         </div>
       </div>
-        <button type="button" class="btn btn-danger send">Buscar</button>
+        <button @click="setFilterSearch" type="button" class="btn btn-danger send">Buscar Por Filtros</button>
         <button type="button" class="btn btn-info send">Restaurantes cerca de mí</button>
       </div>
     </div>
 </template>
 <script type="text/javascript">
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      points: 5,
-      bill: 0
+      searchTerm: '',
+      bill: 0,
+      points: 0
+    }
+  },
+  methods: {
+    ...mapActions(['bindSearch']),
+    setFilterSearch () {
+      const toSearch = {
+        type: 'filter',
+        bill: this.bill,
+        points: this.points
+      }
+      this.bindSearch(toSearch)
+      this.$router.push({ path: '/result' })
+    },
+    setSearch () {
+      if (this.searchTerm) {
+        const toSearch = {
+          type: 'normal',
+          searchTerm: this.searchTerm.toLowerCase()
+        }
+        this.bindSearch(toSearch)
+        this.$router.push({ path: '/result' })
+      }
     }
   }
 }
