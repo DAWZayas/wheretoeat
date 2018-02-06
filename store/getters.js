@@ -7,5 +7,7 @@ export default {
   getVPosts: state => state.vPosts,
   getCoords: state => state.coords,
   getNumPosts: state => state.numPosts,
-  getSearchPost: state => state.searchPost
+  getSearchPost: state => state.searchPost,
+  getFavorite: state => state.favorite,
+  getFavoritePosts: state => state.favoritePosts
 }

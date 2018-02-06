@@ -28,5 +28,11 @@ export default {
   },
   setSearchPost (state, value) {
     state.searchPost = value
+  },
+  setFavorite (state, value) {
+    state.favorite = value
+  },
+  setFavoritePosts (state, value) {
+    state.favoritePosts = value
   }
 }

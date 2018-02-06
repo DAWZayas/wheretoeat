@@ -11,7 +11,7 @@
         <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
         <nuxt-link to="profile" v-if="this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Perfil</li></nuxt-link>
         <nuxt-link to="login" v-if="!this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Inicia sesión / Regístrate</li></nuxt-link>
-        <nuxt-link to="/" v-if="this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</li></nuxt-link>
+        <nuxt-link to="favorites" v-if="this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</li></nuxt-link>
         <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
         <button @click="logOut" v-if="this.isLogged" style="border:none;"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xE8AC;</i>Cerrar sessión</li></button>
       </ul>
@@ -22,13 +22,15 @@
         <nuxt-link :to="'/' + this.logged"><i class="material-icons ico">&#xe7fd;</i></nuxt-link>
         <div class="btn-group" role="group">
           <div class="btn-group">
-            <nuxt-link to="#" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons ico">&#xe8b6;</i></nuxt-link>
+            <nuxt-link to="" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons ico">&#xe8b6;</i></nuxt-link>
             <div class="dropdown-menu srchBloc" aria-labelledby="showSearcher">
               <div class="srch"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
             </div>
           </div>
         </div>
       </div>
+      <nuxt-link to="favorites" v-if="this.isLogged" class="line">Favoritos</nuxt-link>
+      <nuxt-link to="" v-if="this.isLogged" class="line tall opa">|</nuxt-link>
       <nuxt-link to="#" class="line">TuZona</nuxt-link>
       <nuxt-link to="" class="line tall opa">|</nuxt-link>
       <nuxt-link to="login" v-if="!this.isLogged" class="line">Regístrate</nuxt-link>
