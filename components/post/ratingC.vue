@@ -76,11 +76,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ isLogged: 'getUser' })
+    ...mapGetters({
+      isLogged: 'getUser',
+      userLog: 'getUser'
+    })
   },
   mounted () {
     let db = firebaseApp.database()
-    db.ref('/ratings/' + this.info.post_id + '/' + this.info.user_id).once('value').then(snapshot => {
+    db.ref('/ratings/' + this.info.post_id + '/' + this.userLog).once('value').then(snapshot => {
       if (snapshot.val()) {
         this.rate = snapshot.val().score
         this.textVote = 'Valorado'
