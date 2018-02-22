@@ -5,7 +5,7 @@
     <profileInfoC :infoUser="this.infoUser" class="prof"></profileInfoC>
     <div class="col"></div>
     <div class="posts"><h1>Sus publicaciones</h1></div>
-    <div class="listBloc"><singleC v-for="info in this.userPosts" :key="info.src" v-if="info.src" :info="info"></singleC></div>
+    <div class="listBloc"><singleC v-for="info in this.userPosts" :key="info.src" v-if="info.src" :info="info" :show="true"></singleC></div>
     <footerC></footerC>
     <div v-if="isLoading" class="load"><img src="~/assets/oval.svg" width="80" alt=""></div>
   </div>

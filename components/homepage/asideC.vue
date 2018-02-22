@@ -26,9 +26,8 @@
 <style scoped lang='scss'>
 @import "assets/sass/colors.scss";
 aside {
-  height: 500px;
-  display: flex;
-  flex-direction:column;
+  height: auto;
+  overflow: hidden;
 	background:$whiteColor;
   width:100%;
 }

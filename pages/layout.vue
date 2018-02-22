@@ -24,11 +24,17 @@ export default {
   computed: {
     ...mapActions(['bindAuth', 'unbindFirebaseReferences'])
   },
+  methods: {
+    ...mapActions(['setMainPosts'])
+  },
   created () {
     this.bindAuth
   },
   destroyed () {
     this.unbindFirebaseReferences
+  },
+  mounted () {
+    this.setMainPosts({type: 'mainlist', cords: ''})
   },
   components: {
     headerC,

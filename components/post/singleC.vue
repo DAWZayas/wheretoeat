@@ -1,24 +1,25 @@
 <template>
-  <div class="mainBloc">
+  <div class="mainBloc" :id="info.title">
     <img :src="info.src" v-show="loadedImage" @load="handleLoadedImage">
     <div class="spinner" v-show="loadingImage"><img src="~/assets/ovalImg.svg" width="80" alt=""></div>
     <div class="conta-in">
       <div class="titulo-star">
         <h1>{{ info.title }}</h1>
-          <starsC :info="info"></starsC>
+        <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
         <button @click="setMod" id="myBtn" class="locbut"><i class="material-icons" style="color:#a85122;font-size:35px;">&#xe55f;</i></button>
         <a href="#" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
-        <i v-if="!heart" class="material-icons icon-fav" @click="favorite()">favorite</i><i v-else class="material-icons colorIcon" @click="favorite()">favorite</i>
+        <a href="#" data-toggle="modal" v-bind:data-target="1"><i class="material-icons">&#xe0cd;</i></a>
       </div>
     </div>
     <hr>
-    <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span><br>
-      <nuxt-link :to="this.userDirect" class="user"><i class="material-icons ico">&#xe7fd;</i><span class="name">@{{userData.username}} | <span style="font-size:12px;">{{ (new Date(info.date)).toUTCString().substr(5, 11) }}</span></span></nuxt-link>
+    <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span></br>
+      <nuxt-link :to="this.userDirect" class="user"><i class="material-icons ico">&#xe7fd;</i><span class="name">@{{userData.username}} <!-- | <span style="font-size:12px;">{{ (new Date(info.date)).toUTCString().substr(5, 11) }}</span>--></span></nuxt-link>
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
-    <ratingC :info="info"></ratingC>
+    <ratingC :info="info" v-if="this.show"></ratingC>
+    <button type="button" class="btn btn-danger" style="font-size:15px;" v-if="!this.show">@{{userData.username}}</button>
     <div id="myModal" class="modl"><showMapC class="modlbox" @closeMod="closeMod()"></showMapC></div>
     <showCommentsC :info="info"></showCommentsC>
     <showInfoC :info="info"></showInfoC>
@@ -33,7 +34,7 @@
   import showInfoC from '~/components/post/showInfoC'
   import { mapGetters, mapActions } from 'vuex'
   export default {
-    props: ['info'],
+    props: ['info', 'show'],
     data () {
       return {
         mapRef: '#' + this.info.post_id,
@@ -41,12 +42,11 @@
         loadingImage: true,
         loadedImage: false,
         userData: '',
-        userPage: '',
-        heart: false
+        userPage: ''
       }
     },
     methods: {
-      ...mapActions(['bindFirebaseComments', 'setCoordinates', 'addFavorite', 'unSetFavorite']),
+      ...mapActions(['bindFirebaseComments', 'setCoordinates']),
       showBill (n) {
         var x = parseInt(n)
         if (x === 0) {
@@ -65,27 +65,24 @@
       setMod () {
         if (this.info.lng !== 0 && this.info.lat !== 0) {
           this.setCoordinates({ lng: this.info.lng, lat: this.info.lat })
-          document.getElementById('myModal').style.visibility = 'visible'
+          var myModal = document.getElementById('myModal')
+          var modlBox = document.getElementsByClassName('modlbox')[0]
+          myModal.style.visibility = 'visible'
+          modlBox.style.opacity = '1'
+          window.onclick = function (event) {
+            if (event.target === myModal) {
+              myModal.style.visibility = 'hidden'
+              modlBox.style.border = '0'
+              modlBox.style.opacity = '0'
+            }
+          }
         }
       },
       closeMod () {
+        let modlBox = document.getElementsByClassName('modlbox')[0]
         document.getElementById('myModal').style.visibility = 'hidden'
-      },
-      favorite () {
-        this.heart = !this.heart
-        if (this.heart) {
-          let info = {
-            key: this.info.post_id,
-            userUid: this.userId
-          }
-          this.addFavorite(info)
-        } else {
-          let info = {
-            key: this.info.post_id,
-            userUid: this.userId
-          }
-          this.unSetFavorite(info)
-        }
+        modlBox.style.border = '0'
+        modlBox.style.opacity = '0'
       }
     },
     components: {
@@ -97,8 +94,7 @@
     },
     computed: {
       ...mapGetters({
-        userId: 'getUser',
-        favorites: 'getFavorite'
+        userId: 'getUser'
       }),
       userDirect () {
         if (this.userId === this.info.user_id) {
@@ -113,11 +109,6 @@
       db.ref('/users/' + this.info.user_id).once('value').then(snapshot => {
         if (snapshot.val()) { this.userData = snapshot.val() }
       })
-      if (this.favorites != null) {
-        if (this.favorites[this.info.post_id]) {
-          this.heart = true
-        }
-      }
     }
   }
 </script>
@@ -135,13 +126,6 @@
 img {
   width: 100%;
 }
-.icoption i {
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 2em;
-}
-.colorIcon { color: red; }
-.icon-fav { color: $blueColor; }
 .ico { color: #a85122; }
 .name { color:grey; }
 .user {

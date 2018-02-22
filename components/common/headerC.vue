@@ -1,37 +1,33 @@
 <template>
-  <div class="header">
-    <div class="logo">
-      <logo></logo>
+  <div class="heade-r">
+    <div class="logo"><logo></logo></div>
+    <div class="desktopS">
+      <div class="desktopSearcher">
+        <searchWindowC @closeWindow="showSearcher"></searchWindowC>
+      </div>
     </div>
-    <nav>
-      <nuxt-link to="#menu" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="menu"><i class="material-icons ico">&#xe5d2;</i></nuxt-link>
-    </nav>
-    <div id="menu" class="collapse mob-menu">
-      <ul class="list-group">
-        <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</li></nuxt-link>
-        <nuxt-link to="profile" v-if="this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe556;</i>Perfil</li></nuxt-link>
-        <nuxt-link to="login" v-if="!this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe7fe;</i>Inicia sesión / Regístrate</li></nuxt-link>
-        <nuxt-link to="favorites" v-if="this.isLogged"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</li></nuxt-link>
-        <nuxt-link to="/"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</li></nuxt-link>
-        <button @click="logOut" v-if="this.isLogged" style="border:none;"><li class="list-group-item ul-menu"><i class="material-icons icon-l">&#xE8AC;</i>Cerrar sessión</li></button>
-      </ul>
+    <div class="navabar">
+      <a href="#" @click="showMenu" class="display:block;"><i class="material-icons ico">&#xe5d2;</i></a>
     </div>
-
-    <div class="menu">
+    <div class="mobile">
+      <div class="mobilebloc">
+        <ul class="mylist">
+          <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</div></a>
+          <a href="profile" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe556;</i>Perfil</div></a>
+          <a href="login" v-if="!this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe7fe;</i>Iniciar sesión / Registrarse</div></a>
+          <a href="/" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</div></a>
+          <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</div></a>
+          <a href="#" @click="logOut" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l" style="color:red;">&#xE8AC;</i>Cerrar sesión</div></a>
+        </ul>
+      </div>
+    </div>
+    <div class="men-u">
       <div class="userch">
         <nuxt-link :to="'/' + this.logged"><i class="material-icons ico">&#xe7fd;</i></nuxt-link>
-        <div class="btn-group" role="group">
-          <div class="btn-group">
-            <nuxt-link to="" id="showSearcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons ico">&#xe8b6;</i></nuxt-link>
-            <div class="dropdown-menu srchBloc" aria-labelledby="showSearcher">
-              <div class="srch"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
-            </div>
-          </div>
-        </div>
+        <a href="#" @click="showSearcher"><i class="material-icons ico">&#xe8b6;</i></a>
+        <div class="srchBloc"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
       </div>
-      <nuxt-link to="favorites" v-if="this.isLogged" class="line">Favoritos</nuxt-link>
-      <nuxt-link to="" v-if="this.isLogged" class="line tall opa">|</nuxt-link>
-      <nuxt-link to="#" class="line">TuZona</nuxt-link>
+      <a href="#" @click="locate" class="line">TuZona</a>
       <nuxt-link to="" class="line tall opa">|</nuxt-link>
       <nuxt-link to="login" v-if="!this.isLogged" class="line">Regístrate</nuxt-link>
       <nuxt-link to="" v-if="!this.isLogged" class="line tall opa">|</nuxt-link>
@@ -44,12 +40,19 @@
 <script type="text/javascript">
 import logo from '~/components/common/logo'
 import searcherC from '~/components/common/searcherC'
+import searchWindowC from '~/components/common/searchWindow'
 import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: 'headerC',
+  data () {
+    return {
+      show: false,
+      showSearch: false
+    }
+  },
   components: {
     logo,
-    searcherC
+    searcherC,
+    searchWindowC
   },
   computed: {
     ...mapGetters({ isLogged: 'getUser' }),
@@ -66,13 +69,83 @@ export default {
     logOut () {
       this.onSetLogOut()
       this.$router.push('/')
+    },
+    showMenu () {
+      var drawer = document.getElementsByClassName('mobilebloc')[0]
+      var height = drawer.scrollHeight
+      if (!this.show) {
+        drawer.style.setProperty('height', height + 'px')
+        this.show = true
+      } else {
+        drawer.style.setProperty('height', '0')
+        this.show = false
+      }
+    },
+    showSearcher () {
+      if (!this.showSearch) {
+        this.showSearch = true
+        document.getElementsByClassName('desktopS')[0].style.opacity = '1'
+        document.getElementsByClassName('desktopSearcher')[0].style.visibility = 'visible'
+      } else {
+        this.showSearch = false
+        document.getElementsByClassName('desktopS')[0].style.opacity = '0'
+        document.getElementsByClassName('desktopSearcher')[0].style.visibility = 'hidden'
+      }
+    },
+    locate () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          this.$router.push({ path: '/searchLocation/' + 'query', query: { lat: position.coords.latitude, lng: position.coords.longitude } })
+        }.bind(this))
+      }
     }
   }
 }
 </script>
 <style scoped lang='scss'>
 @import "assets/sass/colors.scss";
-.header {
+.mobilebloc {
+  position:absolute;
+  z-index:1;
+  background-color:#fff;
+  margin-left: -110%;;
+  margin-top: 6.6em;
+  width: 130%;
+  height: 0;
+  color: black;
+  overflow: hidden;
+  transition: height 0.3s ease-out;
+}
+.listed {
+  display: flex;
+  align-items: center;
+  padding-left: 30%;
+  padding: 15px;
+  width: 100%;
+  border-bottom: 1px solid #E6E6E6;
+}
+.listed:hover{
+  background-color: #00a4ba;
+  opacity: 0.8;
+  color:white;
+}
+.listed:hover > .icon-l{
+  background-color: #00a4ba;
+  opacity: 0.8;
+  color:white;
+}
+.mylist a{
+  color: black;
+  text-decoration: none;
+  background-color:#fff;
+}
+.icon-l {
+  margin-left: 20%;
+  margin-right: 10px;
+  color:#00a4ba;
+}
+
+.heade-r {
   width: 100%;
   height: 70px;
   background:#00a4ba;
@@ -89,14 +162,14 @@ export default {
   flex-wrap:nowrap;
 }
 
-.header .logo {
+.heade-r .logo {
   font-size:30px;
   max-width: 240px;
   margin-left: 2%;
 }
 
 
-.header nav {
+.navabar {
   display: flex;
   width:30%;
   font-size: 30px;
@@ -104,7 +177,7 @@ export default {
 
 }
 
-.header nav a {
+.navabar a {
   text-align: right;
   border-radius: $whiteColor;
   color:$blueColor;
@@ -113,56 +186,13 @@ export default {
   margin-right: 2px;
 }
 
-.header nav i {
+.navabar i {
   font-size: 35px;
 }
 
-.header .menu{
+.men-u{
   display: none;
 }
-
-.mob-menu {
-  position:absolute;
-  z-index:1;
-  background-color:#fff;
-  margin-left: -3em;
-  margin-top: 6.7em;
-  width: 130%;
-  color: black;
-}
-
-.ul-menu {
-  display:flex;
-  align-items:center;
-  background-color: #fff;
-  padding: none;
-  padding-left: 7em;
-}
-
-li .icon-l {
-  float:right;
-  margin-right: .8em;
-  color:$blueColor;
-}
-
-.list-group a{
-  color: black;
-  text-decoration: none;
-  background-color:#fff;
-}
-
-.ul-menu {
-  background-color:#fff;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
-.ul-menu a:hover{
-  color: grey;
-
-}
-
 .ico {
   color: white;
 }
@@ -172,21 +202,22 @@ li .icon-l {
   border: 1px solid white;
 }
 
-@media screen and (min-width: 800px) {
+.desktopS {
+  display: none;
+}
 
-  .header .mob-menu {
+@media screen and (min-width: 800px) {
+  .mobile {
     display: none;
   }
-
-  .header {
+  .heade-r {
     padding: 10px;
     height: auto;
   }
-
-  .header nav{
+  .navabar{
     display:none;
   }
-  .header .menu{
+  .heade-r .men-u{
     max-height: 48px;
     font-size: 1.2rem;
     width:60%;
@@ -194,8 +225,7 @@ li .icon-l {
     flex-direction: row-reverse;
     justify-content: space-around;
   }
-
-  .header .menu a.line{
+  .heade-r .men-u a.line{
     border-width: 2px;
     border-bottom-color: $redColor;
     font-weight: lighter;
@@ -204,7 +234,6 @@ li .icon-l {
     display: flex;
     align-items: center;
   }
-
   .userch{
     font-size: 1.3em;
     display: flex;
@@ -212,7 +241,6 @@ li .icon-l {
     justify-content: space-around;
     width: 20%;
   }
-
   .userch a{
     color:$darkBlue;
     padding: 10px;
@@ -221,18 +249,26 @@ li .icon-l {
   .userch a i{
     font-size: 30px;
   }
-
-  .srch {
-    width: 100%;
-    height: 40px;
-    width: 600px;
-  }
-
   .srchBloc {
-    margin-left: -30em;
-    margin-top: .7em;
+    display: none;
   }
-
+  .desktopS {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    width: 0px;
+    transition: all 0.5s linear;
+  }
+  .desktopSearcher {
+    position: fixed;
+    visibility: hidden;
+    width: 98%;
+    opacity: .8;
+    height: 100%;
+    background-color: black;
+    z-index: 1;
+  }
   .tall {
     font-size:2em;
     font-weight:lighter;

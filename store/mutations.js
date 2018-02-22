@@ -26,13 +26,7 @@ export default {
   setNumPosts (state, value) {
     state.numPosts = value
   },
-  setSearchPost (state, value) {
-    state.searchPost = value
-  },
-  setFavorite (state, value) {
-    state.favorite = value
-  },
-  setFavoritePosts (state, value) {
-    state.favoritePosts = value
+  setMainPosts (state, value) {
+    state.mainPosts = value
   }
 }

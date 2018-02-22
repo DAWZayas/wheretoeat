@@ -1,6 +1,7 @@
 <template>
   <div class="containe-r">
     <headerC></headerC>
+    <searcherC></searcherC>
     <loginC></loginC>
     <footerC></footerC>
   </div>
@@ -9,7 +10,7 @@
 <script>
 
 import loginC from '~/components/auth/loginC'
-import { headerC, footerC } from '~/components/common'
+import { headerC, footerC, searcherC } from '~/components/common'
 import { mapActions } from 'vuex'
 
 export default{
@@ -19,7 +20,8 @@ export default{
   components: {
     headerC,
     loginC,
-    footerC
+    footerC,
+    searcherC
   },
   computed: {
     ...mapActions(['bindAuth', 'unbindFirebaseReferences'])

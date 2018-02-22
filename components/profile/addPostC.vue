@@ -133,8 +133,14 @@ export default {
       }
     },
     setModalState () { this.showModal = false },
-    setMod () { document.getElementById('myModal2').style.visibility = 'visible' },
-    closeMod () { document.getElementById('myModal2').style.visibility = 'hidden' }
+    setMod () {
+      document.getElementById('myModal2').style.visibility = 'visible'
+      document.getElementsByClassName('modl')[0].style.opacity = '1'
+    },
+    closeMod () {
+      document.getElementById('myModal2').style.visibility = 'hidden'
+      document.getElementsByClassName('modl')[0].style.opacity = '0'
+    }
   },
   components: {
     addPostConfirmC,
@@ -145,6 +151,11 @@ export default {
 <style scoped lang='scss'>
 @import 'assets/sass/modalcss';
 @import "assets/sass/colors.scss";
+
+.modl {
+  transition: all 0.5s linear;
+  opacity: 0;
+}
 
 .fillF {
   width: 100%;

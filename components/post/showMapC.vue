@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
       <GmapMap style="width: 100%; height: 300px;" :zoom="14" :center="{lat: this.coor.lat, lng: this.coor.lng}">
-        <GmapMarker :position="{ lat: this.coor.lat, lng: this.coor.lng }" />
+        <GmapMarker :position="{ lat: this.coor.lat, lng: this.coor.lng }"  />
       </GmapMap>
     </div>
     <div class="modal-footer">
@@ -36,5 +36,6 @@ export default {
   }
 }
 </script>
-<style media="screen">
+<style scoped media="screen">
+.btn { transition: none; }
 </style>

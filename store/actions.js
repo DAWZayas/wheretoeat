@@ -1,9 +1,9 @@
 import firebaseApp from '~/firebaseapp'
-import firebase from 'firebase'
 import {firebaseAction} from 'vuexfire'
 import { newFaceGooUser } from '~/utils/utils'
 import { userRef, usrPosts, postComments } from '~/utils/firebaseReferences'
 import { ratingUserRef, globalRef, userPostRef, newRating, uploadRating, setRating, deleteRating } from '~/utils/ratingReferences'
+import { locationFilter, mainFilter, setUserIds, wordFilter } from '~/utils/searchFunctions'
 import uuidv1 from 'uuid/v1'
 
 const _uploadImage = (folder, user) => (file) => {
@@ -29,7 +29,6 @@ export default {
     })
   },
   bindAuth ({commit, dispatch, state}) {
-    let db = firebaseApp.database()
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
         let userReference = userRef(user['uid'])
@@ -40,12 +39,7 @@ export default {
             postReference.set({user: user.email})
           }
         })
-        let addFavorites = db.ref(`/users/` + user['uid'] + `/favorites`)
-        addFavorites.on('value', function (snapshot) {
-          commit('setFavorite', snapshot.val())
-        })
         commit('setUser', user['uid'])
-        console.log('*******' + user['uid'])
         dispatch('bindFirebaseSetProfile', {uid: user['uid'], pag: 7})
       } else {
         dispatch('unbindFirebaseReferences')
@@ -88,84 +82,33 @@ export default {
     })
   }),
   addNewPost ({commit, state, dispatch}, newPost) {
-    newPost.date = firebase.database.ServerValue.TIMESTAMP
+    newPost.date = Date.now() * (-1)
     userPostRef(state.userId, newPost.post_id).set(newPost)
     postComments(newPost.post_id).set({post_id: newPost.post_id})
     ratingUserRef(newPost.post_id, state.userId).set({user_id: state.userId, score: newPost.points})
     globalRef(newPost.post_id).set({num: 1, sum: newPost.points})
   },
-  // Busqueda
-  bindSearch ({commit, dispatch, state}, toSearch) {
-    let db = firebaseApp.database()
-    db.ref('/posts').once('value').then(snapshot => {
-      if (snapshot.val()) {
-        const dataSearch = []
-        Object.keys(snapshot.val()).forEach(function (key) {
-          var user = snapshot.val()[key]
-          Object.keys(user).forEach(function (key) {
-            var posts = user[key]
-            if (toSearch.type === 'normal') {
-              if (typeof posts.title !== 'undefined' || typeof posts.comTitle !== 'undefined') {
-                if (posts.title.toLowerCase() === toSearch.searchTerm || posts.comTitle.toLowerCase() === toSearch.searchTerm) {
-                  console.log('Encontrado')
-                  dataSearch.push(posts)
-                } else {
-                  console.log('No encontrado')
-                }
-              }
-            } else {
-              if (typeof posts.points !== 'undefined' || typeof posts.bill !== 'undefined') {
-                if (toSearch.points === 0) {
-                  if (posts.bill === toSearch.bill) {
-                    dataSearch.push(posts)
-                  }
-                } else if (posts.bill === toSearch.bill && posts.points === toSearch.points) {
-                  dataSearch.push(posts)
-                }
-              }
-            }
-          })
-        })
-        commit('setSearchPost', dataSearch)
-      }
-    })
-  },
-  addFavorite ({commit, state}, info) {
-    let db = firebaseApp.database()
-    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
-    addFavorites.child(info.key).set(info.key)
-  },
-  unSetFavorite ({commit, state}, info) {
-    let db = firebaseApp.database()
-    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
-    addFavorites.child(info.key).remove()
-  },
-  favoritePostsA ({commit, state, dispatch}) {
-    let db = firebaseApp.database()
-    let favoriteP = state.favorite
-    db.ref('/posts').once('value').then(snapshot => {
-      if (snapshot.val()) {
-        const favoritesPosts = []
-        Object.keys(snapshot.val()).forEach(function (key) {
-          var user = snapshot.val()[key]
-          Object.keys(user).forEach(function (key) {
-            var idP = key
-            var posts = user[key]
-            Object.keys(favoriteP).forEach(function (key) {
-              var favo = favoriteP[key]
-              if (idP === favo) {
-                favoritesPosts.push(posts)
-              }
-            })
-          })
-        })
-        commit('setFavoritePosts', favoritesPosts)
-      }
-    })
-  },
   setCoordinates ({commit}, coordinates) { commit('setCoords', coordinates) },
   addNewComment ({state}, newComment) { state.newComment.push(newComment) },
   editProfile ({commit, state}, newProfile) { state.newProfile.update(newProfile) },
+  setMainPosts ({commit, dispatch}, {type, cords, words, bill, points}) {
+    let db = firebaseApp.database()
+    let users = []
+    let mainP = []
+    db.ref('/posts/').on('value', snapshot2 => {
+      if (snapshot2.val()) { users = setUserIds(snapshot2.val(), users) }
+      for (var i in users) {
+        db.ref('/posts/' + users[i]).on('value', snapshot => {
+          if (snapshot.val()) {
+            if (type === 'mainlist') { mainP = mainFilter(snapshot.val(), mainP) }
+            if (type === 'searchlist') { mainP = locationFilter(snapshot.val(), cords, mainP) }
+            if (type === 'wordList') { mainP = wordFilter(snapshot.val(), words.toLowerCase(), mainP, bill, points) }
+          }
+        })
+      }
+    })
+    commit('setMainPosts', mainP)
+  },
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, {uid, pag}) => {
     let userProfile = userRef(uid)
     let userPosts = usrPosts(uid).orderByChild('date').limitToFirst(pag)

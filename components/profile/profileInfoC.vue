@@ -21,12 +21,10 @@
     </div>
     <div class="blocinf ">
       <div class="btn-group cel">
-        <button type="button" class="btn btn-danger align"><i class="material-icons">&#xE7EF;</i> Seguidores</button>
+        <!-- <button type="button" class="btn btn-danger align"><i class="material-icons">&#xE7EF;</i> Seguidores</button>
         <button type="button" class="btn btn-info align">{{infoUser.followers}}</button>
-      </div>
-      <div v-if="this.showActions" class="btn-group cel">
-        <button @click="follow" type="button" class="btn btn-danger align">{{followText}}</button>
-        <button type="button" class="btn btn-default align"><i class="material-icons" v-html="showStar()"></i></button>
+        <button @click="follow" type="button" class="btn btn-info align" v-if="!this.following" style="margin-left:10px;"><i class="material-icons">&#xE8DC;</i></button>
+        <button @click="follow" type="button" class="btn btn-danger align" v-if="this.following"><i class="material-icons">&#xE8DC;</i></button>-->
       </div>
     </div>
   </div>

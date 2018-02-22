@@ -18,6 +18,8 @@
     padding: 5px;
     border: 1px solid #888;
     width: 95%;
+    opacity: 0;
+    transition: all 0.5s linear;
 }
 
 .close {

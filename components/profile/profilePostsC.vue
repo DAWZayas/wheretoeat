@@ -1,7 +1,7 @@
 <template>
   <div class="contain">
     <div class="listBloc">
-      <singleC v-for="info in userPosts" :key="info.date" v-if="info.date" :info="info"></singleC>
+      <singleC v-for="info in userPosts" :key="info.date" v-if="info.date" :info="info" :show="true"></singleC>
     </div>
     <div class="showmore" v-if="nPosts"><button @click="showMore" type="button" class="btn btn-info">Mostrar mas</button></div>
   </div>
