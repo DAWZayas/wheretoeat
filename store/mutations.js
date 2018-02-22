@@ -28,5 +28,11 @@ export default {
   },
   setMainPosts (state, value) {
     state.mainPosts = value
+  },
+  setFavorite (state, value) {
+    state.favorite = value
+  },
+  setFavoritePosts (state, value) {
+    state.favoritePosts = value
   }
 }

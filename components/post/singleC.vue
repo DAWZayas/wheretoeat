@@ -8,13 +8,16 @@
         <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
-        <button @click="setMod" id="myBtn" class="locbut"><i class="material-icons" style="color:#a85122;font-size:35px;">&#xe55f;</i></button>
-        <a href="#" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
-        <a href="#" data-toggle="modal" v-bind:data-target="1"><i class="material-icons">&#xe0cd;</i></a>
+        <nuxt-link to="" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
+        <a href="" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
+        <transition name="bounce" mode="out-in">
+          <i v-if="!heart" class="material-icons icon-fav" @click="favorite()" key="none">favorite</i>
+          <i v-if="heart" class="material-icons colorIcon" @click="favorite()" key="yes">favorite</i>
+        </transition>
       </div>
     </div>
     <hr>
-    <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span></br>
+    <span><span class="red">{{ showBill(info.bill) }}</span> por persona</span><br>
       <nuxt-link :to="this.userDirect" class="user"><i class="material-icons ico">&#xe7fd;</i><span class="name">@{{userData.username}} <!-- | <span style="font-size:12px;">{{ (new Date(info.date)).toUTCString().substr(5, 11) }}</span>--></span></nuxt-link>
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
@@ -42,11 +45,12 @@
         loadingImage: true,
         loadedImage: false,
         userData: '',
-        userPage: ''
+        userPage: '',
+        heart: false
       }
     },
     methods: {
-      ...mapActions(['bindFirebaseComments', 'setCoordinates']),
+      ...mapActions(['bindFirebaseComments', 'setCoordinates', 'addFavorite', 'unSetFavorite']),
       showBill (n) {
         var x = parseInt(n)
         if (x === 0) {
@@ -83,6 +87,22 @@
         document.getElementById('myModal').style.visibility = 'hidden'
         modlBox.style.border = '0'
         modlBox.style.opacity = '0'
+      },
+      favorite () {
+        this.heart = !this.heart
+        if (this.heart) {
+          let info = {
+            key: this.info.post_id,
+            userUid: this.userId
+          }
+          this.addFavorite(info)
+        } else {
+          let info = {
+            key: this.info.post_id,
+            userUid: this.userId
+          }
+          this.unSetFavorite(info)
+        }
       }
     },
     components: {
@@ -94,7 +114,8 @@
     },
     computed: {
       ...mapGetters({
-        userId: 'getUser'
+        userId: 'getUser',
+        favorites: 'getFavorite'
       }),
       userDirect () {
         if (this.userId === this.info.user_id) {
@@ -109,6 +130,11 @@
       db.ref('/users/' + this.info.user_id).once('value').then(snapshot => {
         if (snapshot.val()) { this.userData = snapshot.val() }
       })
+      if (this.favorites != null) {
+        if (this.favorites[this.info.post_id]) {
+          this.heart = true
+        }
+      }
     }
   }
 </script>
@@ -116,6 +142,36 @@
 <style scoped lang='scss'>
 @import 'assets/sass/modalcss';
 @import "assets/sass/colors.scss";
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}  
+.icoption i {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2em;
+}
+.colorIcon { 
+  color: #dc3545; 
+  margin-right: 20%;
+}
+.icon-fav { 
+  color: $blueColor; 
+  margin-right: 20%;
+}
 .locbut {
   background: none;
   padding: 0;

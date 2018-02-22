@@ -29,6 +29,7 @@ export default {
     })
   },
   bindAuth ({commit, dispatch, state}) {
+    let db = firebaseApp.database()
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
         let userReference = userRef(user['uid'])
@@ -38,6 +39,10 @@ export default {
             userReference.set(newFaceGooUser(user.email))
             postReference.set({user: user.email})
           }
+        })
+        let addFavorites = db.ref(`/users/` + user['uid'] + `/favorites`)
+        addFavorites.on('value', function (snapshot) {
+          commit('setFavorite', snapshot.val())
         })
         commit('setUser', user['uid'])
         dispatch('bindFirebaseSetProfile', {uid: user['uid'], pag: 7})
@@ -108,6 +113,39 @@ export default {
       }
     })
     commit('setMainPosts', mainP)
+  },
+  addFavorite ({commit, state}, info) {
+    let db = firebaseApp.database()
+    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    addFavorites.child(info.key).set(info.key)
+  },
+  unSetFavorite ({commit, state}, info) {
+    let db = firebaseApp.database()
+    let addFavorites = db.ref(`/users/` + info.userUid + `/favorites`)
+    addFavorites.child(info.key).remove()
+  },
+  favoritePostsA ({commit, state, dispatch}) {
+    let db = firebaseApp.database()
+    let favoriteP = state.favorite
+    db.ref('/posts').once('value').then(snapshot => {
+      if (snapshot.val()) {
+        const favoritesPosts = []
+        Object.keys(snapshot.val()).forEach(function (key) {
+          var user = snapshot.val()[key]
+          Object.keys(user).forEach(function (key) {
+            var idP = key
+            var posts = user[key]
+            Object.keys(favoriteP).forEach(function (key) {
+              var favo = favoriteP[key]
+              if (idP === favo) {
+                favoritesPosts.push(posts)
+              }
+            })
+          })
+        })
+        commit('setFavoritePosts', favoritesPosts)
+      }
+    })
   },
   bindFirebaseSetProfile: firebaseAction(({state, commit, dispatch}, {uid, pag}) => {
     let userProfile = userRef(uid)

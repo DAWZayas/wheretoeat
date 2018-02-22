@@ -8,6 +8,8 @@ const vPosts = null
 const coords = {lat: 0, lng: 0}
 const numPosts = 0
 const mainPosts = []
+const favorite = null
+const favoritePosts = []
 
 var images = {
   empty: require('~/assets/images/empty.png'),
@@ -25,5 +27,7 @@ export default {
   images,
   coords,
   numPosts,
-  mainPosts
+  mainPosts,
+  favorite,
+  favoritePosts
 }

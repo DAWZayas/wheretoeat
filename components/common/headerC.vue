@@ -15,7 +15,7 @@
           <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</div></a>
           <a href="profile" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe556;</i>Perfil</div></a>
           <a href="login" v-if="!this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe7fe;</i>Iniciar sesión / Registrarse</div></a>
-          <a href="/" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</div></a>
+          <a href="favorites" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</div></a>
           <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</div></a>
           <a href="#" @click="logOut" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l" style="color:red;">&#xE8AC;</i>Cerrar sesión</div></a>
         </ul>
@@ -27,6 +27,8 @@
         <a href="#" @click="showSearcher"><i class="material-icons ico">&#xe8b6;</i></a>
         <div class="srchBloc"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
       </div>
+      <nuxt-link to="favorites" v-if="this.isLogged" class="line">Favoritos</nuxt-link>
+      <nuxt-link to="" v-if="this.isLogged" class="line tall opa">|</nuxt-link>
       <a href="#" @click="locate" class="line">TuZona</a>
       <nuxt-link to="" class="line tall opa">|</nuxt-link>
       <nuxt-link to="login" v-if="!this.isLogged" class="line">Regístrate</nuxt-link>
