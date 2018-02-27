@@ -11,7 +11,7 @@
         <div class="modal-body">
           <commentC v-for="comment in comments" :comment="comment" :key="comment.id" v-if="comment.user_id"></commentC>
         </div>
-        <div class="bloc">
+        <div class="bloc" v-if="userId">
           <input type="text" v-model="newCom" class="comment" placeholder="escribe un comentario..">
           <button type="button" @click="addNewCom" class="btn btn-info send">Comentar</button>
         </div>
@@ -36,6 +36,7 @@ export default {
     ...mapActions(['addNewComment']),
     addNewCom () {
       if (this.newCom !== '') { this.addNewComment({user_id: this.userId, comment: this.newCom}) }
+      this.newCom = ''
     }
   },
   computed: {

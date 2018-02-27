@@ -8,7 +8,7 @@
     "moment": "^2.18.1",
     "nuxt": "latest",
     "uuid": "^3.1.0",
-    "vue2-google-maps": "^0.8.4"
+    "vue2-google-maps": "^0.8.8"
   },
   "scripts": {
     "dev": "nuxt",

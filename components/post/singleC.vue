@@ -11,8 +11,8 @@
         <nuxt-link to="" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
         <a href="" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
         <transition name="bounce" mode="out-in">
-          <i v-if="!heart" class="material-icons icon-fav" @click="favorite()" key="none">favorite</i>
-          <i v-if="heart" class="material-icons colorIcon" @click="favorite()" key="yes">favorite</i>
+          <i v-if="!heart && user" class="material-icons icon-fav" @click="favorite()" key="none">favorite</i>
+          <i v-if="heart && user" class="material-icons colorIcon" @click="favorite()" key="yes">favorite</i>
         </transition>
       </div>
     </div>
@@ -115,7 +115,8 @@
     computed: {
       ...mapGetters({
         userId: 'getUser',
-        favorites: 'getFavorite'
+        favorites: 'getFavorite',
+        user: 'getUser'
       }),
       userDirect () {
         if (this.userId === this.info.user_id) {
