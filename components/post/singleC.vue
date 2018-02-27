@@ -11,8 +11,8 @@
         <button @click="setMod" id="myBtn" class="locbut"><i class="material-icons" style="color:#a85122;font-size:35px;">&#xe55f;</i></button>
         <a href="" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
         <transition name="bounce" mode="out-in">
-          <i v-if="!heart && user" class="material-icons icon-fav" @click="favorite()" key="none">favorite</i>
-          <i v-if="heart && user" class="material-icons colorIcon" @click="favorite()" key="yes">favorite</i>
+          <i v-if="!heart && user" class="material-icons icon-fav" style="margin-bottom:10px;" @click="favorite()" key="none">favorite</i>
+          <i v-if="heart && user" class="material-icons colorIcon" style="margin-bottom:10px;" @click="favorite()" key="yes">favorite</i>
         </transition>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <h3>{{ info.comTitle }}</h3>
     <p>{{ info.comment }} </p>
     <ratingC :info="info" v-if="this.show"></ratingC>
-    <button type="button" class="btn btn-danger" style="font-size:15px;" v-if="!this.show">@{{userData.username}}</button>
+    <a href="#" @click="postref"><button type="button" class="btn btn-danger" style="font-size:15px;" v-if="!this.show">Votar este post</button></a>
     <div id="myModal" class="modl"><showMapC class="modlbox" @closeMod="closeMod()"></showMapC></div>
     <showCommentsC :info="info"></showCommentsC>
     <showInfoC :info="info"></showInfoC>
@@ -103,6 +103,9 @@
           }
           this.unSetFavorite(info)
         }
+      },
+      postref () {
+        this.$router.push({ path: '/users/' + this.info.user_id, query: { name: this.info.title } })
       }
     },
     components: {
@@ -159,18 +162,18 @@
   100% {
     transform: scale(1);
   }
-}  
+}
 .icoption i {
   cursor: pointer;
   text-decoration: none;
   font-size: 2em;
 }
-.colorIcon { 
-  color: #dc3545; 
+.colorIcon {
+  color: #dc3545;
   margin-right: 20%;
 }
-.icon-fav { 
-  color: $blueColor; 
+.icon-fav {
+  color: $blueColor;
   margin-right: 20%;
 }
 .locbut {

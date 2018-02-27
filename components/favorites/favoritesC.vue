@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="contain">
     <h1>Publicaciones favoritas</h1>
     <div class="listBloc" v-if="favoritePosts.length>0">
       <singleC v-for="info in favoritePosts" :key="info.post_id" :info="info"></singleC>
@@ -54,6 +54,9 @@ h1 {
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+.contain {
+  width: 100%;
 }
 @media screen and (min-width: 650px) {
   .listBloc {

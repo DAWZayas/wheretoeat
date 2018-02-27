@@ -4,7 +4,7 @@
     <searcherC></searcherC>
     <profileInfoC :infoUser="this.infoUser" class="prof"></profileInfoC>
     <div class="col"></div>
-    <div class="posts"><h1>Sus publicaciones</h1></div>
+    <div class="posts"><h1>Sus publicaciones<a :href="'#' + this.$route.query.name" id="post"></a></h1></div>
     <div class="listBloc"><singleC v-for="info in this.userPosts" :key="info.src" v-if="info.src" :info="info" :show="true"></singleC></div>
     <footerC></footerC>
     <div v-if="isLoading" class="load"><img src="~/assets/oval.svg" width="80" alt=""></div>
@@ -45,6 +45,7 @@ export default{
       setTimeout(() => {
         this.isLoading = false
         document.getElementsByTagName('body')[0].style.overflow = 'visible'
+        document.getElementById('post').click()
       }, 1500)
     })
   },

@@ -1,13 +1,38 @@
 <template>
     <div class="searcher">
-      <input type="text" name="" placeholder="restaurante,ciudad,plato...">
+      <input type="text" ref="words" placeholder="restaurante,ciudad,plato...">
       <div class="searchBloc">
-        <nuxt-link to="#"><i class="material-icons">&#xe8b6;</i></nuxt-link>
+        <a href="#" @click="searchRestaurants"><i class="material-icons">&#xe8b6;</i></a>
       </div>
   </div>
 
 </template>
-
+<script type="text/javascript">
+import { mapActions } from 'vuex'
+export default {
+  data () {
+    return {
+      filterText: 'Busqueda filtrada',
+      showFilterWin: false,
+      latLng: {},
+      lat: '',
+      lng: '',
+      rating: -1,
+      bill: -1
+    }
+  },
+  methods: {
+    ...mapActions(['setMainPosts']),
+    searchRestaurants () {
+      let searchWords = this.$refs.words.value
+      if (searchWords !== '') {
+        this.setMainPosts({ type: 'wordList', words: searchWords, bill: this.bill, points: this.rating })
+        this.$router.push({path: '/search/' + 'query', query: { words: searchWords }})
+      }
+    }
+  }
+}
+</script>
 <style scoped media="screen">
 @import "assets/sass/colors.scss";
 .searcher {

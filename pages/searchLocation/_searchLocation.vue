@@ -11,7 +11,7 @@
     </div>
     <h3>{{nRestaurants}} resultados en tu zona</h3>
     <div class="listBloc">
-        <singleC v-for="info in mainPosts" :key="info.date" v-if="info.date" :info="info"></singleC>
+        <singleC v-for="info in mainPosts" :key="info.date" v-if="info.date" :info="info" :show="false"></singleC>
     </div>
   </div>
 </template>

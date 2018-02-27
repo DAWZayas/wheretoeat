@@ -2,7 +2,7 @@
   <div class="col">
     <div>
       <h5><span>Busqueda personalizada</span><i class="material-icons">&#xE8B6;</i></h5>
-      <input type="text" ref="words" placeholder="restaurante, tipos, palabra clave..">
+      <input type="text" ref="words" placeholder="restaurante, palabra clave..">
       <GmapAutocomplete @place_changed="setPlace"></GmapAutocomplete>
       <h5><span>Filtros</span><i class="material-icons">&#xE241;</i></h5>
       <div class="login">

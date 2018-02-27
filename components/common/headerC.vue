@@ -13,10 +13,10 @@
       <div class="mobilebloc">
         <ul class="mylist">
           <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe5c3;</i>Inicio</div></a>
-          <a href="profile" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe556;</i>Perfil</div></a>
-          <a href="login" v-if="!this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe7fe;</i>Iniciar sesión / Registrarse</div></a>
-          <nuxt-link to="favorites" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</div></nuxt-link>
-          <a href="/"><div class="listed"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</div></a>
+          <a href="/profile" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe556;</i>Perfil</div></a>
+          <a href="/login" v-if="!this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe7fe;</i>Iniciar sesión / Registrarse</div></a>
+          <nuxt-link to="/favorites" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l">&#xe83a;</i>Mis favoritos</div></nuxt-link>
+          <a href="#" @click="locate"><div class="listed"><i class="material-icons icon-l">&#xe0c8;</i>Tu Zona</div></a>
           <a href="#" @click="logOut" v-if="this.isLogged"><div class="listed"><i class="material-icons icon-l" style="color:red;">&#xE8AC;</i>Cerrar sesión</div></a>
         </ul>
       </div>
@@ -27,11 +27,11 @@
         <a href="#" @click="showSearcher"><i class="material-icons ico">&#xe8b6;</i></a>
         <div class="srchBloc"><searcherC style="display: inline;display:flex;flex-flow:row nowrap;"></searcherC></div>
       </div>
-      <nuxt-link to="favorites" v-if="this.isLogged" class="line">Favoritos</nuxt-link>
+      <nuxt-link to="/favorites" v-if="this.isLogged" class="line">Favoritos</nuxt-link>
       <nuxt-link to="" v-if="this.isLogged" class="line tall opa">|</nuxt-link>
       <a href="#" @click="locate" class="line">TuZona</a>
       <nuxt-link to="" class="line tall opa">|</nuxt-link>
-      <nuxt-link to="login" v-if="!this.isLogged" class="line">Regístrate</nuxt-link>
+      <nuxt-link to="/login" v-if="!this.isLogged" class="line">Regístrate</nuxt-link>
       <nuxt-link to="" v-if="!this.isLogged" class="line tall opa">|</nuxt-link>
       <nuxt-link to="/" class="line">Inicio</nuxt-link>
       <button type="button" @click="logOut" v-if="this.isLogged" class="btn send"><i class="material-icons ico">&#xE8AC;</i></button>
@@ -111,7 +111,7 @@ export default {
   z-index:1;
   background-color:#fff;
   margin-left: -110%;;
-  margin-top: 6.6em;
+  margin-top: 6.3em;
   width: 130%;
   height: 0;
   color: black;
