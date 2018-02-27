@@ -8,7 +8,7 @@
         <starsC :info="info"></starsC>
       </div>
       <div class="icoption">
-        <nuxt-link to="" data-toggle="modal" data-target="#mapLocation"><i class="material-icons" style="color:#a85122;">&#xe55f;</i></nuxt-link>
+        <button @click="setMod" id="myBtn" class="locbut"><i class="material-icons" style="color:#a85122;font-size:35px;">&#xe55f;</i></button>
         <a href="" @click="setComments" data-toggle="modal" data-target="#showComments"><i class="material-icons">&#xe0b9;</i></a>
         <transition name="bounce" mode="out-in">
           <i v-if="!heart && user" class="material-icons icon-fav" @click="favorite()" key="none">favorite</i>
